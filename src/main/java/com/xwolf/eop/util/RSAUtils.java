@@ -1,4 +1,4 @@
-﻿package com.xwolf.eop.util;
+package com.xwolf.eop.util;
 
 import java.io.File;
 import java.io.FileInputStream;

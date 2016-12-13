@@ -1,5 +1,9 @@
 package com.xwolf.eop.util;
 
+import org.apache.commons.lang3.StringUtils;
+
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author xwolf
  * @date 2016-11-03 22:41
@@ -7,7 +11,7 @@ package com.xwolf.eop.util;
  */
 public class IPUtil {
     
-    public static String trim(String ip){//去掉ip字符串前后所有的空格
+    private static String trim(String ip){//去掉ip字符串前后所有的空格
         while(ip.startsWith(" ")){
             ip= ip.substring(1,ip.length()).trim();
         }
@@ -16,6 +20,7 @@ public class IPUtil {
         }
         return ip;
     }
+
     //判断是否是一个ip
     public  static boolean isIp(String ip){
         boolean b = false;
@@ -31,7 +36,30 @@ public class IPUtil {
         return b;
     }
 
-    public static void main(String[] args) {
-        System.out.println(isIp("23.32.s.32"));
+    /**
+     * 获取请求IP
+     * @param request
+     * @return IP地址
+     * @throws Exception
+     */
+    public static String getIp(HttpServletRequest request) throws Exception{
+        String ip = request.getHeader("X-Real-IP");
+        if (!StringUtils.isBlank(ip) && !"unknown".equalsIgnoreCase(ip)) {
+            return ip;
+        }
+        ip = request.getHeader("X-Forwarded-For");
+        if (!StringUtils.isBlank(ip) && !"unknown".equalsIgnoreCase(ip)) {
+           // 多次反向代理后会有多个IP值，第一个为真实IP。
+            int index = ip.indexOf(',');
+            if (index != -1) {
+                return ip.substring(0, index);
+            } else {
+                return ip;
+            }
+        } else {
+            return request.getRemoteAddr();
+        }
     }
+
+
 }
