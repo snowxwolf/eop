@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                 http://www.springframework.org/schema/context  http://www.springframework.org/schema/beans/spring-context.xsd">
+
+    <context:property-placeholder file-encoding="UTF-8" location="classpath:jdbc.properties"/>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${system.jdbc.driver}"/>
+        <property name="url" value="${system.jdbc.url}"/>
+        <property name="username" value="${system.jdbc.username}"/>
+        <property name="password" value="${system.jdbc.passwd}"/>
+        <property name="validationQuery" value="${system.jdbc.validateQuery}"/>
+        <!--初始化-->
+        <property name="initialSize" value="${system.jdbc.initialSize}"/>
+        <!-- 最小连接池数量 -->
+        <property name="minIdle" value="${system.jdbc.minIdle}"/>
+        <!--最大连接数-->
+        <property name="maxActive" value="${system.jdbc.maxActive}"/>
+        <!--获取连接时最大等待时间，单位毫秒-->
+        <property name="maxWait" value="${system.jdbc.maxWait}"/>
+        <property name="filters" value="${system.jdbc.filters}"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+         http://www.springframework.org/schema/security
+         http://www.springframework.org/schema/security/spring-security.xsd"
+       default-autowire="byName" default-lazy-init="false">
+
+    <security:debug/>
+    
+    
+    <import resource="classpath:spring-datasource.xml"/>
+    <!--静态资源过滤-->
+    <security:http security="none" pattern="/static/**" />
+    <!--登录过滤-->
+    <security:http security="none" pattern="/login.htm"/>
+
+    <security:http use-expressions="true" auto-config="true">
+        <security:csrf disabled="true" />
+        <security:intercept-url pattern="/**" access="ROLE_USER"/>
+       <!-- <security:session-management>
+            <security:concurrency-control max-sessions="2" error-if-maximum-exceeded="true"
+             expired-url="/expire.htm"/>
+        </security:session-management>
+        <security:form-login login-page="/login.htm"  >
+        </security:form-login>-->
+    </security:http>
+
+    <!--认证管理器-->
+    <security:authentication-manager>
+    <security:authentication-provider>
+        <security:user-service>
+            <security:user name="user" password="123456" authorities="ROLE_USER"/>
+            <security:user name="admin" password="123456" authorities="ROLE_USER,ROLE_ADMIN"/>
+        </security:user-service>
+    </security:authentication-provider>
+    </security:authentication-manager>
+
+
+   
+
+
+
+
+
+
+
+</beans>
