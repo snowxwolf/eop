@@ -16,6 +16,7 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "toLogin",method = RequestMethod.POST)
+
     public String toLogin(){
        return "system/login";
     }
