@@ -3,12 +3,21 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- 自定义Realm -->
-    <bean id="userRealm" class="com.xwolf.eop.common.security.UserRealm"/>
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
 
+    <!-- 缓存管理 -->
+    <bean id="memeroycacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+    <!-- 自定义Realm -->
+    <bean id="userRealm" class="com.xwolf.eop.common.security.UserRealm">
+        <property name="credentialsMatcher">
+            <bean class="com.xwolf.eop.common.security.CustomCredentialsMatcher" />
+        </property>
+    </bean>
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="userRealm"/>
+        <property name="cacheManager" ref="memeroycacheManager"/>
     </bean>
 
     <!-- Shiro过滤器 -->
@@ -22,16 +31,14 @@
         <!-- Shiro连接约束配置,即过滤链的定义 -->
         <property name="filterChainDefinitions">
             <value>
-                /login=anon
-                /user/admin*=authc
-                /user/student*/**=roles[teacher]
-                /user/teacher*/**=perms["user:create"]
+                /static/**=anon
+                /login.htm=anon
+                /**=authc
             </value>
         </property>
     </bean>
 
-    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
-    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
 
     <!-- 开启Shiro注解 -->
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
