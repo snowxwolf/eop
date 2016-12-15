@@ -1,10 +1,14 @@
 package com.xwolf.eop.system.controller;
 
+import com.xwolf.eop.common.util.UUIDUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 基础码表
@@ -24,6 +28,6 @@ public class CodesController {
      */
     @RequestMapping(value = "toCodes",method = RequestMethod.GET)
     public ModelAndView toCodes(){
-     return new ModelAndView
+     return new ModelAndView("system/code");
     }
 }
