@@ -37,6 +37,11 @@ public class Input {
 
     }
     public static void main(String[] args) {
-          in();
+          //in();
+        int x=1;
+        int y=1;
+        int b=++y;
+        int c=x++;
+        System.out.println(b+","+c);
     }
 }

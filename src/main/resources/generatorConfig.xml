@@ -4,7 +4,7 @@
 		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-	<classPathEntry location="D:\workspace\NIDEA\EAP\target\eap\WEB-INF\lib\mysql-connector-java-5.1.36.jar" />
+	<classPathEntry location="D:\LocalWarehouse\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar" />
 	
 	<context id="MyBatis3" targetRuntime="MyBatis3">
 	
@@ -12,28 +12,28 @@
     		<property name="suppressAllComments" value="true" /> 
  		</commentGenerator> 
 		
-		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/pay_plateform?userUnicode=true&amp;characterEncoding=utf8"
-			userId="eap" password="eap@eap">
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/eop?userUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC"
+			userId="eop" password="123456">
 		</jdbcConnection>
 		
-		<javaModelGenerator targetPackage="com.omnipotent.entity" targetProject="D:\workspace\NIDEA\prophet\prophet-pay-plateform\src\main\java">
+		<javaModelGenerator targetPackage="com.xwolf.eop.system.entity" targetProject="D:\workspace\NIDEA\eop\src\main\java">
 		</javaModelGenerator>
 
 		<!--xml 映射文件-->
-		<sqlMapGenerator targetPackage="mappers" targetProject="D:\workspace\NIDEA\prophet\prophet-pay-plateform\src\main\resources">
+		<sqlMapGenerator targetPackage="mapper/system" targetProject="D:\workspace\NIDEA\eop\src\main\resources">
 		</sqlMapGenerator>
 
 		<!--对应接口-->
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.omnipotent.dao"
-			targetProject="D:\workspace\NIDEA\prophet\prophet-pay-plateform\src\main\java\">
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.xwolf.eop.system.dao"
+			targetProject="D:\workspace\NIDEA\eop\src\main\java">
 		</javaClientGenerator>
 
-		<table tableName="wx_pay_order" domainObjectName="PayOrder"
+		<table tableName="com_codes" domainObjectName="Codes"
 			enableCountByExample="false" enableUpdateByExample="false" 
 			enableDeleteByExample="false" enableSelectByExample="false" 
 			selectByExampleQueryId="false" >
 			<property name="ignoreQualifiersAtRuntime" value="true" />
-			<property name="runtimeTableName" value=" wx_pay_order" />
+			<property name="runtimeTableName" value=" com_codes" />
 			<!--<generatedKey  column="ID" sqlStatement="select 1 from dual" />
 		--></table>
 	</context>
