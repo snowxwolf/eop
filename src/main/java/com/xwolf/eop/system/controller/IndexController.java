@@ -24,7 +24,6 @@ public class IndexController {
     @RequestMapping(value ="index")
     public String toIndex(@RequestHeader("User-Agent")String ua){
         log.info("ua:{}",ua);
-
         return "system/index";
     }
 }

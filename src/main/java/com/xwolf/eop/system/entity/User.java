@@ -1,25 +1,39 @@
 package com.xwolf.eop.system.entity;
 
-/**
- * @author xwolf
- * @date 2016-12-14 12:22
- * @since V1.0.0
- */
+import java.util.Date;
+
 public class User {
+    private Integer uid;
 
-    private long uid;
-    private String ucode;//业务编码
+    private String ucode;
+
     private String uname;
-    private String passwd;
-    private String email;
-    private String mobile;
-    private String status;
 
-    public long getUid() {
+    private String nickName;
+
+    private String upasswd;
+
+    private String email;
+
+    private String qq;
+
+    private String mobile;
+
+    private Date ctime;
+
+    private String ccode;
+
+    private String rcode;
+
+    private Date rtime;
+
+    private int ustatus;
+
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(long uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
@@ -39,12 +53,20 @@ public class User {
         this.uname = uname;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getUpasswd() {
+        return upasswd;
+    }
+
+    public void setUpasswd(String upasswd) {
+        this.upasswd = upasswd;
     }
 
     public String getEmail() {
@@ -55,6 +77,14 @@ public class User {
         this.email = email;
     }
 
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
     public String getMobile() {
         return mobile;
     }
@@ -63,11 +93,43 @@ public class User {
         this.mobile = mobile;
     }
 
-    public String getStatus() {
-        return status;
+    public Date getCtime() {
+        return ctime;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCtime(Date ctime) {
+        this.ctime = ctime;
+    }
+
+    public String getCcode() {
+        return ccode;
+    }
+
+    public void setCcode(String ccode) {
+        this.ccode = ccode;
+    }
+
+    public String getRcode() {
+        return rcode;
+    }
+
+    public void setRcode(String rcode) {
+        this.rcode = rcode;
+    }
+
+    public Date getRtime() {
+        return rtime;
+    }
+
+    public void setRtime(Date rtime) {
+        this.rtime = rtime;
+    }
+
+    public int getUstatus() {
+        return ustatus;
+    }
+
+    public void setUstatus(int ustatus) {
+        this.ustatus = ustatus;
     }
 }
