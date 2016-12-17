@@ -1,8 +1,10 @@
 package com.xwolf.eop.system.entity;
 
+import com.xwolf.eop.common.entity.BaseEntity;
+
 import java.util.Date;
 
-public class Roles {
+public class Roles extends BaseEntity {
     private Integer rid;
 
     private String rcode;

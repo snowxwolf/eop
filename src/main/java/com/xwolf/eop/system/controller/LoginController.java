@@ -1,14 +1,21 @@
 package com.xwolf.eop.system.controller;
 
+import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.xwolf.eop.system.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.CachePut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
 
 /**
  * @author xwolf
@@ -17,7 +24,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class LoginController {
+
     private static final Logger log= LoggerFactory.getLogger(LoginController.class);
+
+    @Autowired
+    private DefaultKaptcha defaultKaptcha;
     /**
      * 用户登录页面
      * @return
@@ -29,6 +40,35 @@ public class LoginController {
     }
 
     /**
+     * 生成验证码
+     *
+     * @throws Exception
+     */
+    @RequestMapping(value = "/checkCode", method = RequestMethod.GET)
+    public void captcha(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        response.setDateHeader("Expires", 0);
+        response.setHeader("Cache-Control",
+                "no-store, no-cache, must-revalidate");
+        response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+        response.setHeader("Pragma", "no-cache");
+        response.setContentType("image/jpeg");
+        String capText = defaultKaptcha.createText();
+        // 将验证码放入session中
+        request.getSession().setAttribute(
+                com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY, capText);
+        log.info("生成的验证码为:{}",capText);
+        BufferedImage bi = defaultKaptcha.createImage(capText);
+        ServletOutputStream out = response.getOutputStream();
+        ImageIO.write(bi, "jpg", out);
+        try {
+            out.flush();
+        } finally {
+            out.close();
+        }
+    }
+
+    /**
      * 登录
      * @param user
      * @return
@@ -36,7 +76,15 @@ public class LoginController {
     @RequestMapping(value = "login",method = RequestMethod.POST)
     @ResponseBody
     public String login(User user){
+
+
         return null;
+    }
+
+
+    @RequestMapping(value = "logout",method = RequestMethod.POST)
+    public String logout(){
+           return null;
     }
 
 

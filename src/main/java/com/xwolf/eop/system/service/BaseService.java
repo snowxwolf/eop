@@ -21,4 +21,14 @@ public interface BaseService<T>{
 
     List<T> queryForList(JSONObject json);
 
+    String insert(T t);
+
+    String update(T t);
+
+    String delete(String key);
+
+    T queryForObject(String key);
+
+    T queryForObject(T t);
+
 }

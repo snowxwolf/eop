@@ -1,6 +1,8 @@
 package com.xwolf.eop.system.entity;
 
-public class Permissions {
+import com.xwolf.eop.common.entity.BaseEntity;
+
+public class Permissions extends BaseEntity {
 
     private Integer pid;
 

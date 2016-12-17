@@ -13,7 +13,7 @@ import java.util.List;
  * @date 2016-12-15 14:44
  * @since V1.0.0
  */
-public class BaseServiceImpl implements BaseService {
+public class BaseServiceImpl<T> implements BaseService<T> {
 
     public String success(){
         Result result=new Result();
@@ -29,6 +29,7 @@ public class BaseServiceImpl implements BaseService {
         result.setRestCode(StatusCodeEnum.SUCCESS.getMsg());
         return JSON.toJSONString(result);
     }
+
 
     @Override
     public String insert(JSONObject json) {
@@ -46,12 +47,37 @@ public class BaseServiceImpl implements BaseService {
     }
 
     @Override
-    public Object queryForObject(JSONObject json) {
+    public T queryForObject(JSONObject json) {
         return null;
     }
 
     @Override
-    public List queryForList(JSONObject json) {
+    public List<T> queryForList(JSONObject json) {
+        return null;
+    }
+
+    @Override
+    public String insert(T t) {
+        return null;
+    }
+
+    @Override
+    public String update(T t) {
+        return null;
+    }
+
+    @Override
+    public String delete(String key) {
+        return null;
+    }
+
+    @Override
+    public T queryForObject(String key) {
+        return null;
+    }
+
+    @Override
+    public T queryForObject(T t) {
         return null;
     }
 }

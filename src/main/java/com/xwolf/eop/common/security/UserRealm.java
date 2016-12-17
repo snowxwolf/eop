@@ -66,7 +66,7 @@ public class UserRealm extends AuthorizingRealm {
             throw new LockedAccountException();
         }
         return new SimpleAuthenticationInfo(user.getUname(),user
-                .getPasswd(),getName());
+                .getUpasswd(),getName());
     }
 }
 

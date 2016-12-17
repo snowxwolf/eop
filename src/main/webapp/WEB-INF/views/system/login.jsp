@@ -78,13 +78,22 @@
 														</span>
                                             </label>
 
+
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" minlength="4" maxlength="4" width="50" class="input-sm" placeholder="验证码" />
+															<i class="ace-icon fa fa-lock"></i>
+                                                            <img id="checkCode" src="checkCode.html" width="75" height="30" onclick="geneCode();"/>
+														</span>
+                                            </label>
+
                                             <div class="space"></div>
 
                                             <div class="clearfix">
 
-                                                <button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+                                                <button type="button" id="loginBtn" class="width-35 pull-right btn btn-sm btn-primary">
                                                     <i class="ace-icon fa fa-key"></i>
-                                                    <span class="bigger-110">登录</span>
+                                                    <span class="bigger-110" onclick="login();">登录</span>
                                                 </button>
                                             </div>
 
@@ -149,7 +158,7 @@
         </div><!-- /.row -->
     </div><!-- /.main-content -->
 </div><!-- /.main-container -->
-
+</div>
 <!-- basic scripts -->
 
 <!--[if !IE]> -->
@@ -202,7 +211,10 @@
         });
 
     });
+
 </script>
+
+<script type="text/javascript" src="static/js/util.js"></script>
+<script type="text/javascript" src="static/js/system/login.js"></script>
 </body>
-</html>
 </html>

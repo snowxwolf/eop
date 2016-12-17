@@ -4,22 +4,18 @@ import com.xwolf.eop.common.entity.BaseEntity;
 
 import java.util.Date;
 
-/**
- * 基础码表
- */
-public class Codes extends BaseEntity {
-
+public class Citys extends BaseEntity {
     private Integer cid;
 
-    private String code;
+    private String bcode;
 
-    private String cvalue;
+    private String ccode;
 
     private String cname;
 
-    private Date ctime;
+    private String pcode;
 
-    private int corder;
+    private Date ctime;
 
     private int cstatus;
 
@@ -31,20 +27,20 @@ public class Codes extends BaseEntity {
         this.cid = cid;
     }
 
-    public String getCode() {
-        return code;
+    public String getBcode() {
+        return bcode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setBcode(String bcode) {
+        this.bcode = bcode;
     }
 
-    public String getCvalue() {
-        return cvalue;
+    public String getCcode() {
+        return ccode;
     }
 
-    public void setCvalue(String cvalue) {
-        this.cvalue = cvalue;
+    public void setCcode(String ccode) {
+        this.ccode = ccode;
     }
 
     public String getCname() {
@@ -55,20 +51,20 @@ public class Codes extends BaseEntity {
         this.cname = cname;
     }
 
+    public String getPcode() {
+        return pcode;
+    }
+
+    public void setPcode(String pcode) {
+        this.pcode = pcode;
+    }
+
     public Date getCtime() {
         return ctime;
     }
 
     public void setCtime(Date ctime) {
         this.ctime = ctime;
-    }
-
-    public int getCorder() {
-        return corder;
-    }
-
-    public void setCorder(int corder) {
-        this.corder = corder;
     }
 
     public int getCstatus() {

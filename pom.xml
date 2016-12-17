@@ -65,7 +65,7 @@
     <!--redis-->
     <redis.version>2.9.0</redis.version>
     <!--quartz-->
-    <quartz.version>1.5.2</quartz.version>
+    <quartz.version>2.2.1</quartz.version>
   </properties>
   <dependencies>
     <!--junit-->
@@ -317,12 +317,26 @@
       <artifactId>spring-data-redis</artifactId>
       <version>1.7.5.RELEASE</version>
     </dependency>
-     <!--quartz-->
+    <!--kaptcha-->
     <dependency>
+      <groupId>com.github.axet</groupId>
+      <artifactId>kaptcha</artifactId>
+      <version>0.0.9</version>
+    </dependency>
+
+    <!--quartz-->
+    <!--<dependency>
       <groupId>quartz</groupId>
       <artifactId>quartz</artifactId>
       <version>${quartz.version}</version>
+    </dependency>-->
+
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+      <version>${quartz.version}</version>
     </dependency>
+
     <!--POI-->
     <dependency>
       <groupId>org.apache.poi</groupId>

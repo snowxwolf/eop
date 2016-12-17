@@ -3,13 +3,18 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cache="http://www.springframework.org/schema/cache"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop.xsd
-         http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx.xsd">
+         http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx.xsd
+         http://www.springframework.org/schema/cache  http://www.springframework.org/schema/cache/spring-cache.xsd">
 
      <import resource="classpath:spring-datasource.xml" />
 
-     <!--<import resource="classpath:spring-cache.xml" />-->
+    <!--redis缓存-->
+     <import resource="classpath:spring-cache.xml" />
+
+     <cache:annotation-driven cache-manager="cacheManager"/>
 
     <!-- 将数据源映射到sqlSessionFactory中 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -33,6 +38,7 @@
             <tx:method name="query*" propagation="REQUIRED" read-only="true" rollback-for="java.lang.Exception"/>
             <tx:method name="get*" propagation="REQUIRED" read-only="true" rollback-for="java.lang.Exception" />
             <tx:method name="find*" propagation="REQUIRED" read-only="true" rollback-for="java.lang.Exception" />
+            <tx:method name="select*" propagation="REQUIRED" read-only="true" rollback-for="java.lang.Exception" />
 
             <tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
             <tx:method name="insert*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
@@ -47,5 +53,42 @@
         <aop:pointcut id="pointcut" expression="execution(* com.xwolf.eop.*.service.*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
     </aop:config>
+
+
+    <!-- 验证码 -->
+    <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+        <property name="config">
+            <bean class="com.google.code.kaptcha.util.Config">
+                <constructor-arg type="java.util.Properties">
+                    <props>
+                        <!-- 验证码宽度 -->
+                        <prop key="kaptcha.image.width">90</prop>
+                        <!-- 验证码高度 -->
+                        <prop key="kaptcha.image.height">24</prop>
+                        <!-- 生成验证码内容范围 -->
+                        <prop key="kaptcha.textproducer.char.string">abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ</prop>
+                        <!-- 验证码个数 -->
+                        <prop key="kaptcha.textproducer.char.length">5</prop>
+                        <!-- 是否有边框 -->
+                        <prop key="kaptcha.border">no</prop>
+                        <!-- 验证码字体颜色 -->
+                        <prop key="kaptcha.textproducer.font.color">red</prop>
+                        <!-- 验证码字体大小 -->
+                        <prop key="kaptcha.textproducer.font.size">14</prop>
+                        <!-- 验证码所属字体样式 -->
+                        <prop key="kaptcha.textproducer.font.names">Arial, Courier</prop>
+                        <prop key="kaptcha.background.clear.from">white</prop>
+                        <prop key="kaptcha.background.clear.to">white</prop>
+                        <prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.ShadowGimpy</prop>
+                        <prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
+                        <!-- 干扰线颜色 -->
+                        <prop key="kaptcha.noise.color">black</prop>
+                        <!-- 验证码文本字符间距 -->
+                        <prop key="kaptcha.textproducer.char.space">3</prop>
+                    </props>
+                </constructor-arg>
+            </bean>
+        </property>
+    </bean>
 
 </beans>

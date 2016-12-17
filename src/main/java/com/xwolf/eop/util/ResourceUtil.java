@@ -31,10 +31,25 @@ public class ResourceUtil {
      * @return
      */
     public  String getValue(String key){
-      String value= String.valueOf(properties.get(key));
-      if(StringUtils.isBlank(value)){
-          return null;
-      }
-      return value;
+        String value= String.valueOf(properties.get(key));
+        if(StringUtils.isBlank(value)){
+            return null;
+        }
+        return value;
     }
+
+    /**
+     * 根据 配置文件key 获取value
+     * @param key  对应key
+     * @return
+     */
+    public  boolean getBooleanValue(String key){
+        String value= String.valueOf(properties.get(key));
+        if(StringUtils.isBlank(value)){
+            return Boolean.FALSE;
+        }
+        return Boolean.valueOf(value);
+    }
+
+
 }

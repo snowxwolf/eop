@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * 登录过滤器
@@ -19,6 +18,7 @@ import java.util.Arrays;
  * @since V1.0.0
  */
 public class LoginFilter implements Filter {
+
     private static final Logger log= LoggerFactory.getLogger(LoginFilter.class);
 
     @Override

@@ -1,39 +1,25 @@
 package com.xwolf.eop.util;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.math.BigInteger;
-import java.security.KeyPair;
-import java.security.KeyFactory;
-import java.security.KeyPairGenerator;
-import java.security.Provider;
-import java.security.PublicKey;
-import java.security.PrivateKey;
-import java.security.SecureRandom;
-import java.security.NoSuchAlgorithmException;
-import java.security.InvalidParameterException;
-import java.security.interfaces.RSAPublicKey;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.spec.RSAPublicKeySpec;
-import java.security.spec.RSAPrivateKeySpec;
-import java.security.spec.InvalidKeySpecException;
-import java.util.Date;
-
-import javax.crypto.Cipher;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.DateFormatUtils;
+import javax.crypto.Cipher;
+import java.io.*;
+import java.math.BigInteger;
+import java.security.*;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.RSAPrivateKeySpec;
+import java.security.spec.RSAPublicKeySpec;
+import java.util.Date;
 
 /**
  * RSA算法加密/解密工具类。
@@ -48,7 +34,7 @@ public abstract class RSAUtils {
     /** 算法名称 */
     private static final String ALGORITHOM = "RSA";
     /**保存生成的密钥对的文件名称。 */
-    private static final String RSA_PAIR_FILENAME = "/__RSA_PAIR.txt";
+    private static final String RSA_PAIR_FILENAME = "com/xwolf/eop/util/pri.key";
     /** 密钥大小 */
     private static final int KEY_SIZE = 1024;
     /** 默认的安全服务提供者 */
@@ -97,7 +83,7 @@ public abstract class RSAUtils {
      */
     private static String getRSAPairFilePath() {
         String urlPath = RSAUtils.class.getResource("/").getPath();
-        return (new File(urlPath).getParent() + RSA_PAIR_FILENAME);
+        return (new File(urlPath) +File.separator+ RSA_PAIR_FILENAME);
     }
 
     /**
@@ -416,5 +402,20 @@ public abstract class RSAUtils {
             return (RSAPrivateKey)keyPair.getPrivate();
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        PublicKey publicKey=RSAUtils.getDefaultPublicKey();
+        String s="黄哲";
+        String pstr=null;
+        try {
+            pstr=  new String(RSAUtils.encrypt(publicKey,s.getBytes()));
+            System.out.println(pstr);
+            PrivateKey privateKey=RSAUtils.getDefaultPrivateKey();
+            String ds= RSAUtils.decryptString(privateKey,pstr);
+            System.out.println("ds:"+ds);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

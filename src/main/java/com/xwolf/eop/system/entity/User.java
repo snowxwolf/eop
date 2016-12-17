@@ -1,8 +1,10 @@
 package com.xwolf.eop.system.entity;
 
+import com.xwolf.eop.common.entity.BaseEntity;
+
 import java.util.Date;
 
-public class User {
+public class User extends BaseEntity{
     private Integer uid;
 
     private String ucode;

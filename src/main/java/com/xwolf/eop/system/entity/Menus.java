@@ -1,6 +1,8 @@
 package com.xwolf.eop.system.entity;
 
-public class Menus {
+import com.xwolf.eop.common.entity.BaseEntity;
+
+public class Menus extends BaseEntity{
 
     private Integer mid;
 

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xwolf.eop.system.dao.CitysMapper" >
+  <resultMap id="BaseResultMap" type="com.xwolf.eop.system.entity.Citys" >
+    <id column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="bcode" property="bcode" jdbcType="VARCHAR" />
+    <result column="ccode" property="ccode" jdbcType="VARCHAR" />
+    <result column="cname" property="cname" jdbcType="VARCHAR" />
+    <result column="pcode" property="pcode" jdbcType="VARCHAR" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="cstatus" property="cstatus" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cid, bcode, ccode, cname, pcode, ctime, cstatus
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from com_citys
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from com_citys
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xwolf.eop.system.entity.Citys" >
+    insert into com_citys (cid, bcode, ccode, 
+      cname, pcode, ctime, 
+      cstatus)
+    values (#{cid,jdbcType=INTEGER}, #{bcode,jdbcType=VARCHAR}, #{ccode,jdbcType=VARCHAR}, 
+      #{cname,jdbcType=VARCHAR}, #{pcode,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}, 
+      #{cstatus,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xwolf.eop.system.entity.Citys" >
+    insert into com_citys
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="bcode != null" >
+        bcode,
+      </if>
+      <if test="ccode != null" >
+        ccode,
+      </if>
+      <if test="cname != null" >
+        cname,
+      </if>
+      <if test="pcode != null" >
+        pcode,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="cstatus != null" >
+        cstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="bcode != null" >
+        #{bcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ccode != null" >
+        #{ccode,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="pcode != null" >
+        #{pcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstatus != null" >
+        #{cstatus,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xwolf.eop.system.entity.Citys" >
+    update com_citys
+    <set >
+      <if test="bcode != null" >
+        bcode = #{bcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ccode != null" >
+        ccode = #{ccode,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="pcode != null" >
+        pcode = #{pcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstatus != null" >
+        cstatus = #{cstatus,jdbcType=BIT},
+      </if>
+    </set>
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xwolf.eop.system.entity.Citys" >
+    update com_citys
+    set bcode = #{bcode,jdbcType=VARCHAR},
+      ccode = #{ccode,jdbcType=VARCHAR},
+      cname = #{cname,jdbcType=VARCHAR},
+      pcode = #{pcode,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      cstatus = #{cstatus,jdbcType=BIT}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+</mapper>
