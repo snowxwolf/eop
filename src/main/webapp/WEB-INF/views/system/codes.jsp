@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
@@ -7,7 +8,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>首页</title>
+    <title>eop-基础码表</title>
     <meta name="description" content="OA,ERP" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
@@ -24,13 +25,13 @@
     <link rel="stylesheet" href="static/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 
     <!--[if lte IE 9]>
-        <link rel="stylesheet" href="static/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+    <link rel="stylesheet" href="static/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
     <![endif]-->
     <link rel="stylesheet" href="static/assets/css/ace-skins.min.css" />
     <link rel="stylesheet" href="static/assets/css/ace-rtl.min.css" />
 
     <!--[if lte IE 9]>
-      <link rel="stylesheet" href="static/assets/css/ace-ie.min.css" />
+    <link rel="stylesheet" href="static/assets/css/ace-ie.min.css" />
     <![endif]-->
 
     <!-- inline styles related to this page -->
@@ -101,19 +102,12 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="#">主页</a>
+                        <a href="#">系统配置管理</a>
                     </li>
-                    <li class="active">首页</li>
+                    <li class="active">码表管理</li>
                 </ul><!-- /.breadcrumb -->
 
-                <div class="nav-search" id="nav-search">
-                    <form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="搜索 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-                    </form>
-                </div><!-- /.nav-search -->
+
             </div>
 
             <div class="page-content">
@@ -143,10 +137,10 @@
 
                 <div class="page-header">
                     <h1>
-                        首页
+                        系统配置管理
                         <small>
                             <i class="ace-icon fa fa-angle-double-right"></i>
-                            首页
+                            码表管理
                         </small>
                     </h1>
                 </div><!-- /.page-header -->
@@ -182,7 +176,7 @@
 <!-- page specific plugin scripts -->
 
 <!--[if lte IE 8]>
-  <script src="static/assets/js/excanvas.min.js"></script>
+<script src="static/assets/js/excanvas.min.js"></script>
 <![endif]-->
 <script src="static/assets/js/jquery-ui.custom.min.js"></script>
 <script src="static/assets/js/jquery.ui.touch-punch.min.js"></script>

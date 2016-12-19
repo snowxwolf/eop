@@ -325,12 +325,6 @@
     </dependency>
 
     <!--quartz-->
-    <!--<dependency>
-      <groupId>quartz</groupId>
-      <artifactId>quartz</artifactId>
-      <version>${quartz.version}</version>
-    </dependency>-->
-
     <dependency>
       <groupId>org.quartz-scheduler</groupId>
       <artifactId>quartz</artifactId>
@@ -343,6 +337,26 @@
       <artifactId>poi</artifactId>
       <version>3.15</version>
     </dependency>
+
+    <!--beetl-->
+   <!-- <dependency>
+      <groupId>com.ibeetl</groupId>
+      <artifactId>beetl</artifactId>
+      <version>2.7.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.ibeetl</groupId>
+      <artifactId>beetlsql</artifactId>
+      <version>2.7.5</version>
+    </dependency>-->
+    <!--javamelody-->
+    <dependency>
+      <groupId>net.bull.javamelody</groupId>
+      <artifactId>javamelody-core</artifactId>
+      <version>1.62.0</version>
+    </dependency>
+
 
   </dependencies>
   <build>

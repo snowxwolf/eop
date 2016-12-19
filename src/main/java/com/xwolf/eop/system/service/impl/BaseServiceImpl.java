@@ -3,6 +3,7 @@ package com.xwolf.eop.system.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xwolf.eop.common.enums.StatusCodeEnum;
+import com.xwolf.eop.common.pojo.PageHelper;
 import com.xwolf.eop.common.pojo.Result;
 import com.xwolf.eop.system.service.BaseService;
 
@@ -30,6 +31,11 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         return JSON.toJSONString(result);
     }
 
+    @Override
+    public String queryPageList(List<T> list) {
+        PageHelper<T> pageHelper=new PageHelper<>();
+        return pageHelper.getListResult(list);
+    }
 
     @Override
     public String insert(JSONObject json) {

@@ -31,4 +31,7 @@ public interface BaseService<T>{
 
     T queryForObject(T t);
 
+    String queryPageList(List<T> list);
+
+
 }

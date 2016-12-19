@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--执行的目标bean-->
+    <bean id="helloTask" class="com.xwolf.eop.erp.task.HelloTask"/>
+
+    <!--指定要运行的类,方法-->
+    <bean id="helloJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="helloTask" />
+        <property name="targetMethod" value="hello" />
+    </bean>
+
+    <!-- Run the job every 5 seconds -->
+    <bean id="cronTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="helloJobDetail" />
+        <property name="cronExpression" value="0/5 * * ? * *" />
+
+    </bean>
+
+    <!-- Scheduler factory bean to glue together jobDetails and triggers to Configure Quartz Scheduler -->
+    <bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger" />
+            </list>
+        </property>
+        <property name="autoStartup" value="true"/>
+    </bean>
+</beans>

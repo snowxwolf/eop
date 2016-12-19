@@ -2,6 +2,9 @@ package com.xwolf.eop.system.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.xwolf.eop.system.entity.User;
+import com.xwolf.eop.system.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,10 @@ public class LoginController {
 
     @Autowired
     private DefaultKaptcha defaultKaptcha;
+
+    @Autowired
+    private UserService userService;
+
     /**
      * 用户登录页面
      * @return
@@ -76,15 +83,19 @@ public class LoginController {
     @RequestMapping(value = "login",method = RequestMethod.POST)
     @ResponseBody
     public String login(User user){
-
-
-        return null;
+        return userService.login(user);
     }
 
-
+    /**
+     * 退出登陆
+     * @return
+     */
     @RequestMapping(value = "logout",method = RequestMethod.POST)
     public String logout(){
-           return null;
+        /*HttpUtil.removeAllSessionAttr(request);*/
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "system/login";
     }
 
 

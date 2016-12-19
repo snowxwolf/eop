@@ -12,9 +12,7 @@ import java.util.List;
  */
 public class PageHelper<T>{
 
-    public String getListResult (List<T> list){
-
-
+    public  String  getListResult (List<T> list){
         PageInfo<T> pageInfo=new PageInfo<T>(list);
         List<T> ts=pageInfo.getList();
         long total = pageInfo.getTotal();

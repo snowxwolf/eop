@@ -1,11 +1,9 @@
 package com.xwolf.eop.system.controller;
 
-import com.xwolf.eop.common.util.UUIDUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,7 +25,8 @@ public class CodesController {
      * @return
      */
     @RequestMapping(value = "toCodes",method = RequestMethod.GET)
-    public ModelAndView toCodes(){
-     return new ModelAndView("system/code");
+    public ModelAndView toCodes(@RequestHeader("User-Agent")String ua){
+        log.info("UserAgent:{}",ua);
+     return new ModelAndView("system/codes");
     }
 }

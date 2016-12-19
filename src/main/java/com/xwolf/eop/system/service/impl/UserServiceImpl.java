@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.xwolf.eop.system.dao.UserMapper;
 import com.xwolf.eop.system.entity.User;
 import com.xwolf.eop.system.service.UserService;
-import com.xwolf.eop.util.RSAUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;

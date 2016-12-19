@@ -16,6 +16,9 @@
 
      <cache:annotation-driven cache-manager="cacheManager"/>
 
+    <!--spring quartz 定时任务-->
+    <!--<import resource="classpath:spring-quartz.xml"/>-->
+
     <!-- 将数据源映射到sqlSessionFactory中 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />

@@ -10,37 +10,6 @@
         <b class="arrow"></b>
     </li>
 
-    <li class="">
-        <a href="#" class="dropdown-toggle">
-            <i class="menu-icon fa fa-user"></i>
-            <span class="menu-text">
-								员工管理
-							</span>
-
-            <b class="arrow fa fa-angle-down"></b>
-        </a>
-
-        <b class="arrow"></b>
-
-        <ul class="submenu">
-            <li class="">
-                <a href="#" class="dropdown-toggle">
-                    <i class="menu-icon fa fa-caret-right"></i>
-                    员工管理
-                </a>
-
-            </li>
-
-            <li class="">
-                <a href="#" class="dropdown-toggle">
-                    <i class="menu-icon fa fa-caret-right"></i>
-                    部门管理
-                </a>
-
-            </li>
-        </ul>
-
-    </li>
 
     <li class="">
         <a href="#" class="dropdown-toggle">
@@ -243,6 +212,16 @@
             <li class="">
                 <a href="tables.html">
                     <i class="menu-icon fa fa-caret-right"></i>
+                    销售(换货)单
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+
+            <li class="">
+                <a href="tables.html">
+                    <i class="menu-icon fa fa-caret-right"></i>
                     发票管理
                 </a>
 
@@ -261,28 +240,7 @@
         </ul>
     </li>
 
-    <li class="">
-        <a href="#" class="dropdown-toggle">
-            <i class="menu-icon fa fa-credit-card"></i>
-            <span class="menu-text">财务管理</span>
 
-            <b class="arrow fa fa-angle-down"></b>
-        </a>
-
-        <b class="arrow"></b>
-
-        <ul class="submenu">
-            <li class="">
-                <a href="tables.html">
-                    <i class="menu-icon fa fa-caret-right"></i>
-                    财务管理
-                </a>
-
-                <b class="arrow"></b>
-            </li>
-
-        </ul>
-    </li>
 
     <li class="">
         <a href="#" class="dropdown-toggle">
@@ -295,6 +253,19 @@
         <b class="arrow"></b>
 
         <ul class="submenu">
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    员工管理
+                </a>
+            </li>
+
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    部门管理
+                </a>
+            </li>
             <li class="">
                 <a href="form-elements.html">
                     <i class="menu-icon fa fa-caret-right"></i>
@@ -376,6 +347,49 @@
             </li>
 
 
+        </ul>
+    </li>
+
+    <li class="">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-cogs"></i>
+
+            <span class="menu-text">
+								系统配置管理
+							</span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+
+            <li class="">
+                <a href="faq.html">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    码表管理
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+            <li class="">
+                <a href="faq.html">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    文件配置管理
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="error-404.html">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    数据备份
+                </a>
+
+                <b class="arrow"></b>
+            </li>
         </ul>
     </li>
 </ul><!-- /.nav-list -->
