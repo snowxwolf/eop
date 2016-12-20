@@ -42,7 +42,7 @@ public class IPUtil {
      * @return IP地址
      * @throws Exception
      */
-    public static String getIp(HttpServletRequest request) throws Exception{
+    public static String getIp(HttpServletRequest request){
         String ip = request.getHeader("X-Real-IP");
         if (!StringUtils.isBlank(ip) && !"unknown".equalsIgnoreCase(ip)) {
             return ip;

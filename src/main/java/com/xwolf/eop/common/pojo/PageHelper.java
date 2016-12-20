@@ -2,7 +2,7 @@ package com.xwolf.eop.common.pojo;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageInfo;
+//import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class PageHelper<T>{
 
     public  String  getListResult (List<T> list){
-        PageInfo<T> pageInfo=new PageInfo<T>(list);
+     /*   PageInfo<T> pageInfo=new PageInfo<T>(list);
         List<T> ts=pageInfo.getList();
         long total = pageInfo.getTotal();
         JSONObject row=new JSONObject();
@@ -24,6 +24,7 @@ public class PageHelper<T>{
         row.put("rows",ary);
         row.put("total",total);
         String json = row.toJSONString();
-        return json;
+        return json;*/
+     return null;
     }
 }

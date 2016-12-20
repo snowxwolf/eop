@@ -1,137 +1,197 @@
 package com.xwolf.eop.system.entity;
 
-import com.xwolf.eop.common.entity.BaseEntity;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User extends BaseEntity{
-    private Integer uid;
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author xwolf
+ * @since 2016-12-20
+ */
+@TableName("com_user")
+public class User implements Serializable {
 
-    private String ucode;
+    private static final long serialVersionUID = 1L;
 
-    private String uname;
+	/**
+	 * 主键ID
+	 */
+    @TableId(type = IdType.AUTO)
+	private Integer uid;
 
-    private String nickName;
+	/**
+	 * 用户code
+	 */
+	private String ucode;
 
-    private String upasswd;
+	/**
+	 * 用户名
+	 */
+	private String uname;
 
-    private String email;
+	/**
+	 * 昵称
+	 */
+	@TableField(value="nick_name")
+	private String name;
 
-    private String qq;
+	/**
+	 * 
+	 */
+	private String upasswd;
 
-    private String mobile;
+	/**
+	 * 邮箱
+	 */
+	private String email;
 
-    private Date ctime;
+	/**
+	 * qq
+	 */
+	private String qq;
 
-    private String ccode;
+	/**
+	 * 手机号
+	 */
+	private String mobile;
 
-    private String rcode;
+	/**
+	 * 创建时间
+	 */
+	private Date ctime;
 
-    private Date rtime;
+	/**
+	 * 创建人code
+	 */
+	private String ccode;
 
-    private int ustatus;
+	/**
+	 * 推荐人
+	 */
+	private String rcode;
 
-    public Integer getUid() {
-        return uid;
-    }
+	/**
+	 * 推荐时间
+	 */
+	private Date rtime;
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
+	/**
+	 * 用户状态
+	 */
+	private Integer ustatus;
 
-    public String getUcode() {
-        return ucode;
-    }
 
-    public void setUcode(String ucode) {
-        this.ucode = ucode;
-    }
 
-    public String getUname() {
-        return uname;
-    }
+	public Integer getUid() {
+		return uid;
+	}
 
-    public void setUname(String uname) {
-        this.uname = uname;
-    }
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
 
-    public String getNickName() {
-        return nickName;
-    }
+	public String getUcode() {
+		return ucode;
+	}
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
+	public void setUcode(String ucode) {
+		this.ucode = ucode;
+	}
 
-    public String getUpasswd() {
-        return upasswd;
-    }
+	public String getUname() {
+		return uname;
+	}
 
-    public void setUpasswd(String upasswd) {
-        this.upasswd = upasswd;
-    }
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getQq() {
-        return qq;
-    }
+	public String getUpasswd() {
+		return upasswd;
+	}
 
-    public void setQq(String qq) {
-        this.qq = qq;
-    }
+	public void setUpasswd(String upasswd) {
+		this.upasswd = upasswd;
+	}
 
-    public String getMobile() {
-        return mobile;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public Date getCtime() {
-        return ctime;
-    }
+	public String getQq() {
+		return qq;
+	}
 
-    public void setCtime(Date ctime) {
-        this.ctime = ctime;
-    }
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
 
-    public String getCcode() {
-        return ccode;
-    }
+	public String getMobile() {
+		return mobile;
+	}
 
-    public void setCcode(String ccode) {
-        this.ccode = ccode;
-    }
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 
-    public String getRcode() {
-        return rcode;
-    }
+	public Date getCtime() {
+		return ctime;
+	}
 
-    public void setRcode(String rcode) {
-        this.rcode = rcode;
-    }
+	public void setCtime(Date ctime) {
+		this.ctime = ctime;
+	}
 
-    public Date getRtime() {
-        return rtime;
-    }
+	public String getCcode() {
+		return ccode;
+	}
 
-    public void setRtime(Date rtime) {
-        this.rtime = rtime;
-    }
+	public void setCcode(String ccode) {
+		this.ccode = ccode;
+	}
 
-    public int getUstatus() {
-        return ustatus;
-    }
+	public String getRcode() {
+		return rcode;
+	}
 
-    public void setUstatus(int ustatus) {
-        this.ustatus = ustatus;
-    }
+	public void setRcode(String rcode) {
+		this.rcode = rcode;
+	}
+
+	public Date getRtime() {
+		return rtime;
+	}
+
+	public void setRtime(Date rtime) {
+		this.rtime = rtime;
+	}
+
+	public Integer getUstatus() {
+		return ustatus;
+	}
+
+	public void setUstatus(Integer ustatus) {
+		this.ustatus = ustatus;
+	}
+
 }

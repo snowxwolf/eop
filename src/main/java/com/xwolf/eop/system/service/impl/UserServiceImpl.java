@@ -3,7 +3,7 @@ package com.xwolf.eop.system.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.xwolf.eop.system.dao.UserMapper;
 import com.xwolf.eop.system.entity.User;
-import com.xwolf.eop.system.service.UserService;
+import com.xwolf.eop.system.service.IUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
  * @since V1.0.0
  */
 @Service
-public class UserServiceImpl extends  BaseServiceImpl<User> implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<UserMapper,User> implements IUserService {
 
     private static Logger log= LoggerFactory.getLogger(UserServiceImpl.class);
 

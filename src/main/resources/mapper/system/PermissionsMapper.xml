@@ -1,106 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xwolf.eop.system.dao.PermissionsMapper" >
-  <resultMap id="BaseResultMap" type="com.xwolf.eop.system.entity.Permissions" >
-    <id column="pid" property="pid" jdbcType="INTEGER" />
-    <result column="pcode" property="pcode" jdbcType="VARCHAR" />
-    <result column="pname" property="pname" jdbcType="VARCHAR" />
-    <result column="pvalue" property="pvalue" jdbcType="VARCHAR" />
-    <result column="mcode" property="mcode" jdbcType="VARCHAR" />
-    <result column="pstatus" property="pstatus" jdbcType="TINYINT" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    pid, pcode, pname, pvalue, mcode, pstatus
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from com_permissions
-    where pid = #{pid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from com_permissions
-    where pid = #{pid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.xwolf.eop.system.entity.Permissions" >
-    insert into com_permissions (pid, pcode, pname, 
-      pvalue, mcode, pstatus
-      )
-    values (#{pid,jdbcType=INTEGER}, #{pcode,jdbcType=VARCHAR}, #{pname,jdbcType=VARCHAR}, 
-      #{pvalue,jdbcType=VARCHAR}, #{mcode,jdbcType=VARCHAR}, #{pstatus,jdbcType=TINYINT}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.xwolf.eop.system.entity.Permissions" >
-    insert into com_permissions
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="pid != null" >
-        pid,
-      </if>
-      <if test="pcode != null" >
-        pcode,
-      </if>
-      <if test="pname != null" >
-        pname,
-      </if>
-      <if test="pvalue != null" >
-        pvalue,
-      </if>
-      <if test="mcode != null" >
-        mcode,
-      </if>
-      <if test="pstatus != null" >
-        pstatus,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="pid != null" >
-        #{pid,jdbcType=INTEGER},
-      </if>
-      <if test="pcode != null" >
-        #{pcode,jdbcType=VARCHAR},
-      </if>
-      <if test="pname != null" >
-        #{pname,jdbcType=VARCHAR},
-      </if>
-      <if test="pvalue != null" >
-        #{pvalue,jdbcType=VARCHAR},
-      </if>
-      <if test="mcode != null" >
-        #{mcode,jdbcType=VARCHAR},
-      </if>
-      <if test="pstatus != null" >
-        #{pstatus,jdbcType=TINYINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xwolf.eop.system.entity.Permissions" >
-    update com_permissions
-    <set >
-      <if test="pcode != null" >
-        pcode = #{pcode,jdbcType=VARCHAR},
-      </if>
-      <if test="pname != null" >
-        pname = #{pname,jdbcType=VARCHAR},
-      </if>
-      <if test="pvalue != null" >
-        pvalue = #{pvalue,jdbcType=VARCHAR},
-      </if>
-      <if test="mcode != null" >
-        mcode = #{mcode,jdbcType=VARCHAR},
-      </if>
-      <if test="pstatus != null" >
-        pstatus = #{pstatus,jdbcType=TINYINT},
-      </if>
-    </set>
-    where pid = #{pid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xwolf.eop.system.entity.Permissions" >
-    update com_permissions
-    set pcode = #{pcode,jdbcType=VARCHAR},
-      pname = #{pname,jdbcType=VARCHAR},
-      pvalue = #{pvalue,jdbcType=VARCHAR},
-      mcode = #{mcode,jdbcType=VARCHAR},
-      pstatus = #{pstatus,jdbcType=TINYINT}
-    where pid = #{pid,jdbcType=INTEGER}
-  </update>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwolf.eop.system.dao.PermissionsMapper">
+	<!--开启二级缓存-->
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+	<resultMap id="BaseResultMap" type="com.xwolf.eop.system.entity.Permissions">
+		<id column="pid" property="pid" />
+		<result column="pcode" property="pcode" />
+		<result column="pname" property="pname" />
+		<result column="pvalue" property="pvalue" />
+		<result column="mcode" property="mcode" />
+		<result column="pstatus" property="pstatus" />
+	</resultMap>
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+        pid, pcode, pname, pvalue, mcode, pstatus
+    </sql>
 </mapper>

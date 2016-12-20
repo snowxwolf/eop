@@ -1,8 +1,11 @@
 package com.xwolf.eop.system.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.xwolf.eop.system.entity.User;
-import com.xwolf.eop.system.service.UserService;
+import com.xwolf.eop.system.service.IUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -34,16 +37,21 @@ public class LoginController {
     private DefaultKaptcha defaultKaptcha;
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     /**
      * 用户登录页面
      * @return
      */
-    @RequestMapping(value = "toLogin",method = RequestMethod.GET)
-    public String toLogin(@RequestHeader("User-Agent")String ua){
+    @RequestMapping(value = "toLogin",method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String toLogin(@RequestHeader("User-Agent")String ua){
         log.info("userAgent:{}",ua);
-       return "system/login";
+        Page<User> page =new Page<>();
+        Wrapper<User> wrapper;
+        Page pages= userService.selectPage(page);
+         return JSON.toJSONString(pages);
+
     }
 
     /**

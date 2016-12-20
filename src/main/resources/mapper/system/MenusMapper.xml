@@ -1,117 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xwolf.eop.system.dao.MenusMapper" >
-  <resultMap id="BaseResultMap" type="com.xwolf.eop.system.entity.Menus" >
-    <id column="mid" property="mid" jdbcType="INTEGER" />
-    <result column="mcode" property="mcode" jdbcType="VARCHAR" />
-    <result column="mname" property="mname" jdbcType="VARCHAR" />
-    <result column="pcode" property="pcode" jdbcType="VARCHAR" />
-    <result column="is_parent" property="isParent" jdbcType="TINYINT" />
-    <result column="murl" property="murl" jdbcType="VARCHAR" />
-    <result column="mstatus" property="mstatus" jdbcType="TINYINT" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    mid, mcode, mname, pcode, is_parent, murl, mstatus
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from com_menus
-    where mid = #{mid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from com_menus
-    where mid = #{mid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.xwolf.eop.system.entity.Menus" >
-    insert into com_menus (mid, mcode, mname, 
-      pcode, is_parent, murl, 
-      mstatus)
-    values (#{mid,jdbcType=INTEGER}, #{mcode,jdbcType=VARCHAR}, #{mname,jdbcType=VARCHAR}, 
-      #{pcode,jdbcType=VARCHAR}, #{isParent,jdbcType=TINYINT}, #{murl,jdbcType=VARCHAR}, 
-      #{mstatus,jdbcType=TINYINT})
-  </insert>
-  <insert id="insertSelective" parameterType="com.xwolf.eop.system.entity.Menus" >
-    insert into com_menus
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="mid != null" >
-        mid,
-      </if>
-      <if test="mcode != null" >
-        mcode,
-      </if>
-      <if test="mname != null" >
-        mname,
-      </if>
-      <if test="pcode != null" >
-        pcode,
-      </if>
-      <if test="isParent != null" >
-        is_parent,
-      </if>
-      <if test="murl != null" >
-        murl,
-      </if>
-      <if test="mstatus != null" >
-        mstatus,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="mid != null" >
-        #{mid,jdbcType=INTEGER},
-      </if>
-      <if test="mcode != null" >
-        #{mcode,jdbcType=VARCHAR},
-      </if>
-      <if test="mname != null" >
-        #{mname,jdbcType=VARCHAR},
-      </if>
-      <if test="pcode != null" >
-        #{pcode,jdbcType=VARCHAR},
-      </if>
-      <if test="isParent != null" >
-        #{isParent,jdbcType=TINYINT},
-      </if>
-      <if test="murl != null" >
-        #{murl,jdbcType=VARCHAR},
-      </if>
-      <if test="mstatus != null" >
-        #{mstatus,jdbcType=TINYINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xwolf.eop.system.entity.Menus" >
-    update com_menus
-    <set >
-      <if test="mcode != null" >
-        mcode = #{mcode,jdbcType=VARCHAR},
-      </if>
-      <if test="mname != null" >
-        mname = #{mname,jdbcType=VARCHAR},
-      </if>
-      <if test="pcode != null" >
-        pcode = #{pcode,jdbcType=VARCHAR},
-      </if>
-      <if test="isParent != null" >
-        is_parent = #{isParent,jdbcType=TINYINT},
-      </if>
-      <if test="murl != null" >
-        murl = #{murl,jdbcType=VARCHAR},
-      </if>
-      <if test="mstatus != null" >
-        mstatus = #{mstatus,jdbcType=TINYINT},
-      </if>
-    </set>
-    where mid = #{mid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xwolf.eop.system.entity.Menus" >
-    update com_menus
-    set mcode = #{mcode,jdbcType=VARCHAR},
-      mname = #{mname,jdbcType=VARCHAR},
-      pcode = #{pcode,jdbcType=VARCHAR},
-      is_parent = #{isParent,jdbcType=TINYINT},
-      murl = #{murl,jdbcType=VARCHAR},
-      mstatus = #{mstatus,jdbcType=TINYINT}
-    where mid = #{mid,jdbcType=INTEGER}
-  </update>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwolf.eop.system.dao.MenusMapper">
+	<!--开启二级缓存-->
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+	<resultMap id="BaseResultMap" type="com.xwolf.eop.system.entity.Menus">
+		<id column="mid" property="mid" />
+		<result column="mcode" property="mcode" />
+		<result column="mname" property="mname" />
+		<result column="pcode" property="pcode" />
+		<result column="is_parent" property="parent" />
+		<result column="murl" property="murl" />
+		<result column="mstatus" property="mstatus" />
+	</resultMap>
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+        mid, mcode, mname, pcode, is_parent AS parent, murl, mstatus
+    </sql>
 </mapper>

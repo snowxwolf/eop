@@ -1,76 +1,118 @@
 package com.xwolf.eop.system.entity;
 
-import com.xwolf.eop.common.entity.BaseEntity;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 
-public class Menus extends BaseEntity{
+import java.io.Serializable;
 
-    private Integer mid;
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author xwolf
+ * @since 2016-12-20
+ */
+@TableName("com_menus")
+public class Menus implements Serializable {
 
-    private String mcode;
+    private static final long serialVersionUID = 1L;
 
-    private String mname;
+	/**
+	 * 主键ID
+	 */
+	@TableId(type= IdType.AUTO)
+	private Integer mid;
 
-    private String pcode;
+	/**
+	 * 菜单code
+	 */
+	private String mcode;
 
-    private int isParent;
+	/**
+	 * 菜单名称
+	 */
+	private String mname;
 
-    private String murl;
+	/**
+	 * 父菜单CODE
+	 */
+	private String pcode;
 
-    private int mstatus;
+	/**
+	 * 是否是父菜单
+	 */
+	@TableField(value="is_parent")
+	private Integer parent;
 
-    public Integer getMid() {
-        return mid;
-    }
+	/**
+	 * 菜单url
+	 */
+	private String murl;
 
-    public void setMid(Integer mid) {
-        this.mid = mid;
-    }
+	/**
+	 * 菜单状态
+	 */
+	private Integer mstatus;
 
-    public String getMcode() {
-        return mcode;
-    }
 
-    public void setMcode(String mcode) {
-        this.mcode = mcode;
-    }
 
-    public String getMname() {
-        return mname;
-    }
+	public Integer getMid() {
+		return mid;
+	}
 
-    public void setMname(String mname) {
-        this.mname = mname;
-    }
+	public void setMid(Integer mid) {
+		this.mid = mid;
+	}
 
-    public String getPcode() {
-        return pcode;
-    }
+	public String getMcode() {
+		return mcode;
+	}
 
-    public void setPcode(String pcode) {
-        this.pcode = pcode;
-    }
+	public void setMcode(String mcode) {
+		this.mcode = mcode;
+	}
 
-    public int getIsParent() {
-        return isParent;
-    }
+	public String getMname() {
+		return mname;
+	}
 
-    public void setIsParent(int isParent) {
-        this.isParent = isParent;
-    }
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
 
-    public String getMurl() {
-        return murl;
-    }
+	public String getPcode() {
+		return pcode;
+	}
 
-    public void setMurl(String murl) {
-        this.murl = murl;
-    }
+	public void setPcode(String pcode) {
+		this.pcode = pcode;
+	}
 
-    public int getMstatus() {
-        return mstatus;
-    }
+	public Integer getParent() {
+		return parent;
+	}
 
-    public void setMstatus(int mstatus) {
-        this.mstatus = mstatus;
-    }
+	public void setParent(Integer parent) {
+		this.parent = parent;
+	}
+
+	public String getMurl() {
+		return murl;
+	}
+
+	public void setMurl(String murl) {
+		this.murl = murl;
+	}
+
+	public Integer getMstatus() {
+		return mstatus;
+	}
+
+	public void setMstatus(Integer mstatus) {
+		this.mstatus = mstatus;
+	}
+
 }

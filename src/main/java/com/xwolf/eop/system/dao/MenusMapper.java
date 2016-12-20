@@ -1,17 +1,16 @@
 package com.xwolf.eop.system.dao;
 
 import com.xwolf.eop.system.entity.Menus;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-public interface MenusMapper {
-    int deleteByPrimaryKey(Integer mid);
+/**
+ * <p>
+ * Mapper接口
+ * </p>
+ *
+ * @author xwolf
+ * @since 2016-12-20
+ */
+public interface MenusMapper extends BaseMapper<Menus> {
 
-    int insert(Menus record);
-
-    int insertSelective(Menus record);
-
-    Menus selectByPrimaryKey(Integer mid);
-
-    int updateByPrimaryKeySelective(Menus record);
-
-    int updateByPrimaryKey(Menus record);
 }

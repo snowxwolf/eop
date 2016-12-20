@@ -1,66 +1,104 @@
 package com.xwolf.eop.system.entity;
 
-import com.xwolf.eop.common.entity.BaseEntity;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 
-public class Permissions extends BaseEntity {
+import java.io.Serializable;
 
-    private Integer pid;
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author xwolf
+ * @since 2016-12-20
+ */
+@TableName("com_permissions")
+public class Permissions implements Serializable {
 
-    private String pcode;
+    private static final long serialVersionUID = 1L;
 
-    private String pname;
+	/**
+	 * 
+	 */
+	@TableId(type= IdType.AUTO)
+	private Integer pid;
 
-    private String pvalue;
+	/**
+	 * 权限code
+	 */
+	private String pcode;
 
-    private String mcode;
+	/**
+	 * 权限名称
+	 */
+	private String pname;
 
-    private int pstatus;
+	/**
+	 * 权限value
+	 */
+	private String pvalue;
 
-    public Integer getPid() {
-        return pid;
-    }
+	/**
+	 * 菜单code
+	 */
+	private String mcode;
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
-    }
+	/**
+	 * 菜单状态
+	 */
+	private Integer pstatus;
 
-    public String getPcode() {
-        return pcode;
-    }
 
-    public void setPcode(String pcode) {
-        this.pcode = pcode;
-    }
 
-    public String getPname() {
-        return pname;
-    }
+	public Integer getPid() {
+		return pid;
+	}
 
-    public void setPname(String pname) {
-        this.pname = pname;
-    }
+	public void setPid(Integer pid) {
+		this.pid = pid;
+	}
 
-    public String getPvalue() {
-        return pvalue;
-    }
+	public String getPcode() {
+		return pcode;
+	}
 
-    public void setPvalue(String pvalue) {
-        this.pvalue = pvalue;
-    }
+	public void setPcode(String pcode) {
+		this.pcode = pcode;
+	}
 
-    public String getMcode() {
-        return mcode;
-    }
+	public String getPname() {
+		return pname;
+	}
 
-    public void setMcode(String mcode) {
-        this.mcode = mcode;
-    }
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
 
-    public int getPstatus() {
-        return pstatus;
-    }
+	public String getPvalue() {
+		return pvalue;
+	}
 
-    public void setPstatus(int pstatus) {
-        this.pstatus = pstatus;
-    }
+	public void setPvalue(String pvalue) {
+		this.pvalue = pvalue;
+	}
+
+	public String getMcode() {
+		return mcode;
+	}
+
+	public void setMcode(String mcode) {
+		this.mcode = mcode;
+	}
+
+	public Integer getPstatus() {
+		return pstatus;
+	}
+
+	public void setPstatus(Integer pstatus) {
+		this.pstatus = pstatus;
+	}
+
 }

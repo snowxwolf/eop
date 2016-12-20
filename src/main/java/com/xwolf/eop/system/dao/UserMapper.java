@@ -1,18 +1,16 @@
 package com.xwolf.eop.system.dao;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.xwolf.eop.system.entity.User;
 
-public interface UserMapper {
+/**
+ * <p>
+ * Mapper接口
+ * </p>
+ *
+ * @author xwolf
+ * @since 2016-12-20
+ */
+public interface UserMapper extends BaseMapper<User> {
 
-    int deleteByPrimaryKey(Integer uid);
-
-    int insert(User record);
-
-    int insertSelective(User record);
-
-    User selectByPrimaryKey(Integer uid);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
 }
