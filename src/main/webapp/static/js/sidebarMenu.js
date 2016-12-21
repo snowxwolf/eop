@@ -21,7 +21,7 @@
                 var a = $('<a></a>');
                 var icon = $('<i></i>');
                 //icon.addClass('glyphicon');
-                icon.addClass(item.icon);
+                icon.addClass(" menu-icon fa "+item.icon);
                 var text = $('<span></span>');
                 text.addClass('menu-text').text(item.text);
                 a.append(icon);
@@ -30,7 +30,7 @@
                     a.attr('href', '#');
                     a.addClass('dropdown-toggle');
                     var arrow = $('<b></b>');
-                    arrow.addClass('arrow').addClass('icon-angle-down');
+                    arrow.addClass('arrow').addClass(' fa fa-angle-down');
                     a.append(arrow);
                     li.append(a);
                     var menus = $('<ul></ul>');

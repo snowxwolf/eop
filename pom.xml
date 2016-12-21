@@ -72,6 +72,8 @@
     <redis.version>2.9.0</redis.version>
     <!--quartz-->
     <quartz.version>2.2.1</quartz.version>
+    <!--rabbitmq-->
+    <rabbitmq.version>4.0.0</rabbitmq.version>
   </properties>
   <dependencies>
     <!--junit-->
@@ -373,6 +375,13 @@
       <groupId>net.bull.javamelody</groupId>
       <artifactId>javamelody-core</artifactId>
       <version>1.62.0</version>
+    </dependency>
+
+   <!--rabbitmq-->
+    <dependency>
+      <groupId>com.rabbitmq</groupId>
+      <artifactId>amqp-client</artifactId>
+      <version>${rabbitmq.version}</version>
     </dependency>
 
 

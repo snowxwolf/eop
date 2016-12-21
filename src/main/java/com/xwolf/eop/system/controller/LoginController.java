@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.xwolf.eop.system.entity.User;
 import com.xwolf.eop.system.service.IUserService;
+import com.xwolf.eop.util.IPUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -43,14 +44,10 @@ public class LoginController {
      * 用户登录页面
      * @return
      */
-    @RequestMapping(value = "toLogin",method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String toLogin(@RequestHeader("User-Agent")String ua){
+    @RequestMapping(value = "toLogin",method = RequestMethod.GET)
+    public String toLogin(@RequestHeader("User-Agent")String ua){
         log.info("userAgent:{}",ua);
-        Page<User> page =new Page<>();
-        Wrapper<User> wrapper;
-        Page pages= userService.selectPage(page);
-         return JSON.toJSONString(pages);
+       return "system/login";
 
     }
 

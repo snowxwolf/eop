@@ -2,7 +2,7 @@
 var addTabs = function (options) {
     //var rand = Math.random().toString();
     // var id = rand.substring(rand.indexOf('.') + 1);
-     var url = window.location.protocol + '//' + window.location.host;
+     var url = window.location.protocol + '//' + window.location.host+"/eop";
     options.url = url + options.url;
     id = "tab_" + options.id;
     $(".active").removeClass("active");

@@ -3,6 +3,7 @@ package com.xwolf.eop.system.entity;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
+import com.xwolf.eop.common.entity.BaseEntity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,7 +17,7 @@ import java.util.Date;
  * @since 2016-12-20
  */
 @TableName("com_codes")
-public class Codes implements Serializable {
+public class Codes extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
