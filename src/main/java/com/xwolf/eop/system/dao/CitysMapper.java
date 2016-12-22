@@ -3,6 +3,7 @@ package com.xwolf.eop.system.dao;
 import com.xwolf.eop.system.entity.Citys;
 
 public interface CitysMapper {
+
     int deleteByPrimaryKey(Integer cid);
 
     int insert(Citys record);

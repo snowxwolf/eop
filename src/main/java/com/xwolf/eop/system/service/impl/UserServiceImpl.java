@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
  * @since V1.0.0
  */
 @Service
-public class UserServiceImpl extends BaseServiceImpl<UserMapper,User> implements IUserService {
+public class UserServiceImpl extends BaseServiceImpl<User> implements IUserService {
 
     private static Logger log= LoggerFactory.getLogger(UserServiceImpl.class);
 

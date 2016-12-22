@@ -20,36 +20,36 @@
     <!--<import resource="classpath:spring-quartz.xml"/>-->
 
     <!-- 注意：这里使用的是MP的MybatisSqlSessionFactoryBean，而不是Mybatis的，因为MP需要进行相应代理 -->
-    <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
-        <!-- 配置数据源 -->
+   <!-- <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
+        &lt;!&ndash; 配置数据源 &ndash;&gt;
         <property name="dataSource" ref="dataSource" />
-        <!-- 配置Mybatis配置文件 -->
+        &lt;!&ndash; 配置Mybatis配置文件 &ndash;&gt;
         <property name="configLocation" value="classpath:mybatis.xml" />
-        <!-- 配置别名包路径 -->
+        &lt;!&ndash; 配置别名包路径 &ndash;&gt;
         <property name="typeAliasesPackage" value="com.xwolf.eop.*.entity" />
-        <!-- 配置Mapper扫描路径（IDEA系列编辑器需要特别注意，因为IDEA的设置问题，src中的xml文件是不会被编译的，如果放在src中可能会报错，解决办法详见 常用问题-Invalid bound statement (not found) 错误如何解决?） -->
+        &lt;!&ndash; 配置Mapper扫描路径（IDEA系列编辑器需要特别注意，因为IDEA的设置问题，src中的xml文件是不会被编译的，如果放在src中可能会报错，解决办法详见 常用问题-Invalid bound statement (not found) 错误如何解决?） &ndash;&gt;
         <property name="mapperLocations" value="classpath:mapper/**/*.xml" />
-        <!-- 插件配置项  -->
+        &lt;!&ndash; 插件配置项  &ndash;&gt;
         <property name="plugins">
             <array>
-                <!-- 分页插件配置 -->
+                &lt;!&ndash; 分页插件配置 &ndash;&gt;
                 <bean id="paginationInterceptor" class="com.baomidou.mybatisplus.plugins.PaginationInterceptor">
                     <property name="dialectType" value="${system.database.dialect}" />
                 </bean>
             </array>
         </property>
-        <!-- 全局配置注入 -->
+        &lt;!&ndash; 全局配置注入 &ndash;&gt;
         <property name="globalConfig" ref="globalConfig" />
     </bean>
     <bean id="globalConfig" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
-        <!--
+        &lt;!&ndash;
             AUTO->`0`("数据库ID自增")
              INPUT->`1`(用户输入ID")
             ID_WORKER->`2`("全局唯一ID")
             UUID->`3`("全局唯一ID")
-        -->
-        <!-- <property name="idType" value="0" /> -->
-        <!--
+        &ndash;&gt;
+        &lt;!&ndash; <property name="idType" value="0" /> &ndash;&gt;
+        &lt;!&ndash;
             MYSQL->`mysql`
             ORACLE->`oracle`
             DB2->`db2`
@@ -59,34 +59,35 @@
             POSTGRE->`postgresql`
             SQLSERVER2005->`sqlserver2005`
             SQLSERVER->`sqlserver`
-        -->
-        <!-- Oracle需要添加该项 -->
-        <!-- <property name="dbType" value="oracle" /> -->
-        <!-- 全局表为下划线命名设置 true -->
-        <!-- <property name="dbColumnUnderline" value="true" /> -->
+        &ndash;&gt;
+        &lt;!&ndash; Oracle需要添加该项 &ndash;&gt;
+        &lt;!&ndash; <property name="dbType" value="oracle" /> &ndash;&gt;
+        &lt;!&ndash; 全局表为下划线命名设置 true &ndash;&gt;
+        &lt;!&ndash; <property name="dbColumnUnderline" value="true" /> &ndash;&gt;
         <property name="sqlInjector" ref="autosqlinjector"/>
     </bean>
 
     <bean id="autosqlinjector" class="com.baomidou.mybatisplus.mapper.AutoSqlInjector"/>
 
-    <!-- 配置Mapper扫描路径 -->
+    &lt;!&ndash; 配置Mapper扫描路径 &ndash;&gt;
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.xwolf.eop.*.dao" />
     </bean>
-
+-->
 
     <!-- 将数据源映射到sqlSessionFactory中 -->
-    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:mybatis.xml" />
+        <property name="typeAliasesPackage" value="com.xwolf.eop.*.entity"/>
         <property name="mapperLocations" value="classpath*:mapper/**/*.xml"/>
     </bean>
 
 
-    &lt;!&ndash; 扫描的包 &ndash;&gt;
+
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.xwolf.eop.*.dao" />
-    </bean>-->
+    </bean>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
@@ -139,7 +140,7 @@
                         <prop key="kaptcha.background.clear.from">white</prop>
                         <prop key="kaptcha.background.clear.to">white</prop>
                         <prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.ShadowGimpy</prop>
-                        <prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
+                        <prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.DefaultNoise</prop>
                         <!-- 干扰线颜色 -->
                         <prop key="kaptcha.noise.color">black</prop>
                         <!-- 验证码文本字符间距 -->

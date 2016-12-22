@@ -1,8 +1,9 @@
 package com.xwolf.eop.system.service.impl;
 
-import com.xwolf.eop.system.dao.PermissionsMapper;
 import com.xwolf.eop.system.entity.Permissions;
 import com.xwolf.eop.system.service.IPermissionsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
  * @since 2016-12-20
  */
 @Service
-public class PermissionsServiceImpl extends BaseServiceImpl<PermissionsMapper, Permissions> implements IPermissionsService {
-	
+public class PermissionsServiceImpl extends BaseServiceImpl<Permissions> implements IPermissionsService {
+
+     private static final Logger LOG= LoggerFactory.getLogger(PermissionsServiceImpl.class);
+
 }

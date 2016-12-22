@@ -1,8 +1,5 @@
 package com.xwolf.eop.system.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.xwolf.eop.system.entity.User;
 import com.xwolf.eop.system.service.IUserService;
 import com.xwolf.eop.util.IPUtil;
 import org.slf4j.Logger;
@@ -38,8 +35,7 @@ public class UserController {
     public String list(HttpServletRequest request){
       String ip= IPUtil.getIp(request);
        log.info("ip:{}",ip);
-       Page<User> page =new Page<>();
-      return JSON.toJSONString(userService.selectPage(page));
+      return null;
 
     }
 }

@@ -1,20 +1,106 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xwolf.eop.system.dao.RolesMapper">
-	<!--开启二级缓存-->
-	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
-
-	<resultMap id="BaseResultMap" type="com.xwolf.eop.system.entity.Roles">
-		<id column="rid" property="rid" />
-		<result column="rcode" property="rcode" />
-		<result column="rname" property="rname" />
-		<result column="rpcode" property="rpcode" />
-		<result column="rtime" property="rtime" />
-		<result column="rstatus" property="rstatus" />
-	</resultMap>
-
-    <!-- 通用查询结果列-->
-    <sql id="Base_Column_List">
-        rid, rcode, rname, rpcode, rtime, rstatus
-    </sql>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xwolf.eop.system.dao.RolesMapper" >
+  <resultMap id="BaseResultMap" type="com.xwolf.eop.system.entity.Roles" >
+    <id column="rid" property="rid" jdbcType="INTEGER" />
+    <result column="rcode" property="rcode" jdbcType="VARCHAR" />
+    <result column="rname" property="rname" jdbcType="VARCHAR" />
+    <result column="rpcode" property="rpcode" jdbcType="VARCHAR" />
+    <result column="rtime" property="rtime" jdbcType="TIMESTAMP" />
+    <result column="rstatus" property="rstatus" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rid, rcode, rname, rpcode, rtime, rstatus
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from com_roles
+    where rid = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from com_roles
+    where rid = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xwolf.eop.system.entity.Roles" >
+    insert into com_roles (rid, rcode, rname, 
+      rpcode, rtime, rstatus
+      )
+    values (#{rid,jdbcType=INTEGER}, #{rcode,jdbcType=VARCHAR}, #{rname,jdbcType=VARCHAR}, 
+      #{rpcode,jdbcType=VARCHAR}, #{rtime,jdbcType=TIMESTAMP}, #{rstatus,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xwolf.eop.system.entity.Roles" >
+    insert into com_roles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        rid,
+      </if>
+      <if test="rcode != null" >
+        rcode,
+      </if>
+      <if test="rname != null" >
+        rname,
+      </if>
+      <if test="rpcode != null" >
+        rpcode,
+      </if>
+      <if test="rtime != null" >
+        rtime,
+      </if>
+      <if test="rstatus != null" >
+        rstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="rcode != null" >
+        #{rcode,jdbcType=VARCHAR},
+      </if>
+      <if test="rname != null" >
+        #{rname,jdbcType=VARCHAR},
+      </if>
+      <if test="rpcode != null" >
+        #{rpcode,jdbcType=VARCHAR},
+      </if>
+      <if test="rtime != null" >
+        #{rtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rstatus != null" >
+        #{rstatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xwolf.eop.system.entity.Roles" >
+    update com_roles
+    <set >
+      <if test="rcode != null" >
+        rcode = #{rcode,jdbcType=VARCHAR},
+      </if>
+      <if test="rname != null" >
+        rname = #{rname,jdbcType=VARCHAR},
+      </if>
+      <if test="rpcode != null" >
+        rpcode = #{rpcode,jdbcType=VARCHAR},
+      </if>
+      <if test="rtime != null" >
+        rtime = #{rtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rstatus != null" >
+        rstatus = #{rstatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where rid = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xwolf.eop.system.entity.Roles" >
+    update com_roles
+    set rcode = #{rcode,jdbcType=VARCHAR},
+      rname = #{rname,jdbcType=VARCHAR},
+      rpcode = #{rpcode,jdbcType=VARCHAR},
+      rtime = #{rtime,jdbcType=TIMESTAMP},
+      rstatus = #{rstatus,jdbcType=TINYINT}
+    where rid = #{rid,jdbcType=INTEGER}
+  </update>
 </mapper>

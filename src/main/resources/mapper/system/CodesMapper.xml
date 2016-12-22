@@ -1,21 +1,117 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xwolf.eop.system.dao.CodesMapper">
-	<!--开启二级缓存-->
-	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
-
-	<resultMap id="BaseResultMap" type="com.xwolf.eop.system.entity.Codes">
-		<id column="cid" property="cid" />
-		<result column="code" property="code" />
-		<result column="cvalue" property="cvalue" />
-		<result column="cname" property="cname" />
-		<result column="ctime" property="ctime" />
-		<result column="corder" property="corder" />
-		<result column="cstatus" property="cstatus" />
-	</resultMap>
-
-    <!-- 通用查询结果列-->
-    <sql id="Base_Column_List">
-        cid, code, cvalue, cname, ctime, corder, cstatus
-    </sql>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xwolf.eop.system.dao.CodesMapper" >
+  <resultMap id="BaseResultMap" type="com.xwolf.eop.system.entity.Codes" >
+    <id column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="cvalue" property="cvalue" jdbcType="VARCHAR" />
+    <result column="cname" property="cname" jdbcType="VARCHAR" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="corder" property="corder" jdbcType="TINYINT" />
+    <result column="cstatus" property="cstatus" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cid, code, cvalue, cname, ctime, corder, cstatus
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from com_codes
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from com_codes
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xwolf.eop.system.entity.Codes" >
+    insert into com_codes (cid, code, cvalue, 
+      cname, ctime, corder, 
+      cstatus)
+    values (#{cid,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{cvalue,jdbcType=VARCHAR}, 
+      #{cname,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}, #{corder,jdbcType=TINYINT}, 
+      #{cstatus,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xwolf.eop.system.entity.Codes" >
+    insert into com_codes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="cvalue != null" >
+        cvalue,
+      </if>
+      <if test="cname != null" >
+        cname,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="corder != null" >
+        corder,
+      </if>
+      <if test="cstatus != null" >
+        cstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="cvalue != null" >
+        #{cvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="corder != null" >
+        #{corder,jdbcType=TINYINT},
+      </if>
+      <if test="cstatus != null" >
+        #{cstatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xwolf.eop.system.entity.Codes" >
+    update com_codes
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="cvalue != null" >
+        cvalue = #{cvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="corder != null" >
+        corder = #{corder,jdbcType=TINYINT},
+      </if>
+      <if test="cstatus != null" >
+        cstatus = #{cstatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xwolf.eop.system.entity.Codes" >
+    update com_codes
+    set code = #{code,jdbcType=VARCHAR},
+      cvalue = #{cvalue,jdbcType=VARCHAR},
+      cname = #{cname,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      corder = #{corder,jdbcType=TINYINT},
+      cstatus = #{cstatus,jdbcType=TINYINT}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
 </mapper>

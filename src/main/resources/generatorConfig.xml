@@ -4,7 +4,7 @@
 		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-	<classPathEntry location="D:\LocalWarehouse\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar" />
+	<classPathEntry location="D:\Program Files\repository\maven\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar" />
 	
 	<context id="MyBatis3" targetRuntime="MyBatis3">
 	
@@ -13,7 +13,7 @@
  		</commentGenerator> 
 		
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/eop?userUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC"
-			userId="eop" password="123456">
+			userId="eap" password="eap@eap">
 		</jdbcConnection>
 		
 		<javaModelGenerator targetPackage="com.xwolf.eop.system.entity" targetProject="D:\workspace\NIDEA\eop\src\main\java">
@@ -28,12 +28,12 @@
 			targetProject="D:\workspace\NIDEA\eop\src\main\java">
 		</javaClientGenerator>
 
-		<table tableName="com_permissions" domainObjectName="Permissions"
+		<table tableName="com_citys" domainObjectName="Citys"
 			enableCountByExample="false" enableUpdateByExample="false" 
 			enableDeleteByExample="false" enableSelectByExample="false" 
 			selectByExampleQueryId="false" >
 			<property name="ignoreQualifiersAtRuntime" value="true" />
-			<property name="runtimeTableName" value="com_permissions" />
+			<property name="runtimeTableName" value="com_citys" />
 			<!--<generatedKey  column="ID" sqlStatement="select 1 from dual" />
 		--></table>
 	</context>

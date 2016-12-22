@@ -14,6 +14,6 @@ import org.springframework.stereotype.Service;
  * @since 2016-12-20
  */
 @Service
-public class CodesServiceImpl extends BaseServiceImpl<CodesMapper, Codes> implements ICodesService {
+public class CodesServiceImpl extends BaseServiceImpl<Codes> implements ICodesService {
 	
 }

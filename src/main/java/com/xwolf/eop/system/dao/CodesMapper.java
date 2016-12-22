@@ -1,16 +1,17 @@
 package com.xwolf.eop.system.dao;
 
 import com.xwolf.eop.system.entity.Codes;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-/**
- * <p>
- * Mapper接口
- * </p>
- *
- * @author xwolf
- * @since 2016-12-20
- */
-public interface CodesMapper extends BaseMapper<Codes> {
+public interface CodesMapper {
+    int deleteByPrimaryKey(Integer cid);
 
+    int insert(Codes record);
+
+    int insertSelective(Codes record);
+
+    Codes selectByPrimaryKey(Integer cid);
+
+    int updateByPrimaryKeySelective(Codes record);
+
+    int updateByPrimaryKey(Codes record);
 }
