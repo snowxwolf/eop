@@ -1,9 +1,12 @@
 package com.xwolf.eop.system.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class User implements Serializable {
+
     private Integer uid;
 
     private String ucode;
@@ -20,12 +23,13 @@ public class User implements Serializable {
 
     private String mobile;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date ctime;
 
     private String ccode;
 
     private String rcode;
-
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date rtime;
 
     private int ustatus;

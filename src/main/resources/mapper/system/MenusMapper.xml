@@ -125,4 +125,14 @@
       icon = #{icon,jdbcType=VARCHAR}
     where mid = #{mid,jdbcType=INTEGER}
   </update>
+
+  <!--获取所有父菜单-->
+  <select id="getParentMenus" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from com_menus where mstatus = 1 and is_parent=1
+  </select>
+
+  <select id="getSonMenus" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from com_menus where mstatus = 1 and is_parent=0
+    and pcode=#{code,jdbcType=VARCHAR}
+  </select>
 </mapper>

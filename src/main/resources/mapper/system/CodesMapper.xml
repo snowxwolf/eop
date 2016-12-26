@@ -114,4 +114,9 @@
       cstatus = #{cstatus,jdbcType=TINYINT}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
+
+
+  <select id="selectCodesList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from com_codes  where cstatus=1
+  </select>
 </mapper>

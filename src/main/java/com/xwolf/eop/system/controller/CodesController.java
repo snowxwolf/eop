@@ -1,12 +1,19 @@
 package com.xwolf.eop.system.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.xwolf.eop.common.pojo.PageResult;
+import com.xwolf.eop.system.service.ICodesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 基础码表
@@ -19,7 +26,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class CodesController {
 
     private static final Logger log= LoggerFactory.getLogger(CodesController.class);
-
+    @Autowired
+    private ICodesService codesService;
     /**
      * 到用户管理页面
      * @return
@@ -28,5 +36,12 @@ public class CodesController {
     public ModelAndView toCodes(@RequestHeader("User-Agent")String ua){
         log.info("UserAgent:{}",ua);
      return new ModelAndView("system/codes");
+    }
+
+    @RequestMapping(value = "listCodes",method = RequestMethod.POST)
+    public  @ResponseBody PageResult  listCodes(HttpServletRequest request){
+        PageResult json=codesService.selectCodesList(request);
+        log.info("码表列表:{}",json);
+        return json;
     }
 }

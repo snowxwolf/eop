@@ -1,5 +1,7 @@
 package com.xwolf.eop.system.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,6 +14,7 @@ public class Codes implements Serializable{
 
     private String cname;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date ctime;
 
     private int corder;

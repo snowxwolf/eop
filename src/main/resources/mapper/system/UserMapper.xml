@@ -185,4 +185,8 @@
       ustatus = #{ustatus,jdbcType=TINYINT}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+
+  <select id="getUserByName" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from com_user where uname=#{uname,jdbcType=VARCHAR}
+  </select>
 </mapper>

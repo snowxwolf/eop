@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author xwolf
@@ -25,5 +26,14 @@ public class IndexController {
     public String toIndex(@RequestHeader("User-Agent")String ua){
         log.info("ua:{}",ua);
         return "system/index";
+    }
+
+    /**
+     * 授权失败
+     * @return
+     */
+    @RequestMapping(value = "unAuth",method = RequestMethod.POST)
+    public String toUnAuth(){
+        return "system/error/unauthorized";
     }
 }

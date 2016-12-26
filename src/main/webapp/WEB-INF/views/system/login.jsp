@@ -62,18 +62,18 @@
 
                                     <div class="space-6"></div>
 
-                                    <form>
+                                    <form id="loginForm">
                                         <fieldset>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="用户名" />
+															<input type="text" name="name" class="form-control" placeholder="用户名"  required/>
 															<i class="ace-icon fa fa-user"></i>
 														</span>
                                             </label>
 
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="密码" />
+															<input type="password" name="passwd" class="form-control" placeholder="密码"  required/>
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
                                             </label>
@@ -81,7 +81,7 @@
 
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" minlength="4" maxlength="4" width="50" class="input-sm" placeholder="验证码" />
+															<input type="text" name="code" minlength="4" maxlength="4" width="50" class="input-sm" placeholder="验证码" required />
 															<i class="ace-icon fa fa-lock"></i>
                                                             <img id="checkCode" src="checkCode.html" width="75" height="30" onclick="geneCode();"/>
 														</span>
@@ -146,7 +146,7 @@
                                 </div><!-- /.widget-main -->
 
                                 <div class="toolbar center">
-                                    <a href="#" data-target="#login-box" class="back-to-login-link">
+                                    <a href="#"  data-target="#login-box" class="back-to-login-link">
                                         登录
                                         <i class="ace-icon fa fa-arrow-right"></i>
                                     </a>

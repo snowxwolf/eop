@@ -42,6 +42,7 @@
   </repositories>
 
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!--junit-->
     <junit.version>4.12</junit.version>
     <!--slf4j,logback-->
@@ -384,6 +385,12 @@
       <version>${rabbitmq.version}</version>
     </dependency>
 
+    <!--hiberante validator-->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>5.3.4.Final</version>
+    </dependency>
 
   </dependencies>
   <build>

@@ -2,6 +2,8 @@ package com.xwolf.eop.system.service;
 
 import com.xwolf.eop.system.entity.User;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * <p>
  * 服务类
@@ -12,5 +14,7 @@ import com.xwolf.eop.system.entity.User;
  */
 public interface IUserService extends BaseService<User> {
 
-    String login(User puser);
+    String login(HttpServletRequest request);
+
+    User getUserByName(String username);
 }

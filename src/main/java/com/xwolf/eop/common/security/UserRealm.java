@@ -7,11 +7,13 @@ import com.xwolf.eop.system.entity.Permissions;
 import com.xwolf.eop.system.entity.Roles;
 import com.xwolf.eop.system.entity.User;
 import com.xwolf.eop.system.enums.UserStatusEnums;
+import com.xwolf.eop.system.service.IUserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,9 @@ import java.util.Set;
  * @since V1.0.0
  */
 public class UserRealm extends AuthorizingRealm {
+
+    @Autowired(required = false)
+    private IUserService userService;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -56,11 +61,11 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        User user =null; //userService.login(token.getUsername());
+        User user =userService.getUserByName(token.getUsername());
         if(user==null){
             throw new UnknownAccountException();
         }
-        String status ="0"; //user.getUstatus();
+        int status =user.getUstatus();
         //账号锁定
         if (UserStatusEnums.LOCKED.getCode().equals(status)) {
             throw new LockedAccountException();

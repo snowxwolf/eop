@@ -1,5 +1,6 @@
 package com.xwolf.eop.system.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.xwolf.eop.system.entity.Menus;
 import com.xwolf.eop.system.service.IMenusService;
 import org.slf4j.Logger;
@@ -30,9 +31,10 @@ public class MenusController {
 
     @RequestMapping(value ="listMenus",method = RequestMethod.POST)
     @ResponseBody
-    public String list(){
-
-        return null;
+    public JSONObject list(){
+        JSONObject menus=  menusService.getNavMenus();
+      log.info("导航菜单:{}",menus);
+      return menus ;
     }
 
     /**

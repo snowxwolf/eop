@@ -46,5 +46,7 @@ function geneCode(){
 
 function login() {
     btnDisabled("loginBtn");
-     window.location.href="index.html";
+    $.post("login.html",$("#loginForm").serialize(),function (data) {
+   console.info("data:"+data);
+    },"json");
 }

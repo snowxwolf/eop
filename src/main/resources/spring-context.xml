@@ -3,77 +3,59 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:cache="http://www.springframework.org/schema/cache"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop.xsd
          http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx.xsd
          http://www.springframework.org/schema/cache  http://www.springframework.org/schema/cache/spring-cache.xsd">
 
-     <import resource="classpath:spring-datasource.xml" />
 
+
+    <import resource="classpath:spring-datasource.xml" />
+
+    <cache:annotation-driven cache-manager="cacheManager" />
     <!--redis缓存-->
-     <import resource="classpath:spring-cache.xml" />
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle" value="${system.redis.maxIdle}" />
+        <property name="maxWaitMillis" value="${system.redis.maxWait}" />
+        <property name="testOnBorrow" value="${system.redis.testOnBorrow}" />
+    </bean>
 
-     <cache:annotation-driven cache-manager="cacheManager"/>
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          p:port="${system.redis.port}" p:password="${system.redis.passwd}" p:hostName="${system.redis.host}" p:poolConfig-ref="poolConfig" />
 
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+        <property name="connectionFactory"   ref="connectionFactory" />
+
+        <property name="keySerializer" >
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+        </property>
+        <property name="valueSerializer" >
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+        </property>
+        <property name="hashKeySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+        <property name="hashValueSerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
+    </bean>
+
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+        <property name="caches">
+            <bean class="com.xwolf.eop.common.pojo.RedisCache">
+                <property name="redisTemplate" ref="redisTemplate" />
+                <property name="name" value="user" />
+            </bean>
+        </property>
+    </bean>
+
+    <!--shiro-->
+  <!--  <import resource="spring-shiro.xml"/>-->
     <!--spring quartz 定时任务-->
     <!--<import resource="classpath:spring-quartz.xml"/>-->
 
-    <!-- 注意：这里使用的是MP的MybatisSqlSessionFactoryBean，而不是Mybatis的，因为MP需要进行相应代理 -->
-   <!-- <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
-        &lt;!&ndash; 配置数据源 &ndash;&gt;
-        <property name="dataSource" ref="dataSource" />
-        &lt;!&ndash; 配置Mybatis配置文件 &ndash;&gt;
-        <property name="configLocation" value="classpath:mybatis.xml" />
-        &lt;!&ndash; 配置别名包路径 &ndash;&gt;
-        <property name="typeAliasesPackage" value="com.xwolf.eop.*.entity" />
-        &lt;!&ndash; 配置Mapper扫描路径（IDEA系列编辑器需要特别注意，因为IDEA的设置问题，src中的xml文件是不会被编译的，如果放在src中可能会报错，解决办法详见 常用问题-Invalid bound statement (not found) 错误如何解决?） &ndash;&gt;
-        <property name="mapperLocations" value="classpath:mapper/**/*.xml" />
-        &lt;!&ndash; 插件配置项  &ndash;&gt;
-        <property name="plugins">
-            <array>
-                &lt;!&ndash; 分页插件配置 &ndash;&gt;
-                <bean id="paginationInterceptor" class="com.baomidou.mybatisplus.plugins.PaginationInterceptor">
-                    <property name="dialectType" value="${system.database.dialect}" />
-                </bean>
-            </array>
-        </property>
-        &lt;!&ndash; 全局配置注入 &ndash;&gt;
-        <property name="globalConfig" ref="globalConfig" />
-    </bean>
-    <bean id="globalConfig" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
-        &lt;!&ndash;
-            AUTO->`0`("数据库ID自增")
-             INPUT->`1`(用户输入ID")
-            ID_WORKER->`2`("全局唯一ID")
-            UUID->`3`("全局唯一ID")
-        &ndash;&gt;
-        &lt;!&ndash; <property name="idType" value="0" /> &ndash;&gt;
-        &lt;!&ndash;
-            MYSQL->`mysql`
-            ORACLE->`oracle`
-            DB2->`db2`
-            H2->`h2`
-            HSQL->`hsql`
-            SQLITE->`sqlite`
-            POSTGRE->`postgresql`
-            SQLSERVER2005->`sqlserver2005`
-            SQLSERVER->`sqlserver`
-        &ndash;&gt;
-        &lt;!&ndash; Oracle需要添加该项 &ndash;&gt;
-        &lt;!&ndash; <property name="dbType" value="oracle" /> &ndash;&gt;
-        &lt;!&ndash; 全局表为下划线命名设置 true &ndash;&gt;
-        &lt;!&ndash; <property name="dbColumnUnderline" value="true" /> &ndash;&gt;
-        <property name="sqlInjector" ref="autosqlinjector"/>
-    </bean>
-
-    <bean id="autosqlinjector" class="com.baomidou.mybatisplus.mapper.AutoSqlInjector"/>
-
-    &lt;!&ndash; 配置Mapper扫描路径 &ndash;&gt;
-    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.xwolf.eop.*.dao" />
-    </bean>
--->
 
     <!-- 将数据源映射到sqlSessionFactory中 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -106,11 +88,12 @@
             <tx:method name="modify*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
 
             <tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="*" />
         </tx:attributes>
     </tx:advice>
 
-    <aop:config>
-        <aop:pointcut id="pointcut" expression="execution(* com.xwolf.eop.*.service.*.*(..))"/>
+    <aop:config >
+        <aop:pointcut  id="pointcut" expression="execution(* com.xwolf.eop.*.service..*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
     </aop:config>
 

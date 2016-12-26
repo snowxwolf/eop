@@ -18,6 +18,8 @@ public class Global {
         resourceUtil=new ResourceUtil(ConfigEnum.SYSTEM.getName());
     }
 
+    public static final String DEFAULT_ENCODING=resourceUtil.getValue(SystemConfigEnum.ENCODING_UTF8.getProperty());
+
     public static final boolean ENABLE_TOKEN=resourceUtil.getBooleanValue(SystemConfigEnum.WEB_TOKEN.getProperty());
 
     public static final boolean ENABLE_REFERER=resourceUtil.getBooleanValue(SystemConfigEnum.WEB_REFERER.getProperty());

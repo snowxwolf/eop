@@ -1,8 +1,8 @@
 package com.xwolf.eop.system.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
-import com.xwolf.eop.system.entity.User;
 import com.xwolf.eop.system.service.IUserService;
+import com.xwolf.eop.util.HttpUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -63,8 +63,7 @@ public class LoginController {
         response.setContentType("image/jpeg");
         String capText = defaultKaptcha.createText();
         // 将验证码放入session中
-        request.getSession().setAttribute(
-                com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY, capText);
+        HttpUtil.setCheckCode(request,capText);
         log.info("生成的验证码为:{}",capText);
         BufferedImage bi = defaultKaptcha.createImage(capText);
         ServletOutputStream out = response.getOutputStream();
@@ -78,13 +77,12 @@ public class LoginController {
 
     /**
      * 登录
-     * @param user
      * @return
      */
     @RequestMapping(value = "login",method = RequestMethod.POST)
     @ResponseBody
-    public String login(User user){
-        return userService.login(user);
+    public String login(HttpServletRequest request){
+        return userService.login(request);
     }
 
     /**

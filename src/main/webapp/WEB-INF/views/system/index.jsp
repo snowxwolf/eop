@@ -6,7 +6,7 @@
 <head>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <title>首页</title>
     <meta name="description" content="OA,ERP" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -134,7 +134,7 @@
 
 $(function(){
 
-    var menuData={
+   /* var menuData={
         data: [{
             id: '1',
             text: '系统设置',
@@ -240,9 +240,12 @@ $(function(){
                 url: '/Order/Import'
             }]
         }]
-    };
+    };*/
+    $.post("menus/listMenus.html",function(data){
+        console.info(data.data)
+        $('#menu').sidebarMenu(data);
+    },"json");
 
-    $('#menu').sidebarMenu(menuData);
 });
 
 </script>
