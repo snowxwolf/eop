@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *   服务实现类
@@ -21,4 +23,9 @@ public class RolesServiceImpl extends BaseServiceImpl<Roles> implements IRolesSe
 	private static final Logger LOG= LoggerFactory.getLogger(RolesServiceImpl.class);
 	@Autowired
 	private RolesMapper rolesMapper;
+
+	@Override
+	public List<Roles> getRolesListByUserCode(String usercode) {
+		return null;
+	}
 }
