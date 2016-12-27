@@ -1,0 +1,17 @@
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>Dynamic CSRF Token</short-name>
+	<uri>http://xwolf.eop/csrf</uri>
+	<tag>
+		<name>create</name>
+		<tag-class>com.xwolf.eop.common.security.csrf.taglib.DynamicCsrfTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>element</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+			<fragment>false</fragment>
+		</attribute>
+	</tag>
+</taglib>

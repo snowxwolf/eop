@@ -103,4 +103,9 @@
       pstatus = #{pstatus,jdbcType=TINYINT}
     where pid = #{pid,jdbcType=INTEGER}
   </update>
+
+  <select id="getPermissionsByUserCode" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from com_permissions
+
+  </select>
 </mapper>

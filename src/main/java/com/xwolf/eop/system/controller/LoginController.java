@@ -42,8 +42,8 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "toLogin",method = RequestMethod.GET)
-    public String toLogin(@RequestHeader("User-Agent")String ua){
-        log.info("userAgent:{}",ua);
+    public String toLogin(@RequestHeader("User-Agent")String ua,HttpServletRequest request){
+        log.info("userAgent:{},请求IP:{}",ua,HttpUtil.getIP(request));
        return "system/login";
 
     }

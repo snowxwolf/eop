@@ -1,24 +1,5 @@
-/*
-Navicat MySQL Data Transfer
 
-Source Server         : eop@localhost
-Source Server Version : 50624
-Source Host           : localhost:3306
-Source Database       : eop
 
-Target Server Type    : MYSQL
-Target Server Version : 50624
-File Encoding         : 65001
-
-Date: 2016-12-15 18:18:24
-*/
-
-SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for com_user
--- ----------------------------
-DROP TABLE IF EXISTS `com_user`;
 CREATE TABLE `com_user` (
   `uid` int(15) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `ucode` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户code',

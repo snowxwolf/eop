@@ -49,7 +49,7 @@
     </tx:advice>
 
     <aop:config proxy-target-class="true" >
-        <aop:pointcut  id="pointcut" expression="execution(* com.xwolf.eop.*.service..*.*(..))"/>
+        <aop:pointcut  id="pointcut" expression="execution(* com.xwolf.eop..service.impl..*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
     </aop:config>
 
@@ -61,9 +61,9 @@
                 <constructor-arg type="java.util.Properties">
                     <props>
                         <!-- 验证码宽度 -->
-                        <prop key="kaptcha.image.width">90</prop>
+                        <prop key="kaptcha.image.width">120</prop>
                         <!-- 验证码高度 -->
-                        <prop key="kaptcha.image.height">24</prop>
+                        <prop key="kaptcha.image.height">30</prop>
                         <!-- 生成验证码内容范围 -->
                         <prop key="kaptcha.textproducer.char.string">abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ</prop>
                         <!-- 验证码个数 -->

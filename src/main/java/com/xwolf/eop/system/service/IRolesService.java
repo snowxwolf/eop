@@ -2,6 +2,8 @@ package com.xwolf.eop.system.service;
 
 import com.xwolf.eop.system.entity.Roles;
 
+import java.util.List;
+
 /**
  * <p>
  * 服务类
@@ -11,5 +13,6 @@ import com.xwolf.eop.system.entity.Roles;
  * @since 2016-12-20
  */
 public interface IRolesService extends BaseService<Roles> {
-	
+
+    List<Roles> getRolesListByUserCode(String username);
 }
