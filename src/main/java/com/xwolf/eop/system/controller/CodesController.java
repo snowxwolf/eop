@@ -1,8 +1,8 @@
 package com.xwolf.eop.system.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.xwolf.eop.common.pojo.PageResult;
 import com.xwolf.eop.system.service.ICodesService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +32,15 @@ public class CodesController {
      * 到用户管理页面
      * @return
      */
+
+    @RequiresPermissions({"system:codes"})
     @RequestMapping(value = "toCodes",method = RequestMethod.GET)
     public ModelAndView toCodes(@RequestHeader("User-Agent")String ua){
         log.info("UserAgent:{}",ua);
      return new ModelAndView("system/codes");
     }
 
+    @RequiresPermissions({"system:codes:list"})
     @RequestMapping(value = "listCodes",method = RequestMethod.POST)
     public  @ResponseBody PageResult  listCodes(HttpServletRequest request){
         PageResult json=codesService.selectCodesList(request);

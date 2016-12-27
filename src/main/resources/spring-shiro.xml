@@ -8,6 +8,7 @@
 
     <!-- 缓存管理 -->
     <bean id="memeroycacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+
     <!-- 自定义Realm -->
     <bean id="userRealm" class="com.xwolf.eop.common.security.UserRealm">
         <property name="credentialsMatcher">
@@ -26,6 +27,8 @@
         <property name="securityManager" ref="securityManager"/>
         <!-- 身份认证失败，则跳转到登录页面的配置 -->
         <property name="loginUrl" value="/toLogin.html"/>
+             <!--成功页面-->
+        <property name="successUrl" value="/index.html"/>
         <!-- 权限认证失败，则跳转到指定页面 -->
         <property name="unauthorizedUrl" value="/unAuth.html"/>
         <!-- Shiro连接约束配置,即过滤链的定义 -->
@@ -41,7 +44,10 @@
     </bean>
 
     <!-- 开启Shiro注解 -->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+    <property name="proxyTargetClass" value="true"/>
+    </bean>
+
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>

@@ -1,5 +1,6 @@
 package com.xwolf.eop.system.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.xwolf.eop.system.service.IUserService;
 import com.xwolf.eop.util.HttpUtil;
@@ -81,7 +82,7 @@ public class LoginController {
      */
     @RequestMapping(value = "login",method = RequestMethod.POST)
     @ResponseBody
-    public String login(HttpServletRequest request){
+    public JSONObject login(HttpServletRequest request){
         return userService.login(request);
     }
 
@@ -90,8 +91,8 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "logout",method = RequestMethod.POST)
-    public String logout(){
-        /*HttpUtil.removeAllSessionAttr(request);*/
+    public String logout(HttpServletRequest request){
+        HttpUtil.removeAllSessionAttr(request);
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         return "system/login";

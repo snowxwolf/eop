@@ -45,8 +45,15 @@ function geneCode(){
 }
 
 function login() {
+
     btnDisabled("loginBtn");
     $.post("login.html",$("#loginForm").serialize(),function (data) {
-   console.info("data:"+data);
+      if(data.success){
+         window.location.href="index.html";
+      }else{
+          //TODO 提示信息优化
+          alert(data.restVal);
+      }
+
     },"json");
 }

@@ -3,58 +3,14 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:cache="http://www.springframework.org/schema/cache"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop.xsd
-         http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx.xsd
-         http://www.springframework.org/schema/cache  http://www.springframework.org/schema/cache/spring-cache.xsd">
+         http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
 
     <import resource="classpath:spring-datasource.xml" />
 
-    <cache:annotation-driven cache-manager="cacheManager" />
-    <!--redis缓存-->
-    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <property name="maxIdle" value="${system.redis.maxIdle}" />
-        <property name="maxWaitMillis" value="${system.redis.maxWait}" />
-        <property name="testOnBorrow" value="${system.redis.testOnBorrow}" />
-    </bean>
-
-    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-          p:port="${system.redis.port}" p:password="${system.redis.passwd}" p:hostName="${system.redis.host}" p:poolConfig-ref="poolConfig" />
-
-    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
-        <property name="connectionFactory"   ref="connectionFactory" />
-
-        <property name="keySerializer" >
-            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
-        </property>
-        <property name="valueSerializer" >
-            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
-        </property>
-        <property name="hashKeySerializer">
-            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
-        </property>
-        <property name="hashValueSerializer">
-            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
-        </property>
-    </bean>
-
-    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
-        <property name="caches">
-            <bean class="com.xwolf.eop.common.pojo.RedisCache">
-                <property name="redisTemplate" ref="redisTemplate" />
-                <property name="name" value="user" />
-            </bean>
-        </property>
-    </bean>
-
-    <!--shiro-->
-  <!--  <import resource="spring-shiro.xml"/>-->
-    <!--spring quartz 定时任务-->
-    <!--<import resource="classpath:spring-quartz.xml"/>-->
 
 
     <!-- 将数据源映射到sqlSessionFactory中 -->
@@ -92,7 +48,7 @@
         </tx:attributes>
     </tx:advice>
 
-    <aop:config >
+    <aop:config proxy-target-class="true" >
         <aop:pointcut  id="pointcut" expression="execution(* com.xwolf.eop.*.service..*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
     </aop:config>
@@ -111,7 +67,7 @@
                         <!-- 生成验证码内容范围 -->
                         <prop key="kaptcha.textproducer.char.string">abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ</prop>
                         <!-- 验证码个数 -->
-                        <prop key="kaptcha.textproducer.char.length">5</prop>
+                        <prop key="kaptcha.textproducer.char.length">4</prop>
                         <!-- 是否有边框 -->
                         <prop key="kaptcha.border">no</prop>
                         <!-- 验证码字体颜色 -->
@@ -133,5 +89,6 @@
             </bean>
         </property>
     </bean>
+
 
 </beans>

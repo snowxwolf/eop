@@ -34,7 +34,6 @@ public class MenusServiceImpl extends BaseServiceImpl<Menus> implements IMenusSe
 	 * @return
 	 */
 	@Override
-	@Cacheable(key = "nav_menus",value = "nav_menus")
 	public JSONObject getNavMenus() {
 		List<Menus> parentMenus=menusMapper.getParentMenus();
 		JSONObject nav=new JSONObject();

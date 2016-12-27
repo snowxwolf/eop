@@ -35,15 +35,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
     private UserMapper userMapper;
 
     @Override
-    public String login(HttpServletRequest request) {
+    public JSONObject login(HttpServletRequest request) {
 
         JSONObject jsonObject=new JSONObject();
         try {
             String code=request.getParameter("code");
-            if(!HttpUtil.getCheckCode(request).equals(code)){
+            if(!HttpUtil.getCheckCode(request).equalsIgnoreCase(code)){
                 jsonObject.put("success", false);
                 jsonObject.put("restVal", "验证码错误!");
-                return jsonObject.toJSONString();
+                return jsonObject;
             }
             String uname=request.getParameter("name");
             String passwd=request.getParameter("passwd");
@@ -68,10 +68,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
             jsonObject.put("success", false);
             jsonObject.put("restVal", "密码错误!");
         }catch(Exception e){
+            e.printStackTrace();
             jsonObject.put("success", false);
             jsonObject.put("restVal", "登录失败!");
         } finally {
-            return jsonObject.toJSONString();
+            return jsonObject;
         }
     }
 

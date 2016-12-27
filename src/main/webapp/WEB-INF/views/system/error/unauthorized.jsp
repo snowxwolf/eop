@@ -9,6 +9,6 @@
     <title>error</title>
 </head>
 <body>
-<h2>您访问了无权限的资源.</h2>
+<h2>认证失败.</h2>
 </body>
 </html>

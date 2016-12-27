@@ -1,5 +1,7 @@
 package com.xwolf.eop.test.core;
 
+import com.xwolf.eop.util.MD5;
+
 import java.util.Scanner;
 
 /**
@@ -38,10 +40,6 @@ public class Input {
     }
     public static void main(String[] args) {
           //in();
-        int x=1;
-        int y=1;
-        int b=++y;
-        int c=x++;
-        System.out.println(b+","+c);
+        System.out.println(MD5.getMessageDigest("admin","UTF-8"));
     }
 }

@@ -6,15 +6,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/cache  http://www.springframework.org/schema/cache/spring-cache.xsd">
 
+    <cache:annotation-driven cache-manager="cacheManager" />
 
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <property name="maxIdle" value="${system.redis.maxIdle}" />
-        <property name="maxWaitMillis" value="${system.redis.maxWait}" />
-        <property name="testOnBorrow" value="${system.redis.testOnBorrow}" />
+        <property name="maxIdle" value="100" />
+        <property name="maxWaitMillis" value="1000" />
+        <property name="testOnBorrow" value="true" />
     </bean>
 
     <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-           p:port="${system.redis.port}" p:password="${system.redis.passwd}" p:hostName="${system.redis.host}" p:poolConfig-ref="poolConfig" />
+           p:port="6379" p:password="" p:hostName="127.0.0.1" p:poolConfig-ref="poolConfig" />
 
     <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
         <property name="connectionFactory"   ref="connectionFactory" />
@@ -33,13 +34,8 @@
         </property>
     </bean>
 
-    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
-        <property name="caches">
-            <bean class="com.xwolf.eop.common.pojo.RedisCache">
-                <property name="redisTemplate" ref="redisTemplate" />
-                <property name="name" value="user" />
-            </bean>
-        </property>
+    <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+      <constructor-arg name="redisOperations" ref="redisTemplate" />
     </bean>
 
 

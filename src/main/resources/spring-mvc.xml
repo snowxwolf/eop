@@ -4,9 +4,11 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation=
-        "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+               "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/mvc  http://www.springframework.org/schema/mvc/spring-mvc.xsd
          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <context:property-placeholder location="classpath*:system.properties"/>
 
     <context:component-scan base-package="com.xwolf.eop.*">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
@@ -64,4 +66,19 @@
         <property name="maxInMemorySize" value="4096" />
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
+
+    <!--异常处理-->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+     <property name="exceptionMappings">
+         <props>
+             <prop key="org.apache.shiro.authz.AuthorizationException">system/error/noPermission</prop>
+         </props>
+     </property>
+    </bean>
+    <!--redis-->
+    <import resource="spring-cache.xml"/>
+    <!--shiro-->
+    <import resource="spring-shiro.xml"/>
+    <!--spring quartz 定时任务-->
+    <!--<import resource="classpath:spring-quartz.xml"/>-->
 </beans>

@@ -31,6 +31,8 @@
     <script src="static/assets/js/html5shiv.min.js"></script>
     <script src="static/assets/js/respond.min.js"></script>
     <![endif]-->
+
+
     <title>登录</title>
 </head>
 
@@ -51,10 +53,13 @@
 
                     <div class="space-6"></div>
 
+
+
                     <div class="position-relative">
                         <div id="login-box" class="login-box visible widget-box no-border">
                             <div class="widget-body">
                                 <div class="widget-main">
+
                                     <h4 class="header blue lighter bigger">
                                         <i class="ace-icon fa fa-coffee green"></i>
                                         登录
@@ -62,30 +67,32 @@
 
                                     <div class="space-6"></div>
 
-                                    <form id="loginForm">
-                                        <fieldset>
-                                            <label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="text" name="name" class="form-control" placeholder="用户名"  required/>
-															<i class="ace-icon fa fa-user"></i>
-														</span>
-                                            </label>
+                                    <form id="loginForm" class="form-horizontal" role="form">
 
-                                            <label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="password" name="passwd" class="form-control" placeholder="密码"  required/>
-															<i class="ace-icon fa fa-lock"></i>
-														</span>
-                                            </label>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">用户名</label>
 
+                                            <div class="col-sm-9">
+                                                <input type="text" name="name" id="form-field-1" placeholder="用户名" class="form-control"  />
+                                            </div>
+                                        </div>
 
-                                            <label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="text" name="code" minlength="4" maxlength="4" width="50" class="input-sm" placeholder="验证码" required />
-															<i class="ace-icon fa fa-lock"></i>
-                                                            <img id="checkCode" src="checkCode.html" width="75" height="30" onclick="geneCode();"/>
-														</span>
-                                            </label>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">密码</label>
+
+                                            <div class="col-sm-9">
+                                                <input type="password" name="passwd" id="form-field-1-1" placeholder="密码" class="form-control required"  />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1-2">验证码</label>
+
+                                            <div class="col-sm-9">
+                                                <input type="text" id="form-field-1-2" name="code" minlength="4" maxlength="4" placeholder="验证码" class="col-xs-3 required" />
+                                                <img id="checkCode" src="checkCode.html" width="155" height="30" onclick="geneCode();"/>
+                                            </div>
+                                        </div>
 
                                             <div class="space"></div>
 
@@ -97,7 +104,6 @@
                                                 </button>
                                             </div>
 
-                                        </fieldset>
                                     </form>
 
                                 </div><!-- /.widget-main -->
@@ -169,6 +175,8 @@
 <!--[if IE]>
 <script src="static/assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
+<script src="static/assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="static/assets/js/bootbox.js"></script>
 <script type="text/javascript">
     if('ontouchstart' in document.documentElement) document.write("<script src='static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
@@ -176,6 +184,7 @@
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
     jQuery(function($) {
+
         $(document).on('click', '.toolbar a[data-target]', function(e) {
             e.preventDefault();
             var target = $(this).data('target');

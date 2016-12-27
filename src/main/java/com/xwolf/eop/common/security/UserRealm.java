@@ -26,7 +26,7 @@ import java.util.Set;
  */
 public class UserRealm extends AuthorizingRealm {
 
-    @Autowired(required = false)
+    @Autowired
     private IUserService userService;
 
     @Override

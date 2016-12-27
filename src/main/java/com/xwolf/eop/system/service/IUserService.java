@@ -1,5 +1,6 @@
 package com.xwolf.eop.system.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.xwolf.eop.system.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface IUserService extends BaseService<User> {
 
-    String login(HttpServletRequest request);
+    JSONObject login(HttpServletRequest request);
 
     User getUserByName(String username);
 }
