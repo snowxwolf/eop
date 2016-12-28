@@ -12,6 +12,7 @@ public enum SystemConfigEnum {
     WEB_DOMAIN("system.web.domain"),
     WEB_REFERER("system.web.referer"),
 
+    ENCODING_DEFAULT("system.encoding.default"),
     ENCODING_UTF8("system.encoding.utf8"),
     ENCODING_GBK("system.encoding.gbk"),
     ENCODING_ISO("system.encoding.iso"),

@@ -1,5 +1,7 @@
 package com.xwolf.eop.util;
 
+import com.xwolf.eop.common.pojo.Global;
+
 import java.security.MessageDigest;
 
 public class MD5 {
@@ -24,5 +26,14 @@ public class MD5 {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	/**
+	 * 默认UTF-8加密
+	 * @param str
+	 * @return
+	 */
+	public final static String getMessageDigest(String str){
+		return getMessageDigest(str, Global.DEFAULT_ENCODING);
 	}
 }
