@@ -104,8 +104,10 @@
     where pid = #{pid,jdbcType=INTEGER}
   </update>
 
-  <select id="getPermissionsByUserCode" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List"/> from com_permissions
+  <select id="getPermissionsByUserCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select p.* from com_permissions p where p.pcode in
+    (select mp.pcode from com_menu_permission mp,com_role_menu rm,com_user_role ur
+    where mp.mcode=rm.mcode and rm.rcode=ur.rcode and ur.ucode=#{code,jdbcType=VARCHAR})
 
   </select>
 </mapper>

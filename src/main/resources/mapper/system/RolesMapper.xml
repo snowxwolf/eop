@@ -103,4 +103,8 @@
       rstatus = #{rstatus,jdbcType=TINYINT}
     where rid = #{rid,jdbcType=INTEGER}
   </update>
+    <!--根据用户code获取角色列表-->
+  <select id="getRolesListByUserCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select r.* from com_roles r,com_user_role ur where r.rcode=ur.rcode and ur.ucode=#{code,jdbcType=VARCHAR} ;
+  </select>
 </mapper>

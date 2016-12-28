@@ -24,8 +24,14 @@ public class RolesServiceImpl extends BaseServiceImpl<Roles> implements IRolesSe
 	@Autowired
 	private RolesMapper rolesMapper;
 
+	/**
+	 * 根据用户code获取角色列表
+	 * @param usercode
+	 * @return
+	 */
 	@Override
 	public List<Roles> getRolesListByUserCode(String usercode) {
-		return null;
+		LOG.info("usercode:{}",usercode);
+		return rolesMapper.getRolesListByUserCode(usercode);
 	}
 }

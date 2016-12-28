@@ -62,7 +62,7 @@ public class UserRealm extends AuthorizingRealm {
          }
         if(permissionList!=null){
             for(Permissions permission:permissionList){
-                permissions.add(permission.getPcode());
+                permissions.add(permission.getPvalue());
             }
         }
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
