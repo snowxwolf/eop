@@ -65,15 +65,20 @@
                         <!-- 验证码高度 -->
                         <prop key="kaptcha.image.height">30</prop>
                         <!-- 生成验证码内容范围 -->
-                        <prop key="kaptcha.textproducer.char.string">abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ</prop>
+                        <prop key="kaptcha.textproducer.char.string">1234567890</prop>
                         <!-- 验证码个数 -->
                         <prop key="kaptcha.textproducer.char.length">4</prop>
+                        <!--字符间隔-->
+                        <prop key="kaptcha.textproducer.char.space">2</prop>
                         <!-- 是否有边框 -->
-                        <prop key="kaptcha.border">no</prop>
+                        <prop key="kaptcha.border">yes</prop>
+                        <!--边框颜色-->
+                        <prop key="kaptcha.border.color">105,179,90</prop>
                         <!-- 验证码字体颜色 -->
                         <prop key="kaptcha.textproducer.font.color">red</prop>
                         <!-- 验证码字体大小 -->
-                        <prop key="kaptcha.textproducer.font.size">14</prop>
+                        <prop key="kaptcha.textproducer.font.size">30</prop>
+
                         <!-- 验证码所属字体样式 -->
                         <prop key="kaptcha.textproducer.font.names">Arial, Courier</prop>
                         <prop key="kaptcha.background.clear.from">white</prop>
@@ -82,8 +87,7 @@
                         <prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.DefaultNoise</prop>
                         <!-- 干扰线颜色 -->
                         <prop key="kaptcha.noise.color">black</prop>
-                        <!-- 验证码文本字符间距 -->
-                        <prop key="kaptcha.textproducer.char.space">3</prop>
+
                     </props>
                 </constructor-arg>
             </bean>

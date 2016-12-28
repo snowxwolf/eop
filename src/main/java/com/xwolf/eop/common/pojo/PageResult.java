@@ -45,4 +45,14 @@ public class PageResult {
     public void setData(JSONArray data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "PageResult{" +
+                "draw=" + draw +
+                ", recordsTotal=" + recordsTotal +
+                ", recordsFiltered=" + recordsFiltered +
+                ", data=" + data.toJSONString() +
+                '}';
+    }
 }

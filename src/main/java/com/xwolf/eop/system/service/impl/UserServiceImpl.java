@@ -58,19 +58,13 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
                     jsonObject.put("restVal", "登录成功!");
                 }
             }
-        } catch (UnknownAccountException e) {
-            jsonObject.put("success", false);
-            jsonObject.put("restVal", "用户不存在!");
-        }catch (LockedAccountException e){
+        } catch (LockedAccountException e){
             jsonObject.put("success", false);
             jsonObject.put("restVal", "账号锁定,请联系管理员!");
-        }catch (IncorrectCredentialsException e){
-            jsonObject.put("success", false);
-            jsonObject.put("restVal", "密码错误!");
         }catch(Exception e){
             e.printStackTrace();
             jsonObject.put("success", false);
-            jsonObject.put("restVal", "登录失败!");
+            jsonObject.put("restVal", "用户名或者密码错误!");
         } finally {
             return jsonObject;
         }

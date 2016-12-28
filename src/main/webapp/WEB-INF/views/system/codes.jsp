@@ -67,13 +67,35 @@
                         </small>
                     </h1>
                   </div><!-- /.page-header -->
-                <div class="panel panel-primary">
+
+                <div class="widget-box widget-color-blue">
+                    <div class="widget-header panel-heading ">
+                        <h4 class="widget-title ">数据检索</h4>
+
+                        <div class="widget-toolbar">
+                            <a href="#" data-action="collapse">
+                                <i class="ace-icon fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="widget-body ">
+                        <div class="widget-main">
+                            <div>
+                                <label for="form-field-8">Default</label>
+
+                                <textarea class="form-control" id="form-field-8" placeholder="Default Text"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary">
                     <div class="panel-heading">
-                        DataTable
+                        码表
                     </div>
           <div class="panel-body">
               <div class="dataTable_wrapper">
-                <table id="table_id_example" class="display" cellspacing="0" width="100%">
+                <table id="table_id_example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th>id</th>
@@ -163,7 +185,8 @@
                 { data: 'code' },
                 { data: 'cname' },
                 { data: 'cvalue' },
-                { data: 'ctime' }
+                { data: 'ctime' },
+                { data: 'cstatus' }
             ],
             oLanguage:{
                 "sProcessing": "Bitte warten...",

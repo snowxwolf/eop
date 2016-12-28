@@ -46,13 +46,15 @@ function geneCode(){
 
 function login() {
 
-    btnDisabled("loginBtn");
+
     $.post("login.html",$("#loginForm").serialize(),function (data) {
       if(data.success){
+          btnDisabled("loginBtn");
          window.location.href="index.html";
       }else{
-          //TODO 提示信息优化
-          alert(data.restVal);
+         var msg=data.restVal;
+         $("#msg").text(msg);
+         $("#msgBox").show();
       }
 
     },"json");

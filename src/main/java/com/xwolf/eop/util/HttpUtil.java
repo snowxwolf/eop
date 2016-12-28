@@ -1,5 +1,7 @@
 package com.xwolf.eop.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Enumeration;
 import java.util.Map;
 import java.util.Set;
@@ -21,17 +23,23 @@ public class HttpUtil {
 	 * @return
 	 */
 	public static String getIP(HttpServletRequest request) {
-		String ip = request.getHeader("x-forwarded-for");
-		if (ip != null && !ip.isEmpty()) {
-			ip = ip.split(",")[0].trim();
+		String ip = request.getHeader("X-requested-For");
+		if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("X-Forwarded-For");
 		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("PRoxy-Client-IP");
+		if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("Proxy-Client-IP");
 		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+		if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
 			ip = request.getHeader("WL-Proxy-Client-IP");
 		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+		if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_CLIENT_IP");
+		}
+		if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+		}
+		if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
 			ip = request.getRemoteAddr();
 		}
 		return ip;

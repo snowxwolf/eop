@@ -56,6 +56,18 @@
 
 
                     <div class="position-relative">
+                        <div id="msgBox" class="alert alert-danger" style="display:none;">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <i class="ace-icon fa fa-times"></i>
+                            </button>
+
+                            <strong>
+                                <i class="ace-icon fa fa-times"></i>
+                            </strong>
+                              <span id="msg">
+                                    {restVal}
+                              </span>
+                        </div>
                         <div id="login-box" class="login-box visible widget-box no-border">
                             <div class="widget-body">
                                 <div class="widget-main">
@@ -171,7 +183,7 @@
 <script src="static/assets/js/jquery-2.1.4.min.js"></script>
 
 <!-- <![endif]-->
-
+<script src="static/assets/js/bootstrap.min.js"></script>
 <!--[if IE]>
 <script src="static/assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
@@ -191,6 +203,7 @@
             $('.widget-box.visible').removeClass('visible');//hide others
             $(target).addClass('visible');//show target
         });
+
     });
 
 
