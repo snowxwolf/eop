@@ -75,6 +75,8 @@
     <quartz.version>2.2.1</quartz.version>
     <!--rabbitmq-->
     <rabbitmq.version>4.0.0</rabbitmq.version>
+    <!--freemarker-->
+    <freemarker.version>2.3.23</freemarker.version>
   </properties>
   <dependencies>
     <!--junit-->
@@ -369,19 +371,13 @@
       <artifactId>poi</artifactId>
       <version>3.15</version>
     </dependency>
-
-    <!--beetl-->
-   <!-- <dependency>
-      <groupId>com.ibeetl</groupId>
-      <artifactId>beetl</artifactId>
-      <version>2.7.3</version>
+         <!--freemarker-->
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <version>${freemarker.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.ibeetl</groupId>
-      <artifactId>beetlsql</artifactId>
-      <version>2.7.5</version>
-    </dependency>-->
     <!--javamelody-->
     <dependency>
       <groupId>net.bull.javamelody</groupId>
