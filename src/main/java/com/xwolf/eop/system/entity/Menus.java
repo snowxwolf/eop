@@ -1,8 +1,6 @@
 package com.xwolf.eop.system.entity;
 
-import java.io.Serializable;
-
-public class Menus implements Serializable{
+public class Menus {
     private Integer mid;
 
     private String mcode;
@@ -11,13 +9,15 @@ public class Menus implements Serializable{
 
     private String pcode;
 
-    private int isParent;
+    private Byte isParent;
 
     private String murl;
 
-    private int mstatus;
+    private Byte mstatus;
 
     private String icon;
+
+    private Byte orderValue;
 
     public Integer getMid() {
         return mid;
@@ -51,11 +51,11 @@ public class Menus implements Serializable{
         this.pcode = pcode;
     }
 
-    public int getIsParent() {
+    public Byte getIsParent() {
         return isParent;
     }
 
-    public void setIsParent(int isParent) {
+    public void setIsParent(Byte isParent) {
         this.isParent = isParent;
     }
 
@@ -67,11 +67,11 @@ public class Menus implements Serializable{
         this.murl = murl;
     }
 
-    public int getMstatus() {
+    public Byte getMstatus() {
         return mstatus;
     }
 
-    public void setMstatus(int mstatus) {
+    public void setMstatus(Byte mstatus) {
         this.mstatus = mstatus;
     }
 
@@ -81,5 +81,13 @@ public class Menus implements Serializable{
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public Byte getOrderValue() {
+        return orderValue;
+    }
+
+    public void setOrderValue(Byte orderValue) {
+        this.orderValue = orderValue;
     }
 }

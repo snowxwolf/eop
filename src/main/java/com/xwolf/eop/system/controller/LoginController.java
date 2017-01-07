@@ -90,7 +90,7 @@ public class LoginController {
      * 退出登陆
      * @return
      */
-    @RequestMapping(value = "logout",method = RequestMethod.POST)
+    @RequestMapping(value = "logout",method ={RequestMethod.POST,RequestMethod.GET})
     public String logout(HttpServletRequest request){
         HttpUtil.removeAllSessionAttr(request);
         Subject subject = SecurityUtils.getSubject();

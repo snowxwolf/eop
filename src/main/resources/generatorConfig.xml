@@ -28,12 +28,12 @@
 			targetProject="D:\workspace\NIDEA\eop\src\main\java">
 		</javaClientGenerator>
 
-		<table tableName="com_menu_permission" domainObjectName="MenuPermission"
+		<table tableName="com_menus" domainObjectName="Menus"
 			enableCountByExample="false" enableUpdateByExample="false" 
 			enableDeleteByExample="false" enableSelectByExample="false" 
 			selectByExampleQueryId="false" >
 			<property name="ignoreQualifiersAtRuntime" value="true" />
-			<property name="runtimeTableName" value="com_menu_permission" />
+			<property name="runtimeTableName" value="com_menus" />
 			<!--<generatedKey  column="ID" sqlStatement="select 1 from dual" />
 		--></table>
 	</context>

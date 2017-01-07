@@ -1,6 +1,6 @@
 package com.xwolf.eop.system.service;
 
-import com.xwolf.eop.common.pojo.PageResult;
+import com.xwolf.eop.common.pojo.easyui.PageResult;
 import com.xwolf.eop.system.entity.Codes;
 
 import javax.servlet.http.HttpServletRequest;

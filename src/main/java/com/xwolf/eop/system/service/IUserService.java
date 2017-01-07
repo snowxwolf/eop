@@ -1,6 +1,7 @@
 package com.xwolf.eop.system.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xwolf.eop.common.pojo.easyui.PageResult;
 import com.xwolf.eop.system.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,4 +19,6 @@ public interface IUserService extends BaseService<User> {
     JSONObject login(HttpServletRequest request);
 
     User getUserByName(String username);
+
+    PageResult getUserList(HttpServletRequest request);
 }

@@ -1,6 +1,7 @@
 package com.xwolf.eop.system.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,12 +10,14 @@ public class User implements Serializable {
 
     private Integer uid;
 
+    @NotEmpty
     private String ucode;
 
+    @NotEmpty
     private String uname;
 
     private String nickName;
-
+    @NotEmpty
     private transient String upasswd;
 
     private String email;
@@ -32,6 +35,7 @@ public class User implements Serializable {
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date rtime;
 
+    @NotEmpty
     private int ustatus;
 
     public Integer getUid() {

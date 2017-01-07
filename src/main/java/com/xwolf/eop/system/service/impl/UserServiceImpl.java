@@ -1,7 +1,10 @@
 package com.xwolf.eop.system.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Maps;
 import com.xwolf.eop.common.pojo.Global;
+import com.xwolf.eop.common.pojo.PageHelper;
+import com.xwolf.eop.common.pojo.easyui.PageResult;
 import com.xwolf.eop.system.dao.UserMapper;
 import com.xwolf.eop.system.entity.User;
 import com.xwolf.eop.system.service.IUserService;
@@ -18,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author xwolf
@@ -76,5 +81,18 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
     @Override
     public User getUserByName(String username) {
         return userMapper.getUserByName(username);
+    }
+
+    /**
+     * 用户列表
+     * @param request
+     * @return
+     */
+    @Override
+    public PageResult getUserList(HttpServletRequest request) {
+        PageHelper.getPage(request);
+        Map<String,Object> map= Maps.newHashMap();
+        List<User> userList=userMapper.selectUserList(map);
+        return  PageHelper.getListResult(userList);
     }
 }

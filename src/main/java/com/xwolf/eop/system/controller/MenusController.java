@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @since 2016-12-20
  */
 @Controller
-@RequestMapping("/menus")
+@RequestMapping("system/menus")
 public class MenusController {
 
     private static final Logger log= LoggerFactory.getLogger(MenusController.class);
@@ -29,7 +29,7 @@ public class MenusController {
     @Autowired
     private IMenusService menusService;
 
-    @RequestMapping(value ="listMenus",method = RequestMethod.POST)
+    @RequestMapping(value ="navMenus",method = RequestMethod.POST)
     @ResponseBody
     public JSONObject list(){
         JSONObject menus=  menusService.getNavMenus();

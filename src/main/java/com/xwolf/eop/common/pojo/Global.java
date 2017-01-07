@@ -1,8 +1,11 @@
 package com.xwolf.eop.common.pojo;
 
+import com.google.common.collect.Maps;
 import com.xwolf.eop.common.enums.ConfigEnum;
 import com.xwolf.eop.common.enums.SystemConfigEnum;
 import com.xwolf.eop.util.ResourceUtil;
+
+import java.util.Map;
 
 /**
  * 全局
@@ -24,6 +27,10 @@ public class Global {
 
     public static final boolean ENABLE_REFERER=resourceUtil.getBooleanValue(SystemConfigEnum.WEB_REFERER.getProperty());
 
+    public static Map<String,Object> getRequestMap(){
+        Map<String,Object>  map= Maps.newHashMap();
+        return map;
+    }
 
 
 }

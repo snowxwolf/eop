@@ -1,6 +1,6 @@
 package com.xwolf.eop.system.controller;
 
-import com.xwolf.eop.common.pojo.PageResult;
+import com.xwolf.eop.common.pojo.easyui.PageResult;
 import com.xwolf.eop.system.service.ICodesService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -32,9 +32,8 @@ public class CodesController {
      * 到用户管理页面
      * @return
      */
-
     @RequiresPermissions({"system:codes"})
-    @RequestMapping(value = "toCodes",method = RequestMethod.GET)
+    @RequestMapping(value = "toCodes",method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView toCodes(@RequestHeader("User-Agent")String ua){
         log.info("UserAgent:{}",ua);
      return new ModelAndView("system/codes");

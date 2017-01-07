@@ -1,145 +1,252 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<%
+ String base=request.getContextPath();
+%>
+<html>
 <head>
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta charset="UTF-8" />
+    <jsp:include page="common.jsp"/>
     <title>首页</title>
-    <meta name="description" content="OA,ERP" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
-    <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="static/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="static/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
-
-    <!-- page specific plugin styles -->
-
-    <!-- text fonts -->
-    <link rel="stylesheet" href="static/assets/css/fonts.googleapis.com.css" />
-
-    <!-- ace styles -->
-    <link rel="stylesheet" href="static/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-
-    <!--[if lte IE 9]>
-        <link rel="stylesheet" href="static/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
-    <![endif]-->
-    <link rel="stylesheet" href="static/assets/css/ace-skins.min.css" />
-    <link rel="stylesheet" href="static/assets/css/ace-rtl.min.css" />
-
-    <!--[if lte IE 9]>
-      <link rel="stylesheet" href="static/assets/css/ace-ie.min.css" />
-    <![endif]-->
-
-    <!-- inline styles related to this page -->
-
-    <!-- ace settings handler -->
-    <script src="static/assets/js/ace-extra.min.js"></script>
-
-    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
-
-    <!--[if lte IE 8]>
-    <script src="static/assets/js/html5shiv.min.js"></script>
-    <script src="static/assets/js/respond.min.js"></script>
-    <![endif]-->
+    <style>
+        .tree-nav {
+            font-size: 12px;
+            display: inline-block;
+            text-decoration: none;
+            vertical-align: top;
+            white-space: nowrap;
+            padding: 0 2px;
+            height: 18px;
+            line-height: 18px;
+        }
+    </style>
 </head>
+<body>
+<div id="cc" class="easyui-layout" style="width:100%;height:600px">
 
-<body class="no-skin">
-<%-- head部分head.jsp--%>
-<jsp:include page="head.jsp"/>
+    <div data-options="region:'north'" >
 
-<div class="main-container ace-save-state" id="main-container">
-    <script type="text/javascript">
-        try{ace.settings.loadState('main-container')}catch(e){}
-    </script>
+        <span style="padding-left:10px;float:left; font-size: 16px; "><img src="" width="20" height="20" />进销存</span>
 
-    <div id="sidebar" class="sidebar responsive ace-save-state">
+        <span style="float:right; padding-right:20px;" class="head">欢迎您,<c:if test="${ empty user.username}">游客</c:if>
+        <c:if test="${ not empty user.username}">${user.username}</c:if>
 
+        <a href="javascript:void(0)" id="mb" class="easyui-menubutton"
+           data-options="menu:'#mm',iconCls:'icon-edit'">个人中心</a>
+      <div id="mm" style="width:150px;">
+    <div data-options="iconCls:'icon-redo'">修改密码</div>
+    <div class="menu-sep"></div>
+    <div data-options="iconCls:'icon-undo'" >
+    <a  onclick="logout();">安全退出</a>
+    </div>
 
-           <%--导航菜单--%>
-            <ul class="nav nav-list" id="menu">
-
-            </ul>
-
-           <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-               <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-           </div>
+</div>
 
     </div>
 
-    <%--tab页面--%>
-    <div class="main-content">
-        <div class="page-content">
-        <div class="row">
-            <div class="col-xs-12" style="padding-left:5px;">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a href="#Index" role="tab" data-toggle="tab">首页</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="Index">
-                    </div>
-                </div>
-            </div>
+    <div data-options="region:'south'" style="height:40px;text-align:center">
+        <span style="font-size:16px;line-height:40px;"><b>snowxwolf@sina.cn &copy;所有</b>   <span><b></b>QQ:2324808561</span></span>
+    </div>
+
+    <div data-options="region:'east',title:'其他',split:true" style="width:187px;">
+        <!-- 日历 -->
+        <div  class="easyui-calendar">
         </div>
     </div>
+
+    <div data-options="region:'west',title:'导航菜单',split:true" style="width:160px;">
+
+
+        <!-- 动态生成菜单项  -->
+
+        <div id="nav" class="easyui-accordion" >
+
+        </div>
+
     </div>
+    <div data-options="region:'center'" style="padding:0px;background:#eee;">
+        <div id="tabs" class="easyui-tabs" fit="true">
+            <div title="首页" style="text-align:center;">
+                <span style="color:red;font-size:20px;">进销存系统</span>
+            </div>
 
-    <%--footer--%>
-    <jsp:include page="foot.jsp"/>
+        </div>
 
-    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-    </a>
-</div><!-- /.main-container -->
+    </div>
+</div>
 
-<!-- basic scripts -->
+<script>
+    $(function(){
 
-<!--[if !IE]> -->
-<script src="static/assets/js/jquery-2.1.4.min.js"></script>
+        $.post("${pageContext.request.contextPath}/system/menus/navMenus.html",function(data){
 
-<!-- <![endif]-->
+            //初始化左侧
 
-<!--[if IE]>
-<script src="static/assets/js/jquery-1.11.3.min.js"></script>
-<![endif]-->
-<script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-</script>
-<script src="static/assets/js/bootstrap.min.js"></script>
+            $("#nav").accordion({animate:false});//为id为nav的div增加手风琴效果，并去除动态滑动效果
+            $.each(data.data, function(i, n) {
+                var menulist ='';
+                menulist +='<ul>';
+                $.each(n.menus, function(j, o) {
+                    var url="<%=base%>"+o.url;
+                 menulist += '<li><div class="tree-node"><a ref="'+o.id+'" href="#" rel="' + url + '" ><span class="icon '+o.icon+'" >&nbsp;</span><span class="nav">' + o.text + '</span></a></div></li> ';
+                 });
+                menulist += '</ul>';
 
-<!-- page specific plugin scripts -->
+                $('#nav').accordion('add', {
+                    title: n.text,
+                    content: menulist,
+                    iconCls: n.icon
+                });
+            });
+            $('.easyui-accordion li a').click(function(){//当单击菜单某个选项时，在右边出现对用的内容
+                var tabTitle = $(this).children('.nav').text();//获取超链里span中的内容作为新打开tab的标题
+                var url = $(this).attr("rel");
+                var menuid = $(this).attr("ref");//获取超链接属性中ref中的内容
+                var icon = getIcon(menuid,icon);
+                addTab(tabTitle,url,icon);//增加tab
+                $('.easyui-accordion li div').removeClass("selected");
+                $(this).parent().addClass("selected");
+            }).hover(function(){
+                $(this).parent().addClass("hover");
+            },function(){
+                $(this).parent().removeClass("hover");
+            });
+            //选中第一个
+            var panels = $('#nav').accordion('panels');
+            var t = panels[0].panel('options').title;
+            $('#nav').accordion('select', t);
 
-<!--[if lte IE 8]>
-  <script src="static/assets/js/excanvas.min.js"></script>
-<![endif]-->
-<script src="static/assets/js/jquery-ui.custom.min.js"></script>
-<script src="static/assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="static/assets/js/jquery.easypiechart.min.js"></script>
-<script src="static/assets/js/jquery.sparkline.index.min.js"></script>
-<script src="static/assets/js/jquery.flot.min.js"></script>
-<script src="static/assets/js/jquery.flot.pie.min.js"></script>
-<script src="static/assets/js/jquery.flot.resize.min.js"></script>
+            //获取左侧导航的图标
+            function getIcon(menuid){
+                var icon;
+                $.each(data.data, function(i, n) {
+                    $.each(n.menus, function(j, o) {
+                        if(o.id==menuid){
+                            icon = o.icon;
+                        }
+                    })
+                })
+                return icon;
+            }
+            function addTab(subtitle,url,icon){
+                if(!$('#tabs').tabs('exists',subtitle)){
+                    $('#tabs').tabs('add',{
+                        title:subtitle,
+                        content:createFrame(url),
+                        closable:true,
+                        icon:icon
+                    });
+                }else{
+                    $('#tabs').tabs('select',subtitle);
+                    $('#mm-tabupdate').click();
+                }
+                tabClose();
+            }
+            function createFrame(url)
+            {
+                var s = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
+                return s;
+            }
+            function tabClose()
+            {
+                /*双击关闭TAB选项卡*/
+                $(".tabs-inner").dblclick(function(){
+                    var subtitle = $(this).children(".tabs-closable").text();
+                    $('#tabs').tabs('close',subtitle);
+                })
+                /*为选项卡绑定右键*/
+                $(".tabs-inner").bind('contextmenu',function(e){
+                    $('#mm').menu('show', {
+                        left: e.pageX,
+                        top: e.pageY
+                    });
+                    var subtitle =$(this).children(".tabs-closable").text();
+                    $('#mm').data("currtab",subtitle);
+                    $('#tabs').tabs('select',subtitle);
+                    return false;
+                });
+            }
+            //绑定右键菜单事件
+            function tabCloseEven()
+            {
+                //刷新
+                $('#mm-tabupdate').click(function(){
+                    var currTab = $('#tabs').tabs('getSelected');
+                    var url = $(currTab.panel('options').content).attr('src');
+                    $('#tabs').tabs('update',{
+                        tab:currTab,
+                        options:{
+                            content:createFrame(url)
+                        }
+                    })
+                })
+                //关闭当前
+                $('#mm-tabclose').click(function(){
+                    var currtab_title = $('#mm').data("currtab");
+                    $('#tabs').tabs('close',currtab_title);
+                })
+                //全部关闭
+                $('#mm-tabcloseall').click(function(){
+                    $('.tabs-inner span').each(function(i,n){
+                        var t = $(n).text();
+                        $('#tabs').tabs('close',t);
+                    });
+                });
+                //关闭除当前之外的TAB
+                $('#mm-tabcloseother').click(function(){
+                    $('#mm-tabcloseright').click();
+                    $('#mm-tabcloseleft').click();
+                });
+                //关闭当前右侧的TAB
+                $('#mm-tabcloseright').click(function(){
+                    var nextall = $('.tabs-selected').nextAll();
+                    if(nextall.length==0){
+                        //msgShow('系统提示','后边没有啦~~','error');
+                        alert('后边没有啦~~');
+                        return false;
+                    }
+                    nextall.each(function(i,n){
+                        var t=$('a:eq(0) span',$(n)).text();
+                        $('#tabs').tabs('close',t);
+                    });
+                    return false;
+                });
+                //关闭当前左侧的TAB
+                $('#mm-tabcloseleft').click(function(){
+                    var prevall = $('.tabs-selected').prevAll();
+                    if(prevall.length==0){
+                        alert('到头了，前边没有啦~~');
+                        return false;
+                    }
+                    prevall.each(function(i,n){
+                        var t=$('a:eq(0) span',$(n)).text();
+                        $('#tabs').tabs('close',t);
+                    });
+                    return false;
+                });
+                //退出
+                $("#mm-exit").click(function(){
+                    $('#mm').menu('hide');
+                })
+            }
+            //弹出信息窗口 title:标题 msgString:提示信息 msgType:信息类型 [error,info,question,warning]
+            function msgShow(title, msgString, msgType) {
+                $.messager.alert(title, msgString, msgType);
+            }
 
-<!-- ace scripts -->
-<script src="static/assets/js/ace-elements.min.js"></script>
-<script src="static/assets/js/ace.min.js"></script>
+        },"json");
 
-<!-- inline scripts related to this page -->
+    });
 
-<script src="static/js/sidebarMenu.js"></script>
-<script src="static/js/bootstrap-tab.js"></script>
-<script type="text/javascript">
+    function logout(){
+        $.messager.confirm('确认','您确认要退出吗?',function(r){
+            if (r){
+                window.location.href="${pageContext.request.contextPath}/logout.html";
+            }
+        });
 
-$(function(){
-    $.post("menus/listMenus.html",function(data){
-        console.info(data.data)
-        $('#menu').sidebarMenu(data);
-    },"json");
-
-});
-
+    }
 </script>
 </body>
 </html>

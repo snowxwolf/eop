@@ -1,15 +1,12 @@
 package com.xwolf.eop.system.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
-import com.xwolf.eop.common.pojo.Page;
 import com.xwolf.eop.common.pojo.PageHelper;
-import com.xwolf.eop.common.pojo.PageRequest;
-import com.xwolf.eop.common.pojo.PageResult;
+import com.xwolf.eop.common.pojo.easyui.PageRequest;
+import com.xwolf.eop.common.pojo.easyui.PageResult;
 import com.xwolf.eop.system.dao.CodesMapper;
 import com.xwolf.eop.system.entity.Codes;
 import com.xwolf.eop.system.service.ICodesService;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +39,9 @@ public class CodesServiceImpl extends BaseServiceImpl<Codes> implements ICodesSe
      */
     @Override
     public PageResult selectCodesList(HttpServletRequest request) {
-        PageRequest pageRequest=PageHelper.getPage(request);
+        PageHelper.getPage(request);
         Map<String,Object> map= Maps.newHashMap();
         List<Codes> codesList=codesMapper.selectCodesList(map);
-        return  PageHelper.getListResult(codesList,pageRequest);
+        return  PageHelper.getListResult(codesList);
     }
 }

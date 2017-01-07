@@ -10,9 +10,10 @@
     <result column="murl" property="murl" jdbcType="VARCHAR" />
     <result column="mstatus" property="mstatus" jdbcType="TINYINT" />
     <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="order_value" property="orderValue" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    mid, mcode, mname, pcode, is_parent, murl, mstatus, icon
+    mid, mcode, mname, pcode, is_parent, murl, mstatus, icon, order_value
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -27,10 +28,12 @@
   <insert id="insert" parameterType="com.xwolf.eop.system.entity.Menus" >
     insert into com_menus (mid, mcode, mname, 
       pcode, is_parent, murl, 
-      mstatus, icon)
+      mstatus, icon, order_value
+      )
     values (#{mid,jdbcType=INTEGER}, #{mcode,jdbcType=VARCHAR}, #{mname,jdbcType=VARCHAR}, 
       #{pcode,jdbcType=VARCHAR}, #{isParent,jdbcType=TINYINT}, #{murl,jdbcType=VARCHAR}, 
-      #{mstatus,jdbcType=TINYINT}, #{icon,jdbcType=VARCHAR})
+      #{mstatus,jdbcType=TINYINT}, #{icon,jdbcType=VARCHAR}, #{orderValue,jdbcType=TINYINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xwolf.eop.system.entity.Menus" >
     insert into com_menus
@@ -59,6 +62,9 @@
       <if test="icon != null" >
         icon,
       </if>
+      <if test="orderValue != null" >
+        order_value,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="mid != null" >
@@ -84,6 +90,9 @@
       </if>
       <if test="icon != null" >
         #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="orderValue != null" >
+        #{orderValue,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -111,6 +120,9 @@
       <if test="icon != null" >
         icon = #{icon,jdbcType=VARCHAR},
       </if>
+      <if test="orderValue != null" >
+        order_value = #{orderValue,jdbcType=TINYINT},
+      </if>
     </set>
     where mid = #{mid,jdbcType=INTEGER}
   </update>
@@ -122,17 +134,19 @@
       is_parent = #{isParent,jdbcType=TINYINT},
       murl = #{murl,jdbcType=VARCHAR},
       mstatus = #{mstatus,jdbcType=TINYINT},
-      icon = #{icon,jdbcType=VARCHAR}
+      icon = #{icon,jdbcType=VARCHAR},
+      order_value = #{orderValue,jdbcType=TINYINT}
     where mid = #{mid,jdbcType=INTEGER}
   </update>
 
   <!--获取所有父菜单-->
   <select id="getParentMenus" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from com_menus where mstatus = 1 and is_parent=1
+    order by order_value asc
   </select>
 
   <select id="getSonMenus" parameterType="java.lang.String" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from com_menus where mstatus = 1 and is_parent=0
-    and pcode=#{code,jdbcType=VARCHAR}
+    and pcode=#{code,jdbcType=VARCHAR}  order by order_value asc
   </select>
 </mapper>

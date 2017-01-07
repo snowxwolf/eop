@@ -1,5 +1,7 @@
 package com.xwolf.eop.system.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,6 +14,7 @@ public class Roles implements Serializable {
 
     private String rpcode;
 
+    @JSONField(format = "yyyy-MM-dd")
     private Date rtime;
 
     private int rstatus;

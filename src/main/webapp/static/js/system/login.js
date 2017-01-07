@@ -46,6 +46,7 @@ function geneCode(){
 
 function login() {
 
+    $("#loginForm").validate();
 
     $.post("login.html",$("#loginForm").serialize(),function (data) {
       if(data.success){
@@ -53,9 +54,13 @@ function login() {
          window.location.href="index.html";
       }else{
          var msg=data.restVal;
-         $("#msg").text(msg);
-         $("#msgBox").show();
+          bootbox.alert(msg);
+
       }
 
     },"json");
+}
+
+function  logout() {
+       $.post("logout.html");
 }
