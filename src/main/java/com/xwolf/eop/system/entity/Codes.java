@@ -14,7 +14,7 @@ public class Codes implements Serializable{
 
     private String cname;
 
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd")
     private Date ctime;
 
     private int corder;

@@ -118,8 +118,8 @@
 
   <select id="selectCodesList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from com_codes
-    <if test="order !=null">
-     order by ctime ${order}
+    <if test="order !=null and sort!=null">
+     order by ${sort}  ${order}
     </if>
   </select>
 </mapper>

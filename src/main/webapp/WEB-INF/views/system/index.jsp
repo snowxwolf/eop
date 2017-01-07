@@ -10,16 +10,16 @@
     <jsp:include page="common.jsp"/>
     <title>首页</title>
     <style>
-        .tree-nav {
-            font-size: 12px;
-            display: inline-block;
-            text-decoration: none;
-            vertical-align: top;
-            white-space: nowrap;
-            padding: 0 2px;
-            height: 18px;
-            line-height: 18px;
-        }
+        .easyui-accordion ul{list-style-type:none;margin:0px; padding:10px;}
+        .easyui-accordion ul li{ padding:0px;}
+        .easyui-accordion ul li a{line-height:24px;}
+        .easyui-accordion ul li div{margin:2px 0px;padding-left:10px;padding-top:2px;}
+        .easyui-accordion ul li div.hover{border:1px dashed #99BBE8; background:#E0ECFF;cursor:pointer;}
+        .easyui-accordion ul li div.hover a{color:#416AA3;}
+        .easyui-accordion ul li div.selected{/* border:1px solid #99BBE8; *//* background:#E0ECFF; *//* cursor:default; */}
+        .easyui-accordion ul li div.selected a{color:#416AA3; font-weight:bold;
+            text-decoration: none;}
+
     </style>
 </head>
 <body>
@@ -35,7 +35,9 @@
         <a href="javascript:void(0)" id="mb" class="easyui-menubutton"
            data-options="menu:'#mm',iconCls:'icon-edit'">个人中心</a>
       <div id="mm" style="width:150px;">
-    <div data-options="iconCls:'icon-redo'">修改密码</div>
+    <div data-options="iconCls:'icon-redo'">
+        <a onclick="updatePasswd();">修改密码</a>
+    </div>
     <div class="menu-sep"></div>
     <div data-options="iconCls:'icon-undo'" >
     <a  onclick="logout();">安全退出</a>
@@ -76,6 +78,33 @@
     </div>
 </div>
 
+<%--修改密码--%>
+<div id="updatePasswdWin" class="easyui-window" title="修改密码" style="width:600px;height:400px"
+     data-options="iconCls:'icon-lock',modal:true,closable:true,closed:true,minimizable:false">
+    <form id="updatePasswdForm" method="post">
+        <table   border="0" cellpadding="1" cellspacing="2" style="align-content: center">
+            <tr>
+                <td width="60" align="right">
+                    原始密码
+                </td>
+                <td>
+                    <input class="easyui-textbox" name="oldPasswd">
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60" align="right">
+                    原始密码
+                </td>
+                <td>
+                    <input class="easyui-textbox" name="oldPasswd">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
 <script>
     $(function(){
 
@@ -89,7 +118,7 @@
                 menulist +='<ul>';
                 $.each(n.menus, function(j, o) {
                     var url="<%=base%>"+o.url;
-                 menulist += '<li><div class="tree-node"><a ref="'+o.id+'" href="#" rel="' + url + '" ><span class="icon '+o.icon+'" >&nbsp;</span><span class="nav">' + o.text + '</span></a></div></li> ';
+                 menulist += '<li><div class="selected"><a style="text-decoration: none;" ref="'+o.id+'" href="#" rel="' + url + '" ><span class="icon '+o.icon+'" >&nbsp;&nbsp;</span><span class="nav">' + o.text + '</span></a></div></li> ';
                  });
                 menulist += '</ul>';
 
@@ -246,6 +275,10 @@
             }
         });
 
+    }
+
+    function updatePasswd(){
+             $("#updatePasswdWin").window("open");
     }
 </script>
 </body>

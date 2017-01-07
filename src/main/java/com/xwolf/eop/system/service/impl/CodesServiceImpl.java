@@ -7,6 +7,7 @@ import com.xwolf.eop.common.pojo.easyui.PageResult;
 import com.xwolf.eop.system.dao.CodesMapper;
 import com.xwolf.eop.system.entity.Codes;
 import com.xwolf.eop.system.service.ICodesService;
+import com.xwolf.eop.util.HttpUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class CodesServiceImpl extends BaseServiceImpl<Codes> implements ICodesSe
     @Override
     public PageResult selectCodesList(HttpServletRequest request) {
         PageHelper.getPage(request);
-        Map<String,Object> map= Maps.newHashMap();
+        Map<String,Object> map= HttpUtil.getRequestMap(request);
         List<Codes> codesList=codesMapper.selectCodesList(map);
         return  PageHelper.getListResult(codesList);
     }

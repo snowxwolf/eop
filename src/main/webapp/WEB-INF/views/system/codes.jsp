@@ -43,14 +43,24 @@
                  }
              }
                  </shiro:hasPermission>
+                 ,{
+                     iconCls: 'icon-delete',
+                     text:'删除',
+                     handler: function(){
+
+                         window.location.href="${pageContext.request.contextPath}/type/toAddType.htm";
+                     }
+                 }
              ],
              columns:[[
                  {field:'ck',checkbox:true},
-                 {title:'码表code',field:'code',width:180,align:'center'},
-                 {title:'码表名称',field:'cname',width:180,align:'center'},
-                 {title:'码表值',field:'cvalue',width:180,align:'center'},
-                 {field:'ctime',title:'创建时间',width:60,align:'center'},
-                 {field:'cstatus',title:'状态',width:60,align:'center'},
+                 {title:'码表code',field:'code',width:100,align:'center'},
+                 {title:'码表名称',field:'cname',width:100,align:'center'},
+                 {title:'码表值',field:'cvalue',width:100,align:'center'},
+                 {field:'ctime',title:'创建时间',width:160,align:'center',sortable:true},
+                 {field:'cstatus',title:'状态',width:60,align:'center',formatter:function(value,row,index){
+                      return value==1?"启用":"禁用";
+                 }},
                  {
                      field:'action',title:'操作',align:'center',width:120,
                      formatter:function(value,rowData,index){

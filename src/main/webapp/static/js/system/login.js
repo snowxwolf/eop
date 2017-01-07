@@ -46,21 +46,23 @@ function geneCode(){
 
 function login() {
 
-    $("#loginForm").validate();
+        $("#loginForm").form('submit',{
+          url:"login.html",
+          queryParams:$(this).serialize(),
+          onSubmit: function(){
+                var isValid = $(this).form('validate');
+                return isValid;	// 返回false终止表单提交
+            },
+            success:function(data){
+                var data = eval('(' + data + ')');
+                if(data.success){
+                    window.location.href="index.html";
+                }    else{
+                    var msg=data.restVal;
+                    $.messager.alert("错误",msg,"error");
+                }
+            }
 
-    $.post("login.html",$("#loginForm").serialize(),function (data) {
-      if(data.success){
-          btnDisabled("loginBtn");
-         window.location.href="index.html";
-      }else{
-         var msg=data.restVal;
-          bootbox.alert(msg);
+        });
 
-      }
-
-    },"json");
-}
-
-function  logout() {
-       $.post("logout.html");
 }

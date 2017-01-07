@@ -1,5 +1,6 @@
 package com.xwolf.eop.util;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Enumeration;
@@ -197,4 +198,12 @@ public class HttpUtil {
 		session.removeAttribute(attrName);
 	}
   }
+
+	public static Map<String,Object> getRequestMap(HttpServletRequest request){
+		Map<String,Object>  map= Maps.newHashMap();
+		String sort=request.getParameter("sort");
+		map.put("sort",StringUtil.camelToUnderline(sort));
+		map.put("order",request.getParameter("order"));
+		return map;
+	}
 }
