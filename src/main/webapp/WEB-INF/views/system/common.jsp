@@ -13,7 +13,9 @@
 
     <link rel="stylesheet" type="text/css" href="${ctx}/static/assets/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/static/assets/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/static/css/common.css">
     <script type="text/javascript" src="${ctx}/static/assets/jquery.min.js"></script>
     <script type="text/javascript" src="${ctx}/static/assets/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="${ctx}/static/assets/locale/easyui-lang-zh_CN.js"></script>
+   <script type="text/javascript" src="${ctx}/static/js/util.js"></script>
 

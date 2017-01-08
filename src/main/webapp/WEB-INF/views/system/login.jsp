@@ -30,6 +30,7 @@
 
 
 </div>
+<script src="${pageContext.request.contextPath}/static/js/util.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/system/login.js"></script>
 </body>
 </html>

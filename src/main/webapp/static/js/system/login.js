@@ -59,7 +59,7 @@ function login() {
                     window.location.href="index.html";
                 }    else{
                     var msg=data.restVal;
-                    $.messager.alert("错误",msg,"error");
+                    error(msg);
                 }
             }
 

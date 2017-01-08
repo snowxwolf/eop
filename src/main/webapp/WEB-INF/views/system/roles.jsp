@@ -7,11 +7,19 @@
     <jsp:include page="common.jsp"/>
 </head>
 <body>
+<div  class="easyui-panel" title="查询" data-options="iconCls:'icon-search',closable:false,collapsible:true">
+    <form class="ef">
+      <table class="et">
+
+      </table>
+    </form>
+</div>
+
 <table id="roles" class="easyui-datagrid">
 </table>
 <script>
     $(function(){
-        $('#roles').treegrid({
+        $('#roles').datagrid({
             url:'${pageContext.request.contextPath}/system/roles/rolesList.html',
             height:450,
             pagination:true,
@@ -34,7 +42,24 @@
                     text:'添加',
                     handler: function(){
 
-                        window.location.href="${pageContext.request.contextPath}/type/toAddType.htm";
+                    }
+                },'-',
+                </shiro:hasPermission>
+                <shiro:hasPermission name="system:roles:edit">
+                {
+                    iconCls: 'icon-edit',
+                    text:'修改',
+                    handler: function(){
+
+                    }
+                },'-',
+                </shiro:hasPermission>
+                <shiro:hasPermission name="system:roles:delete">
+                {
+                    iconCls: 'icon-remove',
+                    text:'删除',
+                    handler: function(){
+
                     }
                 }
                 </shiro:hasPermission>
@@ -45,14 +70,7 @@
                 {title:'角色名称',field:'rname',width:180,align:'center'},
                 {title:'角色值',field:'rpcode',width:180,align:'center'},
                 {field:'rtime',title:'创建时间',width:60,align:'center'},
-                {field:'cstatus',title:'状态',width:60,align:'center'},
-                {
-                    field:'action',title:'操作',align:'center',width:120,
-                    formatter:function(value,rowData,index){
-                        return "<a href='#' onclick='deleteType("+rowData.id+");'>删除</a>"+
-                            "&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' onclick='updateType("+rowData.id+");'>修改</a>";
-                    }
-                }
+                {field:'rstatus',title:'状态',width:60,align:'center'}
             ]]
         });
     });

@@ -1,53 +1,27 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<head>
-<title>top</title>
-<%@ include file="common.jsp"%>
-</head>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<div data-options="region:'north'" >
 
-<body>
-  <div>TOP</div>
-  <div style="position: absolute; right: 0px; bottom: 0px;">
-	<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_pfMenu',iconCls:'ext-icon-rainbow'">更换皮肤</a> <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_kzmbMenu',iconCls:'ext-icon-cog'">控制面板</a> <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_zxMenu',iconCls:'ext-icon-disconnect'">注销</a>
-</div>
-<div id="layout_north_pfMenu" style="width: 120px; display: none;">
-	<div onclick="changeTheme('default');" title="default">default</div>
-	<div onclick="changeTheme('gray');" title="gray">gray</div>
-	<div onclick="changeTheme('metro');" title="metro">metro</div>
-	<div onclick="changeTheme('bootstrap');" title="bootstrap">bootstrap</div>
-	<div onclick="changeTheme('black');" title="black">black</div>
-	<div onclick="changeTheme('cupertino');" title="cupertino">cupertino</div>
-	<div onclick="changeTheme('dark-hive');" title="dark-hive">dark-hive</div>
-	<div onclick="changeTheme('pepper-grinder');" title="pepper-grinder">pepper-grinder</div>
-	<div onclick="changeTheme('sunny');" title="sunny">sunny</div>
-	<div class="menu-sep"></div>
-	<div onclick="changeTheme('metro-blue');" title="metro-blue">metro-blue</div>
-	<div onclick="changeTheme('metro-gray');" title="metro-gray">metro-gray</div>
-	<div onclick="changeTheme('metro-green');" title="metro-green">metro-green</div>
-	<div onclick="changeTheme('metro-orange');" title="metro-orange">metro-orange</div>
-	<div onclick="changeTheme('metro-red');" title="metro-red">metro-red</div>
-</div>
-<div id="layout_north_kzmbMenu" style="width: 100px; display: none;">
-	<div data-options="iconCls:'ext-icon-user_edit'" onclick="$('#passwordDialog').dialog('open');">修改密码</div>
-	<div class="menu-sep"></div>
-	<div data-options="iconCls:'ext-icon-user'" onclick="showMyInfoFun();">我的信息</div>
-</div>
-<div id="layout_north_zxMenu" style="width: 100px; display: none;">
-	<div data-options="iconCls:'ext-icon-lock'" onclick="lockWindowFun();">锁定窗口</div>
-	<div class="menu-sep"></div>
-	<div data-options="iconCls:'ext-icon-door_out'" onclick="logoutFun();">退出系统</div>
+	<span style="padding-left:10px;float:left; font-size: 16px; "><img src="" width="20" height="20" />进销存</span>
+
+	<span style="float:right; padding-right:20px;" class="head">欢迎您,<c:if test="${ empty user.username}">游客</c:if>
+        <c:if test="${ not empty user.username}">${user.username}</c:if>
+
+      <a href="javascript:void(0)" id="mb" class="easyui-menubutton"
+		 data-options="menu:'#mm',iconCls:'icon-edit'">个人中心</a>
+
+	<div id="mm" style="width:150px;">
+       <div data-options="iconCls:'icon-redo'">
+        <a onclick="updatePasswd();">修改密码</a>
+       </div>
+
+      <div class="menu-sep"></div>
+
+      <div data-options="iconCls:'icon-undo'" >
+       <a  onclick="logout();">安全退出</a>
+      </div>
+    </div>
+
 </div>
 
-<script type="text/javascript">
-  
-  //退出
-  function logoutFun(){
-	  var basePath="<%=basePath%>";
-	  var logout=basePath+"admin/controller/logout.do";
-	  
-	  window.location.href=logout;
-	  
-  }
-</script>
-</body>
-</html>
+
+

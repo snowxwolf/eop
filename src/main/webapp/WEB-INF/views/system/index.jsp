@@ -25,38 +25,15 @@
 <body>
 <div id="cc" class="easyui-layout" style="width:100%;height:600px">
 
-    <div data-options="region:'north'" >
+          <%--north--%>
+    <jsp:include page="top.jsp"/>
 
-        <span style="padding-left:10px;float:left; font-size: 16px; "><img src="" width="20" height="20" />进销存</span>
+     <%--south--%>
+     <jsp:include page="south.jsp"/>
 
-        <span style="float:right; padding-right:20px;" class="head">欢迎您,<c:if test="${ empty user.username}">游客</c:if>
-        <c:if test="${ not empty user.username}">${user.username}</c:if>
+     <%--east--%>
 
-        <a href="javascript:void(0)" id="mb" class="easyui-menubutton"
-           data-options="menu:'#mm',iconCls:'icon-edit'">个人中心</a>
-      <div id="mm" style="width:150px;">
-    <div data-options="iconCls:'icon-redo'">
-        <a onclick="updatePasswd();">修改密码</a>
-    </div>
-    <div class="menu-sep"></div>
-    <div data-options="iconCls:'icon-undo'" >
-    <a  onclick="logout();">安全退出</a>
-    </div>
-
-</div>
-
-    </div>
-
-    <div data-options="region:'south'" style="height:40px;text-align:center">
-        <span style="font-size:16px;line-height:40px;"><b>snowxwolf@sina.cn &copy;所有</b>   <span><b></b>QQ:2324808561</span></span>
-    </div>
-
-    <div data-options="region:'east',title:'其他',split:true" style="width:187px;">
-        <!-- 日历 -->
-        <div  class="easyui-calendar">
-        </div>
-    </div>
-
+      <%--west--%>
     <div data-options="region:'west',title:'导航菜单',split:true" style="width:160px;">
 
 
@@ -67,41 +44,72 @@
         </div>
 
     </div>
+    <%--center--%>
     <div data-options="region:'center'" style="padding:0px;background:#eee;">
         <div id="tabs" class="easyui-tabs" fit="true">
-            <div title="首页" style="text-align:center;">
-                <span style="color:red;font-size:20px;">进销存系统</span>
+            <div title="首页">
+
+                <div  class="easyui-panel" title="个人信息"
+                     style="width:200px;height:150px;padding:10px;background:#fafafa;"
+                     data-options="iconCls:'icon-user',closable:true,collapsible:true">
+
+                </div>
+
+                <div  class="easyui-panel" title="时间"
+                     style="width:200px;height:250px;padding:10px;background:#fafafa;"
+                     data-options="iconCls:'icon-user',closable:true,collapsible:true">
+
+                    <div  class="easyui-calendar"></div>
+
+
+                </div>
+
+
+
+
             </div>
 
         </div>
-
     </div>
 </div>
 
 <%--修改密码--%>
-<div id="updatePasswdWin" class="easyui-window" title="修改密码" style="width:600px;height:400px"
-     data-options="iconCls:'icon-lock',modal:true,closable:true,closed:true,minimizable:false">
-    <form id="updatePasswdForm" method="post">
-        <table   border="0" cellpadding="1" cellspacing="2" style="align-content: center">
+<div id="updatePasswdWin" class="easyui-dialog" title="修改密码" style="width:500px;height:300px;padding: 30px 60px"
+     data-options="iconCls:'icon-lock',closable:true,closed:true,minimizable:false,modal:true,buttons:'#bb'">
+    <form id="updatePasswdForm" class="ef" method="post">
+        <table class="et">
             <tr>
-                <td width="60" align="right">
-                    原始密码
-                </td>
-                <td>
-                    <input class="easyui-textbox" name="oldPasswd">
+                <th>
+                    <label for="oldPasswd">原始密码:</label>
+                </th>
+                <td colspan="3">
+                    <input id="oldPasswd" class="easyui-validatebox" name="oldPasswd" style="width:250px;">
                 </td>
             </tr>
 
             <tr>
-                <td width="60" align="right">
-                    原始密码
-                </td>
-                <td>
-                    <input class="easyui-textbox" name="oldPasswd">
+                <th>
+                    <label for="newPasswd">新密码:</label>
+                </th>
+                <td colspan="3">
+                    <input id="newPasswd" class="easyui-validatebox" name="newPasswd" style="width:250px;">
                 </td>
             </tr>
+            <tr>
+                <th>
+                    <label for="eqPasswd">重复密码:</label>
+                </th>
+                <td colspan="3">
+                    <input id="eqPasswd" class="easyui-validatebox" name="eqPasswd" style="width:250px;">
+                </td>
+            </tr>
+
         </table>
     </form>
+</div>
+<div id="bb">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="modifyPasswd();">修改</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="closeDialog('updatePasswdWin');">取消</a>
 </div>
 
 
@@ -172,11 +180,13 @@
                 }
                 tabClose();
             }
+
             function createFrame(url)
             {
                 var s = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
                 return s;
             }
+
             function tabClose()
             {
                 /*双击关闭TAB选项卡*/
@@ -259,10 +269,6 @@
                     $('#mm').menu('hide');
                 })
             }
-            //弹出信息窗口 title:标题 msgString:提示信息 msgType:信息类型 [error,info,question,warning]
-            function msgShow(title, msgString, msgType) {
-                $.messager.alert(title, msgString, msgType);
-            }
 
         },"json");
 
@@ -278,7 +284,7 @@
     }
 
     function updatePasswd(){
-             $("#updatePasswdWin").window("open");
+             $("#updatePasswdWin").panel("open");
     }
 </script>
 </body>

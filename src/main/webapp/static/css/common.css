@@ -1,0 +1,7 @@
+
+.ef{ float:left; width:100%;}
+
+.et { clear:both;border: 1px solid #c9dae4; }
+.et tr th { color:#000; padding: 5px 0px 5px 10px; border-bottom: 1px solid #e6e6e6; font-weight: normal; background: #f7fafc; text-align:left; border-right: 1px solid #e6e6e6; border-left: 1px solid #e6e6e6; }
+.et tr td{ border-bottom: 1px solid #e6e6e6; padding: 5px 0px 5px 10px; line-height:22px; word-break:break-all;}
+.et tr th em, .t2 tr td em{ font-weight:bold; color:Red;}

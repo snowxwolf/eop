@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
@@ -7,6 +6,13 @@
     <title>码表管理</title>
 </head>
 <body>
+<div  class="easyui-panel" title="查询" data-options="iconCls:'icon-search',closable:false,collapsible:true">
+    <form class="ef">
+        <table class="et">
+
+        </table>
+    </form>
+</div>
 <table id="codes" class="easyui-datagrid">
 </table>
  <script>
@@ -18,7 +24,7 @@
              });
          });*/
 
-         $('#codes').treegrid({
+         $('#codes').datagrid({
              url:'${pageContext.request.contextPath}/system/codes/listCodes.html',
              pagination:true,
              rownumbers:true,
@@ -33,24 +39,33 @@
              idField:'cid',
              treeField:'name',
              toolbar:[
-                 <shiro:hasPermission name="system:codes:add">
+               <shiro:hasPermission name="system:codes:add">
                  {
                  iconCls: 'icon-add',
                  text:'添加',
                  handler: function(){
 
-                     window.location.href="${pageContext.request.contextPath}/type/toAddType.htm";
                  }
-             }
+                },'-',
+              </shiro:hasPermission>
+              <shiro:hasPermission name="system:codes:edit">
+                 {
+                     iconCls: 'icon-edit',
+                     text:'修改',
+                     handler: function(){
+
+                     }
+                 },'-',
                  </shiro:hasPermission>
-                 ,{
-                     iconCls: 'icon-delete',
+                <shiro:hasPermission name="system:codes:delete">
+                  {
+                     iconCls: 'icon-remove',
                      text:'删除',
                      handler: function(){
 
-                         window.location.href="${pageContext.request.contextPath}/type/toAddType.htm";
                      }
                  }
+                 </shiro:hasPermission>
              ],
              columns:[[
                  {field:'ck',checkbox:true},
@@ -60,14 +75,7 @@
                  {field:'ctime',title:'创建时间',width:160,align:'center',sortable:true},
                  {field:'cstatus',title:'状态',width:60,align:'center',formatter:function(value,row,index){
                       return value==1?"启用":"禁用";
-                 }},
-                 {
-                     field:'action',title:'操作',align:'center',width:120,
-                     formatter:function(value,rowData,index){
-                         return "<a href='#' onclick='deleteType("+rowData.id+");'>删除</a>"+
-                             "&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' onclick='updateType("+rowData.id+");'>修改</a>";
-                     }
-                 }
+                 }}
              ]]
          });
      });
