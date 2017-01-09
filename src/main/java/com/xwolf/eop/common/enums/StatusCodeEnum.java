@@ -40,4 +40,15 @@ public enum  StatusCodeEnum {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    public static String getMsg(String code){
+        StatusCodeEnum[] enums= StatusCodeEnum.values();
+        for(StatusCodeEnum statusCodeEnum:enums){
+                  String ecode=statusCodeEnum.getCode();
+                  if(ecode.equals(code)){
+                   return statusCodeEnum.getMsg();
+                  }
+        }
+        return "未知异常";
+    }
 }

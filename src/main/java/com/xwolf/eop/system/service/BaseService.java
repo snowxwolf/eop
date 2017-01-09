@@ -2,6 +2,7 @@ package com.xwolf.eop.system.service;
 
 import com.alibaba.fastjson.JSONObject;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -11,19 +12,20 @@ import java.util.List;
  */
 public interface BaseService<T> {
 
-    String insert(JSONObject json);
+    JSONObject insert(T t);
 
-    String insertBatch(JSONObject json);
+    JSONObject insertBatch(T t);
 
-    String update(JSONObject json);
+    JSONObject update(T t);
 
-    String delete(JSONObject json);
+    JSONObject delete(T t);
 
-    String queryForObject(JSONObject json);
+    T queryForObject(T t);
 
-    List<T> queryForList(JSONObject json);
+    List<T> queryForList(T t);
 
-    String selectForList(JSONObject json);
+    String selectForList(T t);
 
 
+    JSONObject deleteBatch(HttpServletRequest request);
 }

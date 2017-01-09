@@ -199,11 +199,30 @@ public class HttpUtil {
 	}
   }
 
+	/**
+	 * 分页参数封装
+	 * @param request
+	 * @return
+	 */
 	public static Map<String,Object> getRequestMap(HttpServletRequest request){
 		Map<String,Object>  map= Maps.newHashMap();
 		String sort=request.getParameter("sort");
 		map.put("sort",StringUtil.camelToUnderline(sort));
 		map.put("order",request.getParameter("order"));
 		return map;
+	}
+
+	/**
+	 * 获取批量操作ids
+	 * @param request
+	 * @return
+	 */
+	public static String[] getRequestIds(HttpServletRequest request){
+		String ids=request.getParameter("ids");
+		if(StringUtils.isNotBlank(ids)) {
+			String[] idAry = ids.split(",");
+			return idAry;
+		}
+		return null;
 	}
 }

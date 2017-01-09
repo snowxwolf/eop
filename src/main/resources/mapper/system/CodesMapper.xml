@@ -115,6 +115,13 @@
     where cid = #{cid,jdbcType=INTEGER}
   </update>
 
+  <!--delete 批量-->
+  <delete id="deleteBatch" parameterType="int" >
+        delete from com_codes where cid IN
+        <foreach collection="array" open="(" close=")" separator="," item="ary">
+           #{ary}
+        </foreach>
+  </delete>
 
   <select id="selectCodesList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from com_codes

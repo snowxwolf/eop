@@ -6,6 +6,7 @@ import com.xwolf.eop.common.enums.StatusCodeEnum;
 import com.xwolf.eop.common.pojo.Result;
 import com.xwolf.eop.system.service.BaseService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -15,62 +16,85 @@ import java.util.List;
  */
 public class BaseServiceImpl<T> implements BaseService<T>  {
 
-    public String success(){
+    public JSONObject success(){
         Result result=new Result();
         result.setRestCode(StatusCodeEnum.SUCCESS.getCode());
         result.setRestMsg(StatusCodeEnum.SUCCESS.getMsg());
         result.setSuccess(true);
-        return JSON.toJSONString(result);
+       return JSONObject.parseObject(JSON.toJSONString(result));
     }
 
-    public String success(String data){
+    public JSONObject success(String data){
         Result result=new Result();
         result.setRestCode(StatusCodeEnum.SUCCESS.getCode());
         result.setRestMsg(StatusCodeEnum.SUCCESS.getMsg());
         result.setSuccess(true);
         result.setData(data);
-        return JSON.toJSONString(result);
+        return JSONObject.parseObject(JSON.toJSONString(result));
     }
 
-    public String error(String code){
+    public JSONObject error(String code){
         Result result=new Result();
         result.setSuccess(false);
         result.setRestCode(code);
-        return JSON.toJSONString(result);
+        result.setRestMsg(StatusCodeEnum.getMsg(code));
+        return JSONObject.parseObject(JSON.toJSONString(result));
     }
 
+    public JSONObject systemError(){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setRestCode(StatusCodeEnum.SYSTEM_ERROR.getCode());
+        result.setRestMsg(StatusCodeEnum.SYSTEM_ERROR.getMsg());
+        return JSONObject.parseObject(JSON.toJSONString(result));
+    }
+
+    public JSONObject unkownError(){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setRestCode(StatusCodeEnum.UNKNOWN_ERROR.getCode());
+        result.setRestMsg(StatusCodeEnum.UNKNOWN_ERROR.getMsg());
+        return JSONObject.parseObject(JSON.toJSONString(result));
+    }
+
+
     @Override
-    public String insert(JSONObject json) {
+    public JSONObject insert(T t) {
         return null;
     }
 
     @Override
-    public String insertBatch(JSONObject json) {
+    public JSONObject insertBatch(T t) {
         return null;
     }
 
     @Override
-    public String update(JSONObject json) {
+    public JSONObject update(T t) {
         return null;
     }
 
     @Override
-    public String delete(JSONObject json) {
+    public JSONObject delete(T t) {
         return null;
     }
 
     @Override
-    public String queryForObject(JSONObject json) {
+    public T queryForObject(T t) {
         return null;
     }
 
     @Override
-    public List<T> queryForList(JSONObject json) {
+    public List<T> queryForList(T t) {
         return null;
     }
 
     @Override
-    public String selectForList(JSONObject json) {
+    public String selectForList(T t) {
+        return null;
+    }
+
+    @Override
+    public JSONObject deleteBatch(HttpServletRequest request) {
         return null;
     }
 }

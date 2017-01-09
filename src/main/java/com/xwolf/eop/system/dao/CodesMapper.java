@@ -18,5 +18,7 @@ public interface CodesMapper {
 
     int updateByPrimaryKey(Codes record);
 
+    void deleteBatch(String[] ids);
+
     List<Codes> selectCodesList(Map<String, Object> map);
 }

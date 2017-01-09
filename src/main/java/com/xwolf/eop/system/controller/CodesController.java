@@ -1,6 +1,8 @@
 package com.xwolf.eop.system.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.xwolf.eop.common.pojo.easyui.PageResult;
+import com.xwolf.eop.system.entity.Codes;
 import com.xwolf.eop.system.service.ICodesService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -45,5 +47,43 @@ public class CodesController {
         PageResult json=codesService.selectCodesList(request);
         log.info("码表列表:{}",json);
         return json;
+    }
+
+    /**
+     * 增加码表
+     * @param codes
+     * @return
+     */
+    @RequiresPermissions({"system:codes:add"})
+    @RequestMapping(value = "add",method = RequestMethod.POST)
+    public @ResponseBody JSONObject add(Codes codes){
+        log.info("codes: {}",codes);
+        JSONObject result=codesService.insert(codes);
+        return result;
+    }
+
+    /**
+     * 修改码表
+     * @param codes
+     * @return
+     */
+    @RequiresPermissions({"system:codes:update"})
+    @RequestMapping(value = "update",method = RequestMethod.POST)
+    public @ResponseBody JSONObject update(Codes codes){
+        log.info("codes: {}",codes);
+        JSONObject result=codesService.update(codes);
+        return result;
+    }
+
+    /**
+     * 删除码表
+     * @param request
+     * @return
+     */
+    @RequiresPermissions({"system:codes:delete"})
+    @RequestMapping(value = "delete",method = RequestMethod.POST)
+    public @ResponseBody JSONObject update(HttpServletRequest request){
+        JSONObject result=codesService.deleteBatch(request);
+        return result;
     }
 }
