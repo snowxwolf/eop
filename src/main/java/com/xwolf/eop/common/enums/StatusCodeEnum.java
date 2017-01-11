@@ -15,6 +15,7 @@ public enum  StatusCodeEnum {
     PASSWD_ERROR("10003","密码"),
     SYSTEM_ERROR("10005","系统错误"),
     NOT_FOUND_ERROR("10006","资源没有找到"),
+    VALIDATE_ERROR("10007","参数错误致Bean验证失败"),
     UNKNOWN_ERROR("10010","未知错误");
 
     private String code;

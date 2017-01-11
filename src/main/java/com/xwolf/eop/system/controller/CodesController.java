@@ -1,6 +1,7 @@
 package com.xwolf.eop.system.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xwolf.eop.common.enums.StatusCodeEnum;
 import com.xwolf.eop.common.pojo.easyui.PageResult;
 import com.xwolf.eop.system.entity.Codes;
 import com.xwolf.eop.system.service.ICodesService;
@@ -8,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.List;
 
 /**
  * 基础码表
@@ -25,7 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @Controller
 @RequestMapping("system/codes")
-public class CodesController {
+public class CodesController extends BaseController {
 
     @Autowired
     private ICodesService codesService;
@@ -53,10 +58,13 @@ public class CodesController {
      * @param codes
      * @return
      */
-    @RequiresPermissions({"system:codes:add"})
+   // @RequiresPermissions({"system:codes:add"})
     @RequestMapping(value = "add",method = RequestMethod.POST)
-    public @ResponseBody JSONObject add(Codes codes){
+    public @ResponseBody JSONObject add(@Valid Codes codes, BindingResult bindingResult){
         log.info("codes: {}",codes);
+        if(bindingResult.hasErrors()){
+            return error(StatusCodeEnum.VALIDATE_ERROR.getCode());
+        }
         JSONObject result=codesService.insert(codes);
         return result;
     }
@@ -68,8 +76,11 @@ public class CodesController {
      */
     @RequiresPermissions({"system:codes:update"})
     @RequestMapping(value = "update",method = RequestMethod.POST)
-    public @ResponseBody JSONObject update(Codes codes){
-        log.info("codes: {}",codes);
+    public @ResponseBody JSONObject update(@Valid Codes codes, BindingResult bindingResult){
+         log.info("codes: {}",codes);
+         if(bindingResult.hasErrors()){
+            return error(StatusCodeEnum.VALIDATE_ERROR.getCode());
+         }
         JSONObject result=codesService.update(codes);
         return result;
     }

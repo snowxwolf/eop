@@ -42,7 +42,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
         JSONObject jsonObject=new JSONObject();
         try {
             String code=request.getParameter("code");
-            if(!HttpUtil.getCheckCode(request).equalsIgnoreCase(code)){
+            if(StringUtils.isBlank(code) ||!HttpUtil.getCheckCode(request).equalsIgnoreCase(code)){
                 jsonObject.put("success", false);
                 jsonObject.put("restVal", "验证码错误!");
                 return jsonObject;
@@ -64,7 +64,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
             jsonObject.put("success", false);
             jsonObject.put("restVal", "账号锁定,请联系管理员!");
         }catch(Exception e){
-            e.printStackTrace();
+            log.error(e.getMessage(),e);
             jsonObject.put("success", false);
             jsonObject.put("restVal", "用户名或者密码错误!");
         } finally {
