@@ -1,5 +1,8 @@
 package com.xwolf.eop.system.entity;
 
+import lombok.Data;
+
+@Data
 public class RoleMenu {
 
     private Integer rid;
@@ -8,27 +11,5 @@ public class RoleMenu {
 
     private String mcode;
 
-    public Integer getRid() {
-        return rid;
-    }
 
-    public void setRid(Integer rid) {
-        this.rid = rid;
-    }
-
-    public String getRcode() {
-        return rcode;
-    }
-
-    public void setRcode(String rcode) {
-        this.rcode = rcode;
-    }
-
-    public String getMcode() {
-        return mcode;
-    }
-
-    public void setMcode(String mcode) {
-        this.mcode = mcode;
-    }
 }

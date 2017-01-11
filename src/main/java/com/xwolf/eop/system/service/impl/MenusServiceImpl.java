@@ -6,10 +6,8 @@ import com.xwolf.eop.common.pojo.NavMenus;
 import com.xwolf.eop.system.dao.MenusMapper;
 import com.xwolf.eop.system.entity.Menus;
 import com.xwolf.eop.system.service.IMenusService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,10 +20,10 @@ import java.util.List;
  * @author xwolf
  * @since 2016-12-20
  */
+@Slf4j
 @Service
 public class MenusServiceImpl extends BaseServiceImpl<Menus> implements IMenusService {
 
-	private static final Logger LOG= LoggerFactory.getLogger(MenusServiceImpl.class);
     @Autowired
 	private MenusMapper menusMapper;
 

@@ -4,10 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.xwolf.eop.system.service.IUserService;
 import com.xwolf.eop.util.HttpUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -27,9 +26,9 @@ import java.awt.image.BufferedImage;
  * @since V1.0.0
  */
 @Controller
+@Slf4j
 public class LoginController {
 
-    private static final Logger log= LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private DefaultKaptcha defaultKaptcha;

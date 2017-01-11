@@ -3,9 +3,7 @@ package com.xwolf.eop.system.controller;
 import com.xwolf.eop.common.pojo.easyui.PageResult;
 import com.xwolf.eop.system.service.IUserService;
 import com.xwolf.eop.util.IPUtil;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +17,11 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2016-12-20 17:41
  * @since V1.0.0
  */
+@Slf4j
 @Controller
 @RequestMapping("system/user")
 public class UserController {
 
-    private static Logger log= LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private IUserService userService;

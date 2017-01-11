@@ -77,6 +77,8 @@
     <rabbitmq.version>4.0.0</rabbitmq.version>
     <!--freemarker-->
     <freemarker.version>2.3.23</freemarker.version>
+    <!--lombok-->
+    <lombok.version>1.16.12</lombok.version>
   </properties>
   <dependencies>
     <!--junit-->
@@ -397,6 +399,12 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
       <version>5.3.4.Final</version>
+    </dependency>
+    <!--lombok-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
     </dependency>
 
   </dependencies>

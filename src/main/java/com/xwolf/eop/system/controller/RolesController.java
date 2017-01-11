@@ -2,6 +2,7 @@ package com.xwolf.eop.system.controller;
 
 import com.xwolf.eop.common.pojo.easyui.PageResult;
 import com.xwolf.eop.system.service.IRolesService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author xwolf
  * @since 2016-12-20
  */
+@Slf4j
 @Controller
 @RequestMapping("system/roles")
 public class RolesController {

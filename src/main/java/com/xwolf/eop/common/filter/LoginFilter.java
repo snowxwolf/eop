@@ -2,8 +2,7 @@ package com.xwolf.eop.common.filter;
 
 import com.xwolf.eop.system.entity.User;
 import com.xwolf.eop.util.ResourceUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +16,9 @@ import java.io.IOException;
  * @date 2016-12-14 22:30
  * @since V1.0.0
  */
+@Slf4j
 public class LoginFilter implements Filter {
 
-    private static final Logger log= LoggerFactory.getLogger(LoginFilter.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

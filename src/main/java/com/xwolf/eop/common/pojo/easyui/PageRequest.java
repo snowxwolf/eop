@@ -1,5 +1,7 @@
 package com.xwolf.eop.common.pojo.easyui;
 
+import lombok.Data;
+
 /**
  * <p>
  *     easyui页面请求参数封装
@@ -9,42 +11,11 @@ package com.xwolf.eop.common.pojo.easyui;
  * @date 2017-01-06 18:08
  * @since V1.0.0
  */
+@Data
 public class PageRequest {
 
     private int rows=10;//每页显示记录数
     private int page=1;//当前页
     private String sort;
     private String order;
-
-    public int getRows() {
-        return rows;
-    }
-
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public String getSort() {
-        return sort;
-    }
-
-    public void setSort(String sort) {
-        this.sort = sort;
-    }
-
-    public String getOrder() {
-        return order;
-    }
-
-    public void setOrder(String order) {
-        this.order = order;
-    }
 }

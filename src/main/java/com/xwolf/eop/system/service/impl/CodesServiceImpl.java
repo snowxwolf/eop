@@ -7,9 +7,7 @@ import com.xwolf.eop.system.dao.CodesMapper;
 import com.xwolf.eop.system.entity.Codes;
 import com.xwolf.eop.system.service.ICodesService;
 import com.xwolf.eop.util.HttpUtil;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +24,10 @@ import java.util.Map;
  * @author xwolf
  * @since 2016-12-20
  */
+@Slf4j
 @Service
 public class CodesServiceImpl extends BaseServiceImpl<Codes> implements ICodesService {
 
-    private static Logger LOG= LoggerFactory.getLogger(CodesServiceImpl.class);
 
     @Autowired
     private CodesMapper codesMapper;
@@ -61,7 +59,7 @@ public class CodesServiceImpl extends BaseServiceImpl<Codes> implements ICodesSe
                 return success();
             }
         } catch (Exception e) {
-            LOG.error(e.getMessage(),e);
+            log.error(e.getMessage(),e);
             return systemError();
         }
         return unkownError();
@@ -81,7 +79,7 @@ public class CodesServiceImpl extends BaseServiceImpl<Codes> implements ICodesSe
                 return success();
             }
         } catch (Exception e) {
-            LOG.error(e.getMessage(),e);
+            log.error(e.getMessage(),e);
             return systemError();
         }
         return unkownError();
@@ -99,7 +97,7 @@ public class CodesServiceImpl extends BaseServiceImpl<Codes> implements ICodesSe
                codesMapper.deleteBatch(idAry);
                return success();
         } catch (Exception e) {
-           LOG.error(e.getMessage(),e);
+           log.error(e.getMessage(),e);
            return systemError();
         }
     }

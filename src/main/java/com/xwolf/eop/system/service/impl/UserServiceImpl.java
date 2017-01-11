@@ -10,13 +10,12 @@ import com.xwolf.eop.system.entity.User;
 import com.xwolf.eop.system.service.IUserService;
 import com.xwolf.eop.util.HttpUtil;
 import com.xwolf.eop.util.MD5;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +28,10 @@ import java.util.Map;
  * @date 2016-12-16 21:54
  * @since V1.0.0
  */
+@Slf4j
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User> implements IUserService {
 
-    private static Logger log= LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserMapper userMapper;

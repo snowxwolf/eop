@@ -6,8 +6,7 @@ import com.xwolf.eop.common.pojo.easyui.PageResult;
 import com.xwolf.eop.system.dao.RolesMapper;
 import com.xwolf.eop.system.entity.Roles;
 import com.xwolf.eop.system.service.IRolesService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +22,9 @@ import java.util.Map;
  * @author xwolf
  * @since 2016-12-20
  */
+@Slf4j
 @Service
 public class RolesServiceImpl extends BaseServiceImpl<Roles> implements IRolesService {
-	private static final Logger LOG= LoggerFactory.getLogger(RolesServiceImpl.class);
 	@Autowired
 	private RolesMapper rolesMapper;
 
@@ -36,7 +35,7 @@ public class RolesServiceImpl extends BaseServiceImpl<Roles> implements IRolesSe
 	 */
 	@Override
 	public List<Roles> getRolesListByUserCode(String usercode) {
-		LOG.info("usercode:{}",usercode);
+		log.info("usercode:{}",usercode);
 		return rolesMapper.getRolesListByUserCode(usercode);
 	}
 

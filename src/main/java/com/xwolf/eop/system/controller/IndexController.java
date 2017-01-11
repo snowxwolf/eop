@@ -1,7 +1,6 @@
 package com.xwolf.eop.system.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @since V1.0.0
  */
 @Controller
+@Slf4j
 public class IndexController {
-
-    private static final Logger log= LoggerFactory.getLogger(IndexController.class);
 
     /**
      * 首页
