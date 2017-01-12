@@ -1,6 +1,8 @@
 package com.xwolf.eop.util;
 
 import com.google.common.collect.Maps;
+import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Enumeration;
@@ -206,9 +208,25 @@ public class HttpUtil {
 	 */
 	public static Map<String,Object> getRequestMap(HttpServletRequest request){
 		Map<String,Object>  map= Maps.newHashMap();
-		String sort=request.getParameter("sort");
-		map.put("sort",StringUtil.camelToUnderline(sort));
-		map.put("order",request.getParameter("order"));
+		//String sort=request.getParameter("sort");
+		//map.put("sort",StringUtil.camelToUnderline(sort));
+		//map.put("order",request.getParameter("order"));
+		Map<String,String[]> paramMap=request.getParameterMap();
+		if(MapUtils.isNotEmpty(paramMap)){
+			Set<String> keys= paramMap.keySet();
+			for(String key:keys){
+				String[] params=paramMap.get(key);
+				if(ArrayUtils.isNotEmpty(params)){
+					if("sort".equals(key)){
+						map.put(key,StringUtil.camelToUnderline(params[0]));
+					}else{
+						map.put(key,params[0]);
+					}
+
+				}
+			}
+			return map;
+		}
 		return map;
 	}
 

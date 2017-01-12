@@ -1,5 +1,6 @@
 package com.xwolf.eop.system.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xwolf.eop.common.pojo.PageHelper;
 import com.xwolf.eop.common.pojo.easyui.PageResult;
@@ -41,6 +42,7 @@ public class CodesServiceImpl extends BaseServiceImpl<Codes> implements ICodesSe
     public PageResult selectCodesList(HttpServletRequest request) {
         PageHelper.getPage(request);
         Map<String,Object> map= HttpUtil.getRequestMap(request);
+        log.info("request params:{}", JSON.toJSONString(map));
         List<Codes> codesList=codesMapper.selectCodesList(map);
         return  PageHelper.getListResult(codesList);
     }

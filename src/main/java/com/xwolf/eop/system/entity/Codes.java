@@ -30,6 +30,10 @@ public class Codes implements Serializable{
     @NotNull(message = "排序值不能为空")
     private int corder;
 
+    @NotBlank
+    @Length(min=0,max=60)
+    private String descr;
+
     @NotNull
     private int cstatus;
 

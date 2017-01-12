@@ -8,10 +8,11 @@
     <result column="cname" property="cname" jdbcType="VARCHAR" />
     <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
     <result column="corder" property="corder" jdbcType="TINYINT" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
     <result column="cstatus" property="cstatus" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    cid, code, cvalue, cname, ctime, corder, cstatus
+    cid, code, cvalue, cname, ctime, corder, descr, cstatus
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,10 +27,10 @@
   <insert id="insert" parameterType="com.xwolf.eop.system.entity.Codes" >
     insert into com_codes (cid, code, cvalue, 
       cname, ctime, corder, 
-      cstatus)
+      descr, cstatus)
     values (#{cid,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{cvalue,jdbcType=VARCHAR}, 
       #{cname,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}, #{corder,jdbcType=TINYINT}, 
-      #{cstatus,jdbcType=TINYINT})
+      #{descr,jdbcType=VARCHAR}, #{cstatus,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.xwolf.eop.system.entity.Codes" >
     insert into com_codes
@@ -51,6 +52,9 @@
       </if>
       <if test="corder != null" >
         corder,
+      </if>
+      <if test="descr != null" >
+        descr,
       </if>
       <if test="cstatus != null" >
         cstatus,
@@ -75,6 +79,9 @@
       <if test="corder != null" >
         #{corder,jdbcType=TINYINT},
       </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
       <if test="cstatus != null" >
         #{cstatus,jdbcType=TINYINT},
       </if>
@@ -98,6 +105,9 @@
       <if test="corder != null" >
         corder = #{corder,jdbcType=TINYINT},
       </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
       <if test="cstatus != null" >
         cstatus = #{cstatus,jdbcType=TINYINT},
       </if>
@@ -111,22 +121,32 @@
       cname = #{cname,jdbcType=VARCHAR},
       ctime = #{ctime,jdbcType=TIMESTAMP},
       corder = #{corder,jdbcType=TINYINT},
+      descr = #{descr,jdbcType=VARCHAR},
       cstatus = #{cstatus,jdbcType=TINYINT}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
 
   <!--delete 批量-->
   <delete id="deleteBatch" parameterType="int" >
-        delete from com_codes where cid IN
-        <foreach collection="array" open="(" close=")" separator="," item="ary">
-           #{ary}
-        </foreach>
+    delete from com_codes where cid IN
+    <foreach collection="array" open="(" close=")" separator="," item="ary">
+      #{ary}
+    </foreach>
   </delete>
 
   <select id="selectCodesList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from com_codes
+    <where>
+      <if test="code!=null and code !=''">
+       and code =#{code,jdbcType=VARCHAR}
+      </if>
+      <if test="cstatus!=null and cstatus !=''">
+       and cstatus =#{cstatus,jdbcType=TINYINT}
+      </if>
+    </where>
     <if test="order !=null and sort!=null">
-     order by ${sort}  ${order}
+      order by ${sort}  ${order}
     </if>
   </select>
+
 </mapper>
