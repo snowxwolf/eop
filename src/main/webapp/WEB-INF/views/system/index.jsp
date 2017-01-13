@@ -10,15 +10,15 @@
     <jsp:include page="common.jsp"/>
     <title>首页</title>
     <style>
+
         .easyui-accordion ul{list-style-type:none;margin:0px; padding:10px;}
         .easyui-accordion ul li{ padding:0px;}
-        .easyui-accordion ul li a{line-height:24px;}
+        .easyui-accordion ul li a{line-height:30px;}
         .easyui-accordion ul li div{margin:2px 0px;padding-left:10px;padding-top:2px;}
         .easyui-accordion ul li div.hover{border:1px dashed #99BBE8; background:#E0ECFF;cursor:pointer;}
         .easyui-accordion ul li div.hover a{color:#416AA3;}
-        .easyui-accordion ul li div.selected{/* border:1px solid #99BBE8; *//* background:#E0ECFF; *//* cursor:default; */}
-        .easyui-accordion ul li div.selected a{color:#416AA3; font-weight:bold;
-            text-decoration: none;}
+        .easyui-accordion ul li div.selected{line-height:17px;/* border:1px solid #99BBE8; *//* background:#E0ECFF; *//* cursor:default; */}
+        .easyui-accordion ul li div.selected a{color:#416AA3; font-weight:bold; text-decoration: none;}
 
     </style>
 </head>
@@ -124,9 +124,9 @@
             $.each(data.data, function(i, n) {
                 var menulist ='';
                 menulist +='<ul>';
-                $.each(n.menus, function(j, o) {
+                $.each(n.children, function(j, o) {
                     var url="<%=base%>"+o.url;
-                 menulist += '<li><div class="selected"><a style="text-decoration: none;" ref="'+o.id+'" href="#" rel="' + url + '" ><span class="icon '+o.icon+'" >&nbsp;&nbsp;</span><span class="nav">' + o.text + '</span></a></div></li> ';
+                 menulist += '<li><div class="selected"><a style="text-decoration: none;" ref="'+o.id+'" href="#" rel="' + url + '" ><div class="icon '+o.icon+'" style="float: left;">&nbsp;&nbsp;</div><div class="nav">' + o.text + '</div></a></div></li> ';
                  });
                 menulist += '</ul>';
 
@@ -158,7 +158,7 @@
             function getIcon(menuid){
                 var icon;
                 $.each(data.data, function(i, n) {
-                    $.each(n.menus, function(j, o) {
+                    $.each(n.children, function(j, o) {
                         if(o.id==menuid){
                             icon = o.icon;
                         }

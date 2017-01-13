@@ -28,7 +28,8 @@ public class Global {
 
     public static final boolean ENABLE_REFERER=resourceUtil.getBooleanValue(SystemConfigEnum.WEB_REFERER.getProperty());
 
-
+    public static final int ENABLE_STATUS=1;
+    public static final int DISABLE_STATUS=0;
 
 
 }

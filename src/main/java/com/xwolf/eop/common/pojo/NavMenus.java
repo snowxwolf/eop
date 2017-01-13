@@ -15,5 +15,5 @@ public class NavMenus {
     private String text;
     private String icon;
     private String url;
-    private JSONArray menus;
+    private JSONArray children;
 }

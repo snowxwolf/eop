@@ -1,5 +1,6 @@
 package com.xwolf.eop.system.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.xwolf.eop.system.entity.Menus;
 import com.xwolf.eop.system.service.IMenusService;
@@ -28,6 +29,27 @@ public class MenusController {
     @Autowired
     private IMenusService menusService;
 
+    /**
+     * 到菜单管理页面
+     * @return
+     */
+    @RequestMapping(value = "toMenus",method = {RequestMethod.POST,RequestMethod.GET})
+    public String toMenus(){
+         return "system/menus";
+    }
+
+    /**
+     * 获取所有菜单
+     * @return
+     */
+    @RequestMapping(value = "getMenusList",method = RequestMethod.POST)
+    public @ResponseBody JSONArray getMenuList(){
+        return menusService.getMenusList();
+    }
+    /**
+     * 主页导航菜单
+     * @return
+     */
     @RequestMapping(value ="navMenus",method = RequestMethod.POST)
     @ResponseBody
     public JSONObject list(){

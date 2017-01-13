@@ -194,8 +194,7 @@
             fitColumns: true,
             animate:true,
             idField:'cid',
-            treeField:'name',
-            view:myview,
+            emptyMsg:'暂无记录',
             toolbar:'#searchTool',
             columns:[[
                 {field:'ck',checkbox:true},

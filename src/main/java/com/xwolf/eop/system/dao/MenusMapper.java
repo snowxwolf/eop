@@ -3,6 +3,7 @@ package com.xwolf.eop.system.dao;
 import com.xwolf.eop.system.entity.Menus;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MenusMapper {
     int deleteByPrimaryKey(Integer mid);
@@ -17,7 +18,7 @@ public interface MenusMapper {
 
     int updateByPrimaryKey(Menus record);
 
-    List<Menus> getParentMenus();
+    List<Menus> getParentMenus(Map<String,Object> map);
 
-    List<Menus> getSonMenus(String pcode);
+    List<Menus> getSonMenus(Map<String,Object> map);
 }

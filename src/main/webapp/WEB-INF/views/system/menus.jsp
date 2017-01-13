@@ -3,47 +3,32 @@
 <html>
 <head>
     <jsp:include page="common.jsp"/>
-    <title>用户管理</title>
+    <title>菜单管理</title>
 </head>
 <body >
 <div>
     <div id="searchTool">
 
-        <div  style="height: 30px;" >
-            <form id="searchForm" method="post">
-                <span>码表code:</span>
-                <input type="text"  class="easyui-validatebox" name="code"/>
 
-                <span>码表状态:</span>
-                <select class="easyui-combobox" name="cstatus" data-options="required:true" style="width:250px;">
-                    <option value="1">启用</option>
-                    <option value="0">禁用</option>
-                </select>
+         <shiro:hasPermission name="system:codes:add">
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="openDialog('addMenuWin');">添加</a>
+         </shiro:hasPermission>
+         <shiro:hasPermission name="system:codes:update">
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="openUpdateMenus();">修改</a>
+         </shiro:hasPermission>
 
-                <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="queryUser();">提交</a>
-                <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="formReset('searchForm');">重置</a>
-            </form>
-        </div>
-
-        <shiro:hasPermission name="system:codes:add">
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-user-add'" onclick="openDialog('addUserWin');">添加</a>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="system:codes:update">
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-user-edit'" onclick="openUpdateUser();">修改</a>
-        </shiro:hasPermission>
-
-        <shiro:hasPermission name="system:codes:delete">
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-user-delete'" onclick="deleteUser();">删除</a>
-        </shiro:hasPermission>
+          <shiro:hasPermission name="system:codes:delete">
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="deleteMenus();">删除</a>
+          </shiro:hasPermission>
     </div>
-    <table id="user" class="easyui-datagrid"  toolbar="#search">
+   <table id="menus" class="easyui-datagrid"  toolbar="#search">
 
-    </table>
+   </table>
 </div>
 <%--添加--%>
-<div id="addUserWin" class="easyui-dialog" title="添加" style="width:500px;height:400px;padding: 30px 60px"
+<div id="addMenuWin" class="easyui-dialog" title="添加" style="width:500px;height:400px;padding: 30px 60px"
      data-options="iconCls:'icon-add',closable:true,closed:true,minimizable:false,modal:true,buttons:'#bb'">
-    <form id="addUserForm" class="ef" method="post">
+    <form id="addCodeForm" class="ef" method="post">
         <table class="et">
             <tr>
                 <th>
@@ -101,13 +86,13 @@
     </form>
 </div>
 <div id="bb">
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="submitUser();">提交</a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="closeDialog('addUserWin');">取消</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="submitCode();">提交</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="closeDialog('addMenuWin');">取消</a>
 </div>
 <%--修改--%>
-<div id="updateUserWin" class="easyui-dialog" title="修改" style="width:500px;height:400px;padding: 30px 60px"
+<div id="updateMenuWin" class="easyui-dialog" title="修改" style="width:500px;height:400px;padding: 30px 60px"
      data-options="iconCls:'icon-edit',closable:true,closed:true,minimizable:false,modal:true,buttons:'#up'">
-    <form id="updateUserForm" class="ef" method="post">
+    <form id="updateCodeForm" class="ef" method="post">
         <input type="hidden" name="cid">
         <table class="et">
             <tr>
@@ -166,42 +151,42 @@
     </form>
 </div>
 <div id="up">
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="updateUser();">提交</a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="closeDialog('updateUserWin');">取消</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="updateMenus();">提交</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="closeDialog('updateMenuWin');">取消</a>
 </div>
 
 </body>
 <script>
     $(function(){
         /*$(window).resize(function () {
-         $('#codes').datagrid('resize', {
+         $('#menus').datagrid('resize', {
          width: $(window).width() - 10,
          height: $(window).height() - 35
          });
          });*/
 
-        $('#user').datagrid({
-            url:'${pageContext.request.contextPath}/system/user/listUser.html',
-            pagination:true,
+        $('#menus').treegrid({
+            url:'${pageContext.request.contextPath}/system/menus/getMenusList.html',
             rownumbers:true,
             checkOnSelect:true,
-            pageNumber:1,
-            pageSize:10,
-            pageList:[10,20,30,50],
             nowrap: true,
             singleSelect:false,
             striped: true,
             fitColumns: true,
             animate:true,
-            idField:'cid',
+            idField:'mid',
+            treeField:"mname",
             emptyMsg:'暂无记录',
             toolbar:'#searchTool',
             columns:[[
                 {field:'ck',checkbox:true},
-                {title:'用户code',field:'ucode',width:180,align:'center'},
-                {title:'用户名称',field:'uname',width:180,align:'center'},
-                {field:'ctime',title:'创建时间',width:60,align:'center'},
-                {field:'ustatus',title:'状态',width:100,align:'center',formatter:function(value,row,index){
+                {title:'mid',field:'cid',width:100,align:'center',hidden:true},
+                {title:'mcode',field:'mcode',width:100,align:'center',hidden:true},
+                {title:'菜单名称',field:'mname',width:100,align:'center'},
+                {title:'图标',field:'icon',width:100,align:'center'},
+                {title:'排序值',field:'orderValue',width:100,align:'center'},
+                {title:'链接',field:'murl',width:140,align:'center'},
+                {field:'mstatus',title:'状态',width:100,align:'center',formatter:function(value,row,index){
                     return value==1?"启用":"禁用";
                 }}
             ]]
@@ -209,74 +194,74 @@
     });
 
     //打开修改dialog
-    function openUpdateUser() {
-        var rows= $('#user').datagrid('getSelections');
-        var leng=rows.length;
-        if(leng !=1 ){
-            warn("请选择1条记录.");
-            return;
-        }
-        $('#updateUserForm').form('load',rows[0]);
-        openDialog("updateUserWin");
-    }
-    //删除
-    function deleteUser(){
-        var rows= $('#user').datagrid('getSelections');
-        var ids='';
-        $.each(rows,function (i,n) {
-            ids+=n.cid+",";
-        });
-        var leng=ids.length;
-        var newId= ids.substr(0,leng-1);
-        var newAry= newId.split(",");
-        var nlen=newId.length;
-        if(nlen<1){
-            warn("请选择要删除的记录.");
-            return;
-        }
-        var infoLen=newAry.length;
-        $.messager.confirm('确认','您确认要删除这'+infoLen+'条记录吗?',function(r){
-            if (r){
-                $.post('${pageContext.request.contextPath}/system/user/delete.html',{ids:newId},function(data){
-                    var msg=data.restMsg;
-                    if(data.success){
-                        show(msg);
-                        $('#user').datagrid('reload');
-                    }else{
-                        info(msg);
-                    }
-                    clearAllSelections("user");
-                },"json");
+     function openUpdateMenus() {
+         var rows= $('#menus').datagrid('getSelections');
+         var leng=rows.length;
+         if(leng !=1 ){
+             warn("请选择1条记录.");
+             return;
+         }
+         $('#updateCodeForm').form('load',rows[0]);
+         openDialog("updateCodeWin");
+     }
+      //删除
+     function deleteMenus(){
+         var rows= $('#menus').datagrid('getSelections');
+         var ids='';
+         $.each(rows,function (i,n) {
+             ids+=n.cid+",";
+         });
+         var leng=ids.length;
+         var newId= ids.substr(0,leng-1);
+         var newAry= newId.split(",");
+         var nlen=newId.length;
+         if(nlen<1){
+             warn("请选择要删除的记录.");
+             return;
+         }
+         var infoLen=newAry.length;
+         $.messager.confirm('确认','您确认要删除这'+infoLen+'条记录吗?',function(r){
+             if (r){
+                 $.post('${pageContext.request.contextPath}/system/menus/delete.html',{ids:newId},function(data){
+                     var msg=data.restMsg;
+                     if(data.success){
+                         show(msg);
+                         $('#menus').datagrid('reload');
+                     }else{
+                         info(msg);
+                     }
+                     clearAllSelections("menus");
+                 },"json");
 
-            }
-        });
-    }
-    //提交添加
-    function submitUser() {
-        $('#addUserForm').form('submit',{
-            url:'${pageContext.request.contextPath}/system/user/add.html',
-            queryParams:$(this).serialize(),
-            onSubmit: function(){
-                var isValid = $(this).form('validate');
-                return isValid;	// 返回false终止表单提交
-            },
-            success:function(data){
-                var data = eval('(' + data + ')');
-                var msg=data.restMsg;
-                if(data.success){
-                    closeDialog('addUserWin');
+             }
+         });
+     }
+     //提交添加
+    function submitCode() {
+      $('#addCodeForm').form('submit',{
+          url:'${pageContext.request.contextPath}/system/menus/add.html',
+          queryParams:$(this).serialize(),
+          onSubmit: function(){
+              var isValid = $(this).form('validate');
+              return isValid;	// 返回false终止表单提交
+          },
+          success:function(data){
+              var data = eval('(' + data + ')');
+              var msg=data.restMsg;
+              if(data.success){
+                    closeDialog('addCodeWin');
                     show(msg);
-                    $('#user').datagrid('reload');
-                }else{
-                    error(msg);
-                }
-            }
-        });
+                    $('#menus').datagrid('reload');
+              }else{
+                   error(msg);
+              }
+          }
+      });
     }
     //修改
-    function updateUser(){
-        $('#updateUserForm').form('submit',{
-            url:'${pageContext.request.contextPath}/system/user/update.html',
+    function updateMenus(){
+        $('#updateCodeForm').form('submit',{
+            url:'${pageContext.request.contextPath}/system/menus/update.html',
             queryParams:$(this).serialize(),
             onSubmit: function(){
                 var isValid = $(this).form('validate');
@@ -286,9 +271,9 @@
                 var data = eval('(' + data + ')');
                 var msg=data.restMsg;
                 if(data.success){
-                    closeDialog('updateUserWin');
+                    closeDialog('updateCodeWin');
                     show(msg);
-                    $('#user').datagrid('reload');
+                    $('#menus').datagrid('reload');
                 }else{
                     error(msg);
                 }
@@ -313,15 +298,5 @@
         return json
     }
 
-    //查询
-    function queryUser() {
-        // var data=$('#searchForm').serialize();
-        var data=form2Json('searchForm');
-        $('#user').datagrid({
-            queryParams:data
-        });
-
-
-    }
 </script>
 </html>

@@ -94,3 +94,16 @@
 .icon-large-chart{
 	background:url('icons/large_chart.png') no-repeat center center;
 }
+/*user*/
+.icon-user{
+	background:url('icons/user.png') no-repeat center center;
+}
+.icon-user-add{
+	background:url('icons/user_add.png') no-repeat center center;
+}
+.icon-user-edit{
+	background:url('icons/user_edit.png') no-repeat center center;
+}
+.icon-user-delete{
+	background:url('icons/user_delete.png') no-repeat center center;
+}

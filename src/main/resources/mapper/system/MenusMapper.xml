@@ -140,13 +140,24 @@
   </update>
 
   <!--获取所有父菜单-->
-  <select id="getParentMenus" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List"/> from com_menus where mstatus = 1 and is_parent=1
+  <select id="getParentMenus" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select <include refid="Base_Column_List"/> from com_menus where  is_parent=1
+    <if test="mstatus !=null and mstatus !=''">
+       and     mstatus =#{mstatus,jdbcType=VARCHAR}
+    </if>
     order by order_value asc
   </select>
 
   <select id="getSonMenus" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List"/> from com_menus where mstatus = 1 and is_parent=0
-    and pcode=#{code,jdbcType=VARCHAR}  order by order_value asc
+    select <include refid="Base_Column_List"/> from com_menus where  is_parent=0
+    <if test="mstatus !=null and mstatus !=''">
+      and  mstatus =#{mstatus,jdbcType=VARCHAR}
+    </if>
+
+    <if test="pcode !=null and pcode !=''">
+      and pcode=#{pcode,jdbcType=VARCHAR}
+    </if>
+
+    order by order_value asc
   </select>
 </mapper>

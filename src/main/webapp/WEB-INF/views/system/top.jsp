@@ -7,7 +7,7 @@
         <c:if test="${ not empty user.username}">${user.username}</c:if>
 
       <a href="javascript:void(0)" id="mb" class="easyui-menubutton"
-		 data-options="menu:'#mm',iconCls:'icon-edit'">个人中心</a>
+		 data-options="menu:'#mm',iconCls:'icon-user'">个人中心</a>
 
 	<div id="mm" style="width:150px;">
        <div data-options="iconCls:'icon-redo'">
