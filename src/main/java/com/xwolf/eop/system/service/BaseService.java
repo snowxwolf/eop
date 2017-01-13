@@ -27,5 +27,6 @@ public interface BaseService<T> {
     String selectForList(T t);
 
 
+
     JSONObject deleteBatch(HttpServletRequest request);
 }
