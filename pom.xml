@@ -402,6 +402,12 @@
       <version>${rabbitmq.version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.springframework.amqp</groupId>
+      <artifactId>spring-rabbit</artifactId>
+      <version>1.6.6.RELEASE</version>
+    </dependency>
+
     <!--hiberante validator-->
     <dependency>
       <groupId>org.hibernate</groupId>
