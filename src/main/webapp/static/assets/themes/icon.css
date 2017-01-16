@@ -138,7 +138,27 @@
 .icon-house{
 	background:url('icons/house.png') no-repeat center center;
 }
-
+ /*chart*/
 .icon-chart{
 	background: url("icons/chart_bar.png") no-repeat center center;
+}
+/*money*/
+.icon-money{
+	background: url("icons/money.png") no-repeat center center;
+}
+.icon-money-add{
+	background: url("icons/money_add.png") no-repeat center center;
+}
+.icon-money-delete{
+	background: url("icons/money_delete.png") no-repeat center center;
+}
+.icon-dollar{
+	background: url("icons/money_dollar.png") no-repeat center center;
+}
+.icon-euro{
+	background: url("icons/money_euro.png") no-repeat center center;
+}
+
+.icon-yen{
+	background: url("icons/money_yen.png") no-repeat center center;
 }
