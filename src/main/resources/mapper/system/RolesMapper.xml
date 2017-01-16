@@ -111,6 +111,17 @@
 
   <select id="selectRolesList" resultMap="BaseResultMap" parameterType="java.util.Map">
        select <include refid="Base_Column_List"/>  from com_roles
+    <where>
+      <if test="rname !=null and rname !=''">
+        and rname =#{rname,jdbcType=VARCHAR}
+      </if>
+      <if test="rstatus!=null and rstatus !=''">
+        and rstatus =#{rstatus,jdbcType=TINYINT}
+      </if>
+    </where>
+    <if test="order !=null and sort!=null">
+      order by ${sort}  ${order}
+    </if>
   </select>
 
   <!--delete 批量-->

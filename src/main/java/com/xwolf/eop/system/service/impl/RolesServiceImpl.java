@@ -1,9 +1,9 @@
 package com.xwolf.eop.system.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Maps;
 import com.xwolf.eop.common.pojo.PageHelper;
 import com.xwolf.eop.common.pojo.easyui.PageResult;
+import com.xwolf.eop.common.util.UUIDUtil;
 import com.xwolf.eop.system.dao.RolesMapper;
 import com.xwolf.eop.system.entity.Roles;
 import com.xwolf.eop.system.service.IRolesService;
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +45,7 @@ public class RolesServiceImpl extends BaseServiceImpl<Roles> implements IRolesSe
 	@Override
 	public PageResult selectRoleList(HttpServletRequest request) {
 		PageHelper.getPage(request);
-		Map<String,Object> map= Maps.newHashMap();
+		Map<String,Object> map=HttpUtil.getRequestMap(request);
 		List<Roles> codesList=rolesMapper.selectRolesList(map);
 		return  PageHelper.getListResult(codesList);
 	}
@@ -52,6 +53,8 @@ public class RolesServiceImpl extends BaseServiceImpl<Roles> implements IRolesSe
 	@Override
 	public JSONObject insert(Roles roles) {
 		try {
+			roles.setRcode(UUIDUtil.getUUID());
+			roles.setRtime(new Date());
 			int re= rolesMapper.insert(roles);
 			if(re>0){
 				return success();

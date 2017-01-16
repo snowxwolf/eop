@@ -11,8 +11,7 @@ import java.util.Date;
 @Data
 public class Roles implements Serializable {
     private Integer rid;
-    @NotBlank
-    @Length(max=32)
+
     private String rcode;
     @NotBlank
     @Length(max=20)
