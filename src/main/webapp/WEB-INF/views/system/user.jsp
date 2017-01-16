@@ -11,11 +11,11 @@
 
         <div  style="height: 30px;" >
             <form id="searchForm" method="post">
-                <span>码表code:</span>
-                <input type="text"  class="easyui-validatebox" name="code"/>
+                <span>用户名:</span>
+                <input type="text"  class="easyui-validatebox" name="uname"/>
 
                 <span>码表状态:</span>
-                <select class="easyui-combobox" name="cstatus" data-options="required:true" style="width:250px;">
+                <select class="easyui-combobox" name="ustatus" data-options="required:true" style="width:250px;">
                     <option value="1">启用</option>
                     <option value="0">禁用</option>
                 </select>
@@ -47,51 +47,45 @@
         <table class="et">
             <tr>
                 <th>
-                    <label for="code">码表CODE:</label>
+                    <label for="aname">用户名:</label>
                 </th>
                 <td colspan="3">
-                    <input id="code" class="easyui-validatebox" name="code" data-options="required:true,validType:'length[0,20]'" style="width:250px;">
+                    <input id="aname" class="easyui-validatebox" name="uname" data-options="required:true,validType:'length[0,20]'" style="width:250px;">
                 </td>
             </tr>
 
             <tr>
                 <th>
-                    <label for="mname">码表名称:</label>
+                    <label for="anick">昵称:</label>
                 </th>
                 <td colspan="3">
-                    <input id="mname" class="easyui-validatebox" data-options="required:true,validType:'length[0,10]'" name="cname" style="width:250px;">
+                    <input id="anick" class="easyui-validatebox" data-options="required:true,validType:'length[0,10]'" name="nickName" style="width:250px;">
                 </td>
             </tr>
             <tr>
                 <th>
-                    <label for="mvalue">码表值:</label>
+                    <label for="apasswd">密码:</label>
                 </th>
                 <td colspan="3">
-                    <input id="mvalue" class="easyui-validatebox" name="cvalue" data-options="required:true,validType:'length[0,60]'" style="width:250px;">
+                    <input id="apasswd" class="easyui-validatebox" name="upasswd" data-options="required:true,validType:'length[0,60]'" style="width:250px;">
                 </td>
             </tr>
+
             <tr>
                 <th>
-                    <label for="corder">排序值:</label>
+                    <label for="aemail">邮箱:</label>
                 </th>
                 <td colspan="3">
-                    <input id="corder" class="easyui-numberbox" name="corder" data-options="required:true,validType:'length[0,3]'" style="width:250px;">
+                    <input id="aemail" class="easyui-validatebox" name="email" data-options="validType:'email'" style="width:250px;">
                 </td>
             </tr>
-            <tr>
-                <th>
-                    <label for="adescr">描述:</label>
-                </th>
-                <td colspan="3">
-                    <input id="adescr" class="easyui-textbox" name="descr" data-options="multiline:true,required:true,validType:'length[0,40]'" style="width:250px;height: 50px;"/>
-                </td>
-            </tr>
+
             <tr>
                 <th>
                     <label for="as">状态:</label>
                 </th>
                 <td colspan="3">
-                    <select id="as" class="easyui-combobox" name="cstatus" data-options="required:true" style="width:250px;">
+                    <select id="as" class="easyui-combobox" name="ustatus" data-options="required:true" style="width:250px;">
                         <option value="1">启用</option>
                         <option value="0">禁用</option>
                     </select>
@@ -108,55 +102,42 @@
 <div id="updateUserWin" class="easyui-dialog" title="修改" style="width:500px;height:400px;padding: 30px 60px"
      data-options="iconCls:'icon-edit',closable:true,closed:true,minimizable:false,modal:true,buttons:'#up'">
     <form id="updateUserForm" class="ef" method="post">
-        <input type="hidden" name="cid">
+        <input type="hidden" name="uid">
+        <input type="hidden" name="ucode">
         <table class="et">
             <tr>
                 <th>
-                    <label for="ucode">码表CODE:</label>
+                    <label for="uname">用户名:</label>
                 </th>
                 <td colspan="3">
-                    <input id="ucode" class="easyui-validatebox" name="code" data-options="required:true,validType:'length[0,20]'" style="width:250px;">
+                    <input id="uname" class="easyui-validatebox" name="uname" data-options="required:true,validType:'length[0,20]'" style="width:250px;">
                 </td>
             </tr>
 
             <tr>
                 <th>
-                    <label for="umname">码表名称:</label>
+                    <label for="unick">昵称:</label>
                 </th>
                 <td colspan="3">
-                    <input id="umname" class="easyui-validatebox" name="cname" data-options="required:true,validType:'length[0,20]'" style="width:250px;">
+                    <input id="unick" class="easyui-validatebox" data-options="required:true,validType:'length[0,10]'" name="nickName" style="width:250px;">
                 </td>
             </tr>
+
             <tr>
                 <th>
-                    <label for="umvalue">码表值:</label>
+                    <label for="uemail">邮箱:</label>
                 </th>
                 <td colspan="3">
-                    <input id="umvalue" class="easyui-validatebox" name="cvalue" data-options="required:true,validType:'length[0,60]'" style="width:250px;">
+                    <input id="uemail" class="easyui-validatebox" name="email" data-options="validType:'email'" style="width:250px;">
                 </td>
             </tr>
-            <tr>
-                <th>
-                    <label for="uorder">排序值:</label>
-                </th>
-                <td colspan="3">
-                    <input id="uorder" class="easyui-numberbox" name="corder" data-options="required:true,validType:'length[0,3]'" style="width:250px;">
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    <label for="udescr">描述:</label>
-                </th>
-                <td colspan="3">
-                    <input id="udescr" class="easyui-textbox" name="descr" data-options="multiline:true,required:true,validType:'length[0,40]'" style="width:250px;height: 50px;"/>
-                </td>
-            </tr>
+
             <tr>
                 <th>
                     <label for="us">状态:</label>
                 </th>
                 <td colspan="3">
-                    <select id="us" class="easyui-combobox" name="cstatus" data-options="required:true" style="width:250px;">
+                    <select id="us" class="easyui-combobox" name="ustatus" data-options="required:true" style="width:250px;">
                         <option value="1">启用</option>
                         <option value="0">禁用</option>
                     </select>
@@ -198,9 +179,10 @@
             toolbar:'#searchTool',
             columns:[[
                 {field:'ck',checkbox:true},
-                {title:'用户code',field:'ucode',width:180,align:'center'},
+                {title:'用户code',field:'ucode',width:180,align:'center',hidden:true},
                 {title:'用户名称',field:'uname',width:180,align:'center'},
-                {field:'ctime',title:'创建时间',width:60,align:'center'},
+                {field:'email',title:'邮箱',width:60,align:'center'},
+                {field:'ctime',title:'创建时间',width:60,align:'center',sortable:true},
                 {field:'ustatus',title:'状态',width:100,align:'center',formatter:function(value,row,index){
                     return value==1?"启用":"禁用";
                 }}
@@ -224,7 +206,7 @@
         var rows= $('#user').datagrid('getSelections');
         var ids='';
         $.each(rows,function (i,n) {
-            ids+=n.cid+",";
+            ids+=n.uid+",";
         });
         var leng=ids.length;
         var newId= ids.substr(0,leng-1);

@@ -197,5 +197,24 @@
 
   <select id="selectUserList" parameterType="java.util.Map" resultMap="BaseResultMap">
      select  <include refid="Base_Column_List_Security"/> from com_user
+    <where>
+      <if test="uname !=null and uname !=''">
+        and uname =#{uname,jdbcType=VARCHAR}
+      </if>
+      <if test="ustatus!=null and ustatus !=''">
+        and ustatus =#{ustatus,jdbcType=TINYINT}
+      </if>
+    </where>
+    <if test="order !=null and sort!=null">
+      order by ${sort}  ${order}
+    </if>
   </select>
+
+  <!--delete 批量-->
+  <delete id="deleteBatch" parameterType="int" >
+    delete from com_user where uid IN
+    <foreach collection="array" open="(" close=")" separator="," item="ary">
+      #{ary}
+    </foreach>
+  </delete>
 </mapper>

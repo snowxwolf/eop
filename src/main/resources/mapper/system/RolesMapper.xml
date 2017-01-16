@@ -112,4 +112,12 @@
   <select id="selectRolesList" resultMap="BaseResultMap" parameterType="java.util.Map">
        select <include refid="Base_Column_List"/>  from com_roles
   </select>
+
+  <!--delete 批量-->
+  <delete id="deleteBatch" parameterType="int" >
+    delete from com_roles where rid IN
+    <foreach collection="array" open="(" close=")" separator="," item="ary">
+      #{ary}
+    </foreach>
+  </delete>
 </mapper>

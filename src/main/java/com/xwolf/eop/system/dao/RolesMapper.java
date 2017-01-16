@@ -21,4 +21,6 @@ public interface RolesMapper {
     List<Roles> getRolesListByUserCode(String usercode);
 
     List<Roles> selectRolesList(Map<String, Object> map);
+
+    void deleteBatch(String[] idAry);
 }

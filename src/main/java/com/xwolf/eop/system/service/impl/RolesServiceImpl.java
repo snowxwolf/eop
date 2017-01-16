@@ -1,11 +1,13 @@
 package com.xwolf.eop.system.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import com.xwolf.eop.common.pojo.PageHelper;
 import com.xwolf.eop.common.pojo.easyui.PageResult;
 import com.xwolf.eop.system.dao.RolesMapper;
 import com.xwolf.eop.system.entity.Roles;
 import com.xwolf.eop.system.service.IRolesService;
+import com.xwolf.eop.util.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,5 +47,45 @@ public class RolesServiceImpl extends BaseServiceImpl<Roles> implements IRolesSe
 		Map<String,Object> map= Maps.newHashMap();
 		List<Roles> codesList=rolesMapper.selectRolesList(map);
 		return  PageHelper.getListResult(codesList);
+	}
+
+	@Override
+	public JSONObject insert(Roles roles) {
+		try {
+			int re= rolesMapper.insert(roles);
+			if(re>0){
+				return success();
+			}
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);
+			return systemError();
+		}
+		return unkownError();
+	}
+
+	@Override
+	public JSONObject update(Roles roles) {
+		try {
+			int re= rolesMapper.updateByPrimaryKeySelective(roles);
+			if(re>0){
+				return success();
+			}
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);
+			return systemError();
+		}
+		return unkownError();
+	}
+
+	@Override
+	public JSONObject deleteBatch(HttpServletRequest request) {
+		try {
+			String[] idAry= HttpUtil.getRequestIds(request);
+			rolesMapper.deleteBatch(idAry);
+			return success();
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);
+			return systemError();
+		}
 	}
 }

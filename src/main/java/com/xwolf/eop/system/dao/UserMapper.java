@@ -21,4 +21,6 @@ public interface UserMapper {
     User getUserByName(String username);
 
     List<User> selectUserList(Map<String, Object> map);
+
+    void deleteBatch(String[] idAry);
 }

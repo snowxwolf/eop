@@ -12,14 +12,13 @@ public class User implements Serializable {
 
     private Integer uid;
 
-    @NotEmpty
     private String ucode;
 
     @NotEmpty
     private String uname;
 
     private String nickName;
-    @NotEmpty
+
     private transient String upasswd;
 
     private String email;
@@ -28,16 +27,15 @@ public class User implements Serializable {
 
     private String mobile;
 
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd")
     private Date ctime;
 
     private String ccode;
 
     private String rcode;
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd")
     private Date rtime;
 
-    @NotEmpty
     private int ustatus;
 
 }
