@@ -138,3 +138,7 @@
 .icon-house{
 	background:url('icons/house.png') no-repeat center center;
 }
+
+.icon-chart{
+	background: url("icons/chart_bar.png") no-repeat center center;
+}
