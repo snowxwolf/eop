@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.xwolf.eop.system.entity.Menus;
 
+import java.util.List;
+
 /**
  * <p>
  * 服务类
@@ -17,4 +19,6 @@ public interface IMenusService extends BaseService<Menus> {
     JSONObject getNavMenus();
 
     JSONArray getMenusList();
+
+    JSONArray getParentMenus();
 }

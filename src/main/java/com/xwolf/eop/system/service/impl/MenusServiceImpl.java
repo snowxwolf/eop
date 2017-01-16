@@ -6,13 +6,20 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import com.xwolf.eop.common.pojo.Global;
 import com.xwolf.eop.common.pojo.NavMenus;
+import com.xwolf.eop.common.pojo.easyui.Combobox;
+import com.xwolf.eop.common.util.UUIDUtil;
 import com.xwolf.eop.system.dao.MenusMapper;
 import com.xwolf.eop.system.entity.Menus;
 import com.xwolf.eop.system.service.IMenusService;
+import com.xwolf.eop.util.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -88,5 +95,62 @@ public class MenusServiceImpl extends BaseServiceImpl<Menus> implements IMenusSe
 			navAry.add(pjson);
 		}
 		return navAry;
+	}
+
+	@Override
+	public JSONArray getParentMenus() {
+		Map<String,Object> map= Maps.newHashMap();
+		map.put("mstatus",Global.ENABLE_STATUS);
+		//获取所有父菜单
+		List<Menus> parentMenus=menusMapper.getParentMenus(map);
+		JSONArray ary=new JSONArray();
+		for(Menus menu:parentMenus){
+			Combobox box=new Combobox();
+			box.setId(menu.getMcode());
+			box.setText(menu.getMname());
+			ary.add(box);
+		}
+		return ary;
+	}
+
+	@Override
+	public JSONObject insert(Menus menus) {
+		try {
+			menus.setMcode(UUIDUtil.getUUID());
+			int re= menusMapper.insert(menus);
+			if(re>0){
+				return success();
+			}
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);
+			return systemError();
+		}
+		return unkownError();
+	}
+
+	@Override
+	public JSONObject update(Menus menus) {
+		try {
+			int re= menusMapper.updateByPrimaryKeySelective(menus);
+			if(re>0){
+				return success();
+			}
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);
+			return systemError();
+		}
+		return unkownError();
+	}
+
+	@Override
+	public JSONObject deleteBatch(HttpServletRequest request) {
+		try {
+			String[] idAry= HttpUtil.getRequestIds(request);
+			menusMapper.deleteBatch(idAry);
+			return success();
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);
+			return systemError();
+		}
 	}
 }

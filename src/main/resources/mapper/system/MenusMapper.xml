@@ -160,4 +160,12 @@
 
     order by order_value asc
   </select>
+
+  <!--delete 批量-->
+  <delete id="deleteBatch" parameterType="int" >
+    delete from com_menus where mid IN
+    <foreach collection="array" open="(" close=")" separator="," item="ary">
+      #{ary}
+    </foreach>
+  </delete>
 </mapper>

@@ -21,4 +21,6 @@ public interface MenusMapper {
     List<Menus> getParentMenus(Map<String,Object> map);
 
     List<Menus> getSonMenus(Map<String,Object> map);
+
+    void deleteBatch(String[] idAry);
 }
