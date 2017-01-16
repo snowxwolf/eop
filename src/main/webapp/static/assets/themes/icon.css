@@ -107,3 +107,34 @@
 .icon-user-delete{
 	background:url('icons/user_delete.png') no-repeat center center;
 }
+
+.icon-cog{
+	background:url('icons/cog.png') no-repeat center center;
+}
+
+.icon-db{
+	background:url('icons/database.png') no-repeat center center;
+}
+/*group*/
+.icon-group{
+	background:url('icons/group.png') no-repeat center center;
+}
+.icon-group-add{
+	background:url('icons/group_add.png') no-repeat center center;
+}
+.icon-group-edit{
+	background:url('icons/group_edit.png') no-repeat center center;
+}
+.icon-group-delete{
+	background:url('icons/group_delete.png') no-repeat center center;
+}
+.icon-group-key{
+	background:url('icons/group_key.png') no-repeat center center;
+}
+.icon-group-link{
+	background:url('icons/group_link.png') no-repeat center center;
+}
+
+.icon-house{
+	background:url('icons/house.png') no-repeat center center;
+}
