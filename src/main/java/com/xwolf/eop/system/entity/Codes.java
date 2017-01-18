@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 @Data
 public class Codes implements Serializable{
+    private static final long serialVersionUID = -7697470623854625741L;
     private Integer cid;
 
     @NotBlank(message = "code 不能为空")

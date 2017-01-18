@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 @Data
 public class Roles implements Serializable {
+    private static final long serialVersionUID = -8621247584641935315L;
     private Integer rid;
 
     private String rcode;

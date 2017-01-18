@@ -10,6 +10,7 @@ import java.util.Date;
 @Data
 public class User implements Serializable {
 
+    private static final long serialVersionUID = -5720544131598286487L;
     private Integer uid;
 
     private String ucode;
