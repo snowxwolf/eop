@@ -213,9 +213,10 @@ public class HttpUtil {
 		//map.put("order",request.getParameter("order"));
 		Map<String,String[]> paramMap=request.getParameterMap();
 		if(MapUtils.isNotEmpty(paramMap)){
-			Set<String> keys= paramMap.keySet();
-			for(String key:keys){
-				String[] params=paramMap.get(key);
+			Set<Map.Entry<String,String[]>> keys=paramMap.entrySet();
+			for(Map.Entry<String,String[]> entry:keys){
+				String key=entry.getKey();
+				String[] params=entry.getValue();
 				if(ArrayUtils.isNotEmpty(params)){
 					if("sort".equals(key)){
 						map.put(key,StringUtil.camelToUnderline(params[0]));
