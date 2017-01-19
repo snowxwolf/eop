@@ -12,14 +12,14 @@ import java.security.SecureRandom;
 /**
  * DES 加密解密
  * @author  xwolf
- * @Date 2015-01-22 17:41
- * @since V1.0.0
+ * @date 2015-01-22 17:41
+ * @since 1.0.0
  *
  */
 public class DESUtil {
 	
 	private static final Key key;
-	private static final String KEY_STR = "EAP@2016.xwolf";
+	private static final String KEY_STR = "EOP@2016_17.xwolf";
 	static {
 		try {
 			KeyGenerator generator = KeyGenerator.getInstance("DES");

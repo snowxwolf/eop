@@ -12,6 +12,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import javax.crypto.Cipher;
 import java.io.*;
 import java.math.BigInteger;
+import java.nio.charset.Charset;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -403,18 +404,13 @@ public abstract class RSAUtils1 {
         return null;
     }
 
-    public static void main(String[] args) {
-        PublicKey publicKey= RSAUtils1.getDefaultPublicKey();
-        String s="黄哲";
-        String pstr=null;
-        try {
-            pstr=  new String(RSAUtils1.encrypt(publicKey,s.getBytes()));
-            System.out.println(pstr);
-            PrivateKey privateKey= RSAUtils1.getDefaultPrivateKey();
-            String ds= RSAUtils1.decryptString(privateKey,pstr);
-            System.out.println("ds:"+ds);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static void main(String[] args) throws Exception {
+      PublicKey publicKey=getDefaultPublicKey();
+      PrivateKey privateKey=getDefaultPrivateKey();
+      String data="123445";
+     byte[] bytes=encrypt(publicKey,data.getBytes(Charset.forName("UTF-8")));
+        System.out.println(new String(bytes));
+        String ming=decryptString(privateKey,new String(bytes));
+        System.out.println(ming);
     }
 }
