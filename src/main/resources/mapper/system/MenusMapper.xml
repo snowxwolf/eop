@@ -6,7 +6,7 @@
     <result column="mcode" property="mcode" jdbcType="VARCHAR" />
     <result column="mname" property="mname" jdbcType="VARCHAR" />
     <result column="pcode" property="pcode" jdbcType="VARCHAR" />
-    <result column="is_parent" property="isParent" jdbcType="TINYINT" />
+    <result column="is_parent" property="parent" jdbcType="TINYINT" />
     <result column="murl" property="murl" jdbcType="VARCHAR" />
     <result column="mstatus" property="mstatus" jdbcType="TINYINT" />
     <result column="icon" property="icon" jdbcType="VARCHAR" />
@@ -31,7 +31,7 @@
       mstatus, icon, order_value
       )
     values (#{mid,jdbcType=INTEGER}, #{mcode,jdbcType=VARCHAR}, #{mname,jdbcType=VARCHAR}, 
-      #{pcode,jdbcType=VARCHAR}, #{isParent,jdbcType=TINYINT}, #{murl,jdbcType=VARCHAR}, 
+      #{pcode,jdbcType=VARCHAR}, #{parent,jdbcType=TINYINT}, #{murl,jdbcType=VARCHAR},
       #{mstatus,jdbcType=TINYINT}, #{icon,jdbcType=VARCHAR}, #{orderValue,jdbcType=TINYINT}
       )
   </insert>
@@ -50,7 +50,7 @@
       <if test="pcode != null" >
         pcode,
       </if>
-      <if test="isParent != null" >
+      <if test="parent != null" >
         is_parent,
       </if>
       <if test="murl != null" >
@@ -79,8 +79,8 @@
       <if test="pcode != null" >
         #{pcode,jdbcType=VARCHAR},
       </if>
-      <if test="isParent != null" >
-        #{isParent,jdbcType=TINYINT},
+      <if test="parent != null" >
+        #{parent,jdbcType=TINYINT},
       </if>
       <if test="murl != null" >
         #{murl,jdbcType=VARCHAR},
@@ -108,8 +108,8 @@
       <if test="pcode != null" >
         pcode = #{pcode,jdbcType=VARCHAR},
       </if>
-      <if test="isParent != null" >
-        is_parent = #{isParent,jdbcType=TINYINT},
+      <if test="parent != null" >
+        is_parent = #{parent,jdbcType=TINYINT},
       </if>
       <if test="murl != null" >
         murl = #{murl,jdbcType=VARCHAR},
@@ -131,7 +131,7 @@
     set mcode = #{mcode,jdbcType=VARCHAR},
       mname = #{mname,jdbcType=VARCHAR},
       pcode = #{pcode,jdbcType=VARCHAR},
-      is_parent = #{isParent,jdbcType=TINYINT},
+      is_parent = #{parent,jdbcType=TINYINT},
       murl = #{murl,jdbcType=VARCHAR},
       mstatus = #{mstatus,jdbcType=TINYINT},
       icon = #{icon,jdbcType=VARCHAR},

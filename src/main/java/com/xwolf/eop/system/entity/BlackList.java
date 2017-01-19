@@ -15,10 +15,10 @@ public class BlackList {
     private String ip;
     private String mac;
 
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd")
     private Date createTime;
 
-    private int status;
+    private Integer status;
 
 
 }

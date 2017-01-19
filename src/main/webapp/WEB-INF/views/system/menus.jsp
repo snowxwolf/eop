@@ -52,7 +52,7 @@
                     <label for="pmenu">是否父菜单:</label>
                 </th>
                 <td colspan="3">
-                    <input id="pmenu" name="isParent" style="width:250px;">
+                    <input id="pmenu" name="parent" style="width:250px;">
                 </td>
             </tr>
             <tr id="apcodeTr" style="display:none;">
@@ -127,7 +127,7 @@
                     <label for="upmenu">是否父菜单:</label>
                 </th>
                 <td colspan="3">
-                    <input id="upmenu" name="isParent" style="width:250px;">
+                    <input id="upmenu" name="parent" style="width:250px;">
                 </td>
             </tr>
             <tr id="upcodeTr" style="display:none;">

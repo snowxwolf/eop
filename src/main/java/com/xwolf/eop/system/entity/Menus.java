@@ -13,7 +13,7 @@ public class Menus {
 
     private String pcode;
 
-    private Byte isParent;
+    private Byte parent;
 
     private String murl;
 

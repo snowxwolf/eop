@@ -9,9 +9,9 @@ package com.xwolf.eop.system.enums;
 public enum  UserStatusEnums {
 
     ABLED("1","正常"),
-    DISABLED("2","用户禁用"),
-    LOCKED("3","用户锁定"),
-    DELETE("4","删除");
+    DISABLED("0","用户禁用"),
+    LOCKED("2","用户锁定"),
+    DELETE("3","删除");
 
     private String code;
     private String desc;

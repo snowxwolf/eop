@@ -84,6 +84,10 @@ public class UserRealm extends AuthorizingRealm {
         if (UserStatusEnums.LOCKED.getCode().equals(status)) {
             throw new LockedAccountException();
         }
+        //账号禁用
+        if (UserStatusEnums.DISABLED.getCode().equals(status)) {
+            throw new DisabledAccountException();
+        }
         return new SimpleAuthenticationInfo(user.getUname(),user
                 .getUpasswd(),getName());
     }

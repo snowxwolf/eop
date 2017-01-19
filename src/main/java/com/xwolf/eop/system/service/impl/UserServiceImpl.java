@@ -14,6 +14,7 @@ import com.xwolf.eop.util.MD5;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -65,6 +66,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
         } catch (LockedAccountException e){
             jsonObject.put("success", false);
             jsonObject.put("restVal", "账号锁定,请联系管理员!");
+        }catch (DisabledAccountException e){
+            jsonObject.put("success", false);
+            jsonObject.put("restVal", "账号禁用,请联系管理员!");
         }catch(Exception e){
             log.error(e.getMessage(),e);
             jsonObject.put("success", false);
