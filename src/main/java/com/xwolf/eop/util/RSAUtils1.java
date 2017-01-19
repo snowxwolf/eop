@@ -27,7 +27,7 @@ import java.util.Date;
  * @version 1.0.0, 2010-05-05
  */
 @Slf4j
-public abstract class RSAUtils {
+public abstract class RSAUtils1 {
 
 
     /** 算法名称 */
@@ -56,7 +56,7 @@ public abstract class RSAUtils {
         rsaPairFile = new File(getRSAPairFilePath());
     }
 
-    private RSAUtils() {
+    private RSAUtils1() {
     }
 
     /**
@@ -71,7 +71,7 @@ public abstract class RSAUtils {
         } catch (InvalidParameterException ex) {
            log.error("KeyPairGenerator does not support a key length of " + KEY_SIZE + ".", ex);
         } catch (NullPointerException ex) {
-           log.error("RSAUtils#KEY_PAIR_GEN is null, can not generate KeyPairGenerator instance.",
+           log.error("RSAUtils1#KEY_PAIR_GEN is null, can not generate KeyPairGenerator instance.",
                     ex);
         }
         return null;
@@ -81,7 +81,7 @@ public abstract class RSAUtils {
      * 返回生成/读取的密钥对文件的路径。
      */
     private static String getRSAPairFilePath() {
-        String urlPath = RSAUtils.class.getResource("/").getPath();
+        String urlPath = RSAUtils1.class.getResource("/").getPath();
         return (new File(urlPath) +File.separator+ RSA_PAIR_FILENAME);
     }
 
@@ -165,7 +165,7 @@ public abstract class RSAUtils {
         } catch (InvalidKeySpecException ex) {
            log.error("RSAPublicKeySpec is unavailable.", ex);
         } catch (NullPointerException ex) {
-           log.error("RSAUtils#KEY_FACTORY is null, can not generate KeyFactory instance.", ex);
+           log.error("RSAUtils1#KEY_FACTORY is null, can not generate KeyFactory instance.", ex);
         }
         return null;
     }
@@ -185,7 +185,7 @@ public abstract class RSAUtils {
         } catch (InvalidKeySpecException ex) {
            log.error("RSAPrivateKeySpec is unavailable.", ex);
         } catch (NullPointerException ex) {
-           log.error("RSAUtils#KEY_FACTORY is null, can not generate KeyFactory instance.", ex);
+           log.error("RSAUtils1#KEY_FACTORY is null, can not generate KeyFactory instance.", ex);
         }
         return null;
     }
@@ -404,14 +404,14 @@ public abstract class RSAUtils {
     }
 
     public static void main(String[] args) {
-        PublicKey publicKey=RSAUtils.getDefaultPublicKey();
+        PublicKey publicKey= RSAUtils1.getDefaultPublicKey();
         String s="黄哲";
         String pstr=null;
         try {
-            pstr=  new String(RSAUtils.encrypt(publicKey,s.getBytes()));
+            pstr=  new String(RSAUtils1.encrypt(publicKey,s.getBytes()));
             System.out.println(pstr);
-            PrivateKey privateKey=RSAUtils.getDefaultPrivateKey();
-            String ds= RSAUtils.decryptString(privateKey,pstr);
+            PrivateKey privateKey= RSAUtils1.getDefaultPrivateKey();
+            String ds= RSAUtils1.decryptString(privateKey,pstr);
             System.out.println("ds:"+ds);
         } catch (Exception e) {
             e.printStackTrace();
