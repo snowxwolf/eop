@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xwolf.eop.erp.dao.JobsMapper" >
+  <resultMap id="BaseResultMap" type="com.xwolf.eop.erp.entity.Jobs" >
+    <id column="jid" property="jid" jdbcType="INTEGER" />
+    <result column="jcode" property="jcode" jdbcType="VARCHAR" />
+    <result column="jname" property="jname" jdbcType="VARCHAR" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    jid, jcode, jname, descr, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from erp_jobs
+    where jid = #{jid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from erp_jobs
+    where jid = #{jid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xwolf.eop.erp.entity.Jobs" >
+    insert into erp_jobs (jid, jcode, jname, 
+      descr, state)
+    values (#{jid,jdbcType=INTEGER}, #{jcode,jdbcType=VARCHAR}, #{jname,jdbcType=VARCHAR}, 
+      #{descr,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xwolf.eop.erp.entity.Jobs" >
+    insert into erp_jobs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jid != null" >
+        jid,
+      </if>
+      <if test="jcode != null" >
+        jcode,
+      </if>
+      <if test="jname != null" >
+        jname,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jid != null" >
+        #{jid,jdbcType=INTEGER},
+      </if>
+      <if test="jcode != null" >
+        #{jcode,jdbcType=VARCHAR},
+      </if>
+      <if test="jname != null" >
+        #{jname,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xwolf.eop.erp.entity.Jobs" >
+    update erp_jobs
+    <set >
+      <if test="jcode != null" >
+        jcode = #{jcode,jdbcType=VARCHAR},
+      </if>
+      <if test="jname != null" >
+        jname = #{jname,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+    </set>
+    where jid = #{jid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xwolf.eop.erp.entity.Jobs" >
+    update erp_jobs
+    set jcode = #{jcode,jdbcType=VARCHAR},
+      jname = #{jname,jdbcType=VARCHAR},
+      descr = #{descr,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT}
+    where jid = #{jid,jdbcType=INTEGER}
+  </update>
+</mapper>

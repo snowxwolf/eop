@@ -16,24 +16,24 @@
 			userId="eap" password="eap@eap">
 		</jdbcConnection>
 		
-		<javaModelGenerator targetPackage="com.xwolf.eop.system.entity" targetProject="D:\workspace\NIDEA\eop\src\main\java">
+		<javaModelGenerator targetPackage="com.xwolf.eop.erp.entity" targetProject="D:\workspace\NIDEA\eop\src\main\java">
 		</javaModelGenerator>
 
 		<!--xml 映射文件-->
-		<sqlMapGenerator targetPackage="mapper/system" targetProject="D:\workspace\NIDEA\eop\src\main\resources">
+		<sqlMapGenerator targetPackage="mapper/erp" targetProject="D:\workspace\NIDEA\eop\src\main\resources">
 		</sqlMapGenerator>
 
 		<!--对应接口-->
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.xwolf.eop.system.dao"
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.xwolf.eop.erp.dao"
 			targetProject="D:\workspace\NIDEA\eop\src\main\java">
 		</javaClientGenerator>
 
-		<table tableName="com_black_list" domainObjectName="BlackList"
+		<table tableName="erp_jobs" domainObjectName="Jobs"
 			enableCountByExample="false" enableUpdateByExample="false" 
 			enableDeleteByExample="false" enableSelectByExample="false" 
 			selectByExampleQueryId="false" >
 			<property name="ignoreQualifiersAtRuntime" value="true" />
-			<property name="runtimeTableName" value="com_black_list" />
+			<property name="runtimeTableName" value="erp_jobs" />
 			<!--<generatedKey  column="ID" sqlStatement="select 1 from dual" />
 		--></table>
 	</context>

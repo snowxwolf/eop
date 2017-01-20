@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xwolf.eop.erp.dao.EmployeesMapper" >
+  <resultMap id="BaseResultMap" type="com.xwolf.eop.erp.entity.Employees" >
+    <id column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="ecode" property="ecode" jdbcType="VARCHAR" />
+    <result column="dcode" property="dcode" jdbcType="VARCHAR" />
+    <result column="jcode" property="jcode" jdbcType="VARCHAR" />
+    <result column="eno" property="eno" jdbcType="VARCHAR" />
+    <result column="ename" property="ename" jdbcType="VARCHAR" />
+    <result column="ecardno" property="ecardno" jdbcType="VARCHAR" />
+    <result column="birth" property="birth" jdbcType="DATE" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="blog" property="blog" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="weixin" property="weixin" jdbcType="VARCHAR" />
+    <result column="other_social" property="otherSocial" jdbcType="VARCHAR" />
+    <result column="in_date" property="inDate" jdbcType="TIMESTAMP" />
+    <result column="leave_date" property="leaveDate" jdbcType="TIMESTAMP" />
+    <result column="deal_in_code" property="dealInCode" jdbcType="VARCHAR" />
+    <result column="deal_leave_code" property="dealLeaveCode" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    eid, ecode, dcode, jcode, eno, ename, ecardno, birth, mobile, email, blog, qq, weixin, 
+    other_social, in_date, leave_date, deal_in_code, deal_leave_code, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from erp_employees
+    where eid = #{eid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from erp_employees
+    where eid = #{eid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xwolf.eop.erp.entity.Employees" >
+    insert into erp_employees (eid, ecode, dcode, 
+      jcode, eno, ename, 
+      ecardno, birth, mobile, 
+      email, blog, qq, weixin, 
+      other_social, in_date, leave_date, 
+      deal_in_code, deal_leave_code, state
+      )
+    values (#{eid,jdbcType=INTEGER}, #{ecode,jdbcType=VARCHAR}, #{dcode,jdbcType=VARCHAR}, 
+      #{jcode,jdbcType=VARCHAR}, #{eno,jdbcType=VARCHAR}, #{ename,jdbcType=VARCHAR}, 
+      #{ecardno,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{blog,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{weixin,jdbcType=VARCHAR}, 
+      #{otherSocial,jdbcType=VARCHAR}, #{inDate,jdbcType=TIMESTAMP}, #{leaveDate,jdbcType=TIMESTAMP}, 
+      #{dealInCode,jdbcType=VARCHAR}, #{dealLeaveCode,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xwolf.eop.erp.entity.Employees" >
+    insert into erp_employees
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="ecode != null" >
+        ecode,
+      </if>
+      <if test="dcode != null" >
+        dcode,
+      </if>
+      <if test="jcode != null" >
+        jcode,
+      </if>
+      <if test="eno != null" >
+        eno,
+      </if>
+      <if test="ename != null" >
+        ename,
+      </if>
+      <if test="ecardno != null" >
+        ecardno,
+      </if>
+      <if test="birth != null" >
+        birth,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="blog != null" >
+        blog,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="weixin != null" >
+        weixin,
+      </if>
+      <if test="otherSocial != null" >
+        other_social,
+      </if>
+      <if test="inDate != null" >
+        in_date,
+      </if>
+      <if test="leaveDate != null" >
+        leave_date,
+      </if>
+      <if test="dealInCode != null" >
+        deal_in_code,
+      </if>
+      <if test="dealLeaveCode != null" >
+        deal_leave_code,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="ecode != null" >
+        #{ecode,jdbcType=VARCHAR},
+      </if>
+      <if test="dcode != null" >
+        #{dcode,jdbcType=VARCHAR},
+      </if>
+      <if test="jcode != null" >
+        #{jcode,jdbcType=VARCHAR},
+      </if>
+      <if test="eno != null" >
+        #{eno,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null" >
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="ecardno != null" >
+        #{ecardno,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null" >
+        #{birth,jdbcType=DATE},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="blog != null" >
+        #{blog,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+        #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="otherSocial != null" >
+        #{otherSocial,jdbcType=VARCHAR},
+      </if>
+      <if test="inDate != null" >
+        #{inDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveDate != null" >
+        #{leaveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealInCode != null" >
+        #{dealInCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dealLeaveCode != null" >
+        #{dealLeaveCode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xwolf.eop.erp.entity.Employees" >
+    update erp_employees
+    <set >
+      <if test="ecode != null" >
+        ecode = #{ecode,jdbcType=VARCHAR},
+      </if>
+      <if test="dcode != null" >
+        dcode = #{dcode,jdbcType=VARCHAR},
+      </if>
+      <if test="jcode != null" >
+        jcode = #{jcode,jdbcType=VARCHAR},
+      </if>
+      <if test="eno != null" >
+        eno = #{eno,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null" >
+        ename = #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="ecardno != null" >
+        ecardno = #{ecardno,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null" >
+        birth = #{birth,jdbcType=DATE},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="blog != null" >
+        blog = #{blog,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+        weixin = #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="otherSocial != null" >
+        other_social = #{otherSocial,jdbcType=VARCHAR},
+      </if>
+      <if test="inDate != null" >
+        in_date = #{inDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveDate != null" >
+        leave_date = #{leaveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealInCode != null" >
+        deal_in_code = #{dealInCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dealLeaveCode != null" >
+        deal_leave_code = #{dealLeaveCode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+    </set>
+    where eid = #{eid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xwolf.eop.erp.entity.Employees" >
+    update erp_employees
+    set ecode = #{ecode,jdbcType=VARCHAR},
+      dcode = #{dcode,jdbcType=VARCHAR},
+      jcode = #{jcode,jdbcType=VARCHAR},
+      eno = #{eno,jdbcType=VARCHAR},
+      ename = #{ename,jdbcType=VARCHAR},
+      ecardno = #{ecardno,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=DATE},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      blog = #{blog,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      weixin = #{weixin,jdbcType=VARCHAR},
+      other_social = #{otherSocial,jdbcType=VARCHAR},
+      in_date = #{inDate,jdbcType=TIMESTAMP},
+      leave_date = #{leaveDate,jdbcType=TIMESTAMP},
+      deal_in_code = #{dealInCode,jdbcType=VARCHAR},
+      deal_leave_code = #{dealLeaveCode,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT}
+    where eid = #{eid,jdbcType=INTEGER}
+  </update>
+</mapper>

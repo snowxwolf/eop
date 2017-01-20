@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xwolf.eop.erp.dao.DepartmentsMapper" >
+  <resultMap id="BaseResultMap" type="com.xwolf.eop.erp.entity.Departments" >
+    <id column="did" property="did" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="dname" property="dname" jdbcType="VARCHAR" />
+    <result column="is_parent" property="parent" jdbcType="BIT" />
+    <result column="pcode" property="pcode" jdbcType="VARCHAR" />
+    <result column="create_code" property="createCode" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_code" property="updateCode" jdbcType="VARCHAR" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    did, code, dname, is_parent, pcode, create_code, create_time, update_time, update_code, 
+    descr, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from erp_departments
+    where did = #{did,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from erp_departments
+    where did = #{did,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xwolf.eop.erp.entity.Departments" >
+    insert into erp_departments (did, code, dname, 
+      is_parent, pcode, create_code, 
+      create_time, update_time, update_code, 
+      descr, state)
+    values (#{did,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{dname,jdbcType=VARCHAR}, 
+      #{parent,jdbcType=BIT}, #{pcode,jdbcType=VARCHAR}, #{createCode,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateCode,jdbcType=VARCHAR}, 
+      #{descr,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xwolf.eop.erp.entity.Departments" >
+    insert into erp_departments
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="did != null" >
+        did,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="dname != null" >
+        dname,
+      </if>
+      <if test="parent != null" >
+        is_parent,
+      </if>
+      <if test="pcode != null" >
+        pcode,
+      </if>
+      <if test="createCode != null" >
+        create_code,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateCode != null" >
+        update_code,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="did != null" >
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="dname != null" >
+        #{dname,jdbcType=VARCHAR},
+      </if>
+      <if test="parent != null" >
+        #{parent,jdbcType=BIT},
+      </if>
+      <if test="pcode != null" >
+        #{pcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createCode != null" >
+        #{createCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateCode != null" >
+        #{updateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xwolf.eop.erp.entity.Departments" >
+    update erp_departments
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="dname != null" >
+        dname = #{dname,jdbcType=VARCHAR},
+      </if>
+      <if test="parent != null" >
+        is_parent = #{parent,jdbcType=BIT},
+      </if>
+      <if test="pcode != null" >
+        pcode = #{pcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createCode != null" >
+        create_code = #{createCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateCode != null" >
+        update_code = #{updateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+    </set>
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xwolf.eop.erp.entity.Departments" >
+    update erp_departments
+    set code = #{code,jdbcType=VARCHAR},
+      dname = #{dname,jdbcType=VARCHAR},
+      is_parent = #{parent,jdbcType=BIT},
+      pcode = #{pcode,jdbcType=VARCHAR},
+      create_code = #{createCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_code = #{updateCode,jdbcType=VARCHAR},
+      descr = #{descr,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT}
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+</mapper>
