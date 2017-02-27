@@ -2,6 +2,7 @@ package com.xwolf.eop.util;
 
 /**
  * <p>
+ *     字符串处理工具类
  * </p>
  *
  * @author xwolf
@@ -51,5 +52,15 @@ public class StringUtil {
         }
 
     }
+
+    /**
+     * 防止SQL注入
+     * @param sql 原始字符串
+     * @return 处理后的字符串
+     */
+    public static String escapeSql(String sql){
+         return org.apache.commons.lang.StringEscapeUtils.escapeSql(sql);
+    }
+
 
 }

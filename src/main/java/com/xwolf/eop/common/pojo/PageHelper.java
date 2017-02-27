@@ -43,7 +43,11 @@ public class PageHelper{
             ary.add(t);
         }
         PageResult result=new PageResult();
-        result.setTotal(page.getTotal());
+        int size=list.size();
+        result.setTotal(0);
+        if ( size != 0){
+            result.setTotal(page.getTotal());
+        }
         result.setRows(ary);
         return result;
     }

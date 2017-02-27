@@ -12,7 +12,6 @@ import java.util.Date;
  */
 public class HelloTask {
     private static final Logger log= LoggerFactory.getLogger(HelloTask.class);
-
     public void hello(){
        log.info("Hello Task:{},当前时间:{}","定时任务执行",new Date());
     }

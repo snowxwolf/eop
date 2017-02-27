@@ -1,6 +1,7 @@
 package com.xwolf.eop.test.mq;
 
 import com.rabbitmq.client.*;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -16,18 +17,25 @@ import java.util.concurrent.TimeoutException;
  * @since V1.0.0
  */
 public class TestRabbit {
-    private final static String QUEUE_NAME = "hello";
+    private final static String QUEUE_NAME = "queue_hello";
+
+    ConnectionFactory factory=null;
+
+    @Before
+    public void before(){
+        factory=new ConnectionFactory();
+        factory.setHost("localhost");
+        factory.setUsername("user");
+        factory.setPassword("user");
+        factory.setPort(5672);
+    }
 
     /**
      * 发送消息
      */
     @Test
     public void testPub(){
-        ConnectionFactory factory=new ConnectionFactory();
-        factory.setHost("localhost");
-        factory.setUsername("user");
-        factory.setPassword("user123");
-        factory.setPort(5672);
+
         try {
             Connection connection= factory.newConnection();
             //创建一个频道
@@ -35,7 +43,7 @@ public class TestRabbit {
             //指定一个队列
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             //发送的消息
-            String message = "hello world!dsdsd";
+            String message = "hello world! spring";
             //往队列中发出一条消息
             channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
             System.out.println("Sent Message：'" + message + "'");
@@ -54,11 +62,6 @@ public class TestRabbit {
      */
      @Test
     public void testRecv(){
-        ConnectionFactory factory=new ConnectionFactory();
-        factory.setHost("localhost");
-        factory.setUsername("user");
-        factory.setPassword("user123");
-        factory.setPort(5672);
         try {
             Connection connection= factory.newConnection();
             //创建一个频道

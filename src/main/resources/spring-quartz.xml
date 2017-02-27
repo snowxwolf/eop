@@ -9,7 +9,7 @@
     <!--指定要运行的类,方法-->
     <bean id="helloJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="helloTask" />
-        <property name="targetMethod" value="hello" />
+        <property name="targetMethod" value="hlogback.xmlello" />
     </bean>
 
     <!-- Run the job every 5 seconds -->
